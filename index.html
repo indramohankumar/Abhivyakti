@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhivyakti Competition Rules | Quantum University</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        quantum: {
+                            purple: '#8B2284',
+                            pink: '#EA1588',
+                            light: '#EEF7F8'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 30px rgba(139, 34, 132, 0.05);
+        }
+        .bg-pattern {
+            background-color: #EEF7F8;
+            background-image: radial-gradient(at 0% 0%, rgba(234, 21, 136, 0.15) 0px, transparent 50%),
+                              radial-gradient(at 100% 100%, rgba(139, 34, 132, 0.15) 0px, transparent 50%);
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body class="bg-pattern min-h-screen py-10 px-4 flex flex-col items-center text-gray-800">
+    <div class="max-w-2xl w-full">
+        <!-- Header -->
+        <div class="text-center mb-10 flex flex-col items-center">
+            <div class="bg-white/80 backdrop-blur-sm p-4 rounded-3xl shadow-sm mb-6 inline-block border border-white">
+                <img src="logo.png" alt="Quantum University" class="h-20 object-contain drop-shadow-sm">
+            </div>
+            <h1 class="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-quantum-purple to-quantum-pink mb-3 pb-1">
+                Abhivyakti
+            </h1>
+            <p class="text-gray-600 font-semibold text-lg tracking-wider uppercase">
+                Inter-University Competition Rules
+            </p>
+        </div>
+
+        <!-- Links Container -->
+        <div class="space-y-5" id="links-container">
+            <!-- Items will be injected here by JS -->
+        </div>
+        
+        <div class="mt-12 mb-8 text-center flex justify-center">
+            <div class="text-sm font-medium text-quantum-purple bg-white/60 backdrop-blur-sm py-3 px-6 rounded-full inline-flex items-center shadow-sm border border-white/50">
+                <i class="fas fa-camera text-quantum-pink mr-3 text-lg"></i> Scan QR code or click the categories
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for QR Code -->
+    <div id="qr-modal" class="fixed inset-0 bg-gray-900/40 backdrop-blur-sm hidden flex items-center justify-center z-50 transition-all duration-300 opacity-0">
+        <div class="bg-white p-8 rounded-[2rem] shadow-2xl max-w-sm w-full mx-4 transform scale-95 transition-all duration-300 relative border border-white">
+            <button onclick="closeModal()" class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-gray-50 text-gray-500 hover:bg-quantum-pink hover:text-white transition-colors focus:outline-none">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            <div class="text-center mb-6 mt-2">
+                <h3 class="text-2xl font-bold text-gray-800" id="qr-title">Scan QR Code</h3>
+                <p class="text-sm text-gray-500 mt-2 font-medium">Point your camera to view the document</p>
+            </div>
+            <div class="flex justify-center p-6 bg-gray-50 rounded-2xl border border-gray-100 shadow-inner">
+                <div id="qrcode"></div>
+            </div>
+            
+            <div class="mt-8 flex justify-center">
+                <a id="qr-link-btn" href="#" target="_blank" class="w-full flex justify-center items-center gap-2 px-6 py-3.5 bg-gradient-to-r from-quantum-purple to-quantum-pink text-white rounded-xl font-semibold shadow-lg shadow-pink-500/30 hover:shadow-pink-500/50 transition-all hover:-translate-y-0.5">
+                    <span>Open Document</span>
+                    <i class="fas fa-external-link-alt text-sm"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const categories = [
+            {
+                name: "Music",
+                events: "Indian Classical, Semi-Classical, Sufi, Indian Folk, Devotional, Ghazal",
+                icon: "fa-music",
+                url: "https://docs.google.com/document/d/1VBvLQH9djme__Lp4jUQhwt6ucDpfdZI9/edit?usp=drive_link&ouid=110613590784742549939&rtpof=true&sd=true",
+                gradient: "from-blue-500 to-cyan-400",
+                shadow: "shadow-blue-500/20"
+            },
+            {
+                name: "Dance",
+                events: "Classical, Semi-Classical, Indian Folk",
+                icon: "fa-person-walking",
+                url: "https://docs.google.com/document/d/1kTYN4YAfi4wZLbi0jXVPfSnWy3AGj0bq/edit?usp=drive_link&ouid=110613590784742549939&rtpof=true&sd=true",
+                gradient: "from-quantum-pink to-rose-400",
+                shadow: "shadow-pink-500/20"
+            },
+            {
+                name: "Theatre",
+                events: "Indian Mythology-Based Drama",
+                icon: "fa-masks-theater",
+                url: "https://docs.google.com/document/d/1Up1NfeKEmbHRGvk1ebK3Y3b9DgSlfKCl/edit?usp=drive_link&ouid=110613590784742549939&rtpof=true&sd=true",
+                gradient: "from-quantum-purple to-fuchsia-500",
+                shadow: "shadow-purple-500/20"
+            },
+            {
+                name: "Fashion",
+                events: "Fashion Show – Indian Ethnic Wear",
+                icon: "fa-shirt",
+                url: "https://docs.google.com/document/d/1Up1NfeKEmbHRGvk1ebK3Y3b9DgSlfKCl/edit?usp=drive_link&ouid=110613590784742549939&rtpof=true&sd=true",
+                gradient: "from-orange-500 to-amber-400",
+                shadow: "shadow-orange-500/20"
+            },
+            {
+                name: "Fine Arts",
+                events: "Rangoli",
+                icon: "fa-palette",
+                url: "https://docs.google.com/document/d/1p7WUPCg8X38o5GBbRvRXxVpvxlfYU7x4/edit?usp=drive_link&ouid=110613590784742549939&rtpof=true&sd=true",
+                gradient: "from-emerald-500 to-teal-400",
+                shadow: "shadow-emerald-500/20"
+            },
+            {
+                name: "Indian Cuisine",
+                events: "Inter-University Culinary Competition",
+                icon: "fa-utensils",
+                url: "https://docs.google.com/document/d/13uCjopZokuFAOhwk73wHC2EBSj2sjJiP/edit?usp=drive_link&ouid=110613590784742549939&rtpof=true&sd=true",
+                gradient: "from-red-500 to-orange-500",
+                shadow: "shadow-red-500/20"
+            }
+        ];
+
+        const container = document.getElementById('links-container');
+        let qr = null;
+
+        categories.forEach((cat, index) => {
+            const card = document.createElement('div');
+            card.className = `glass-card rounded-[1.5rem] p-5 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 ${cat.shadow} group cursor-pointer`;
+            card.innerHTML = `
+                <div class="flex items-center gap-5">
+                    <a href="${cat.url}" target="_blank" class="flex-1 flex items-center gap-5 hover:opacity-90 transition-opacity">
+                        <div class="w-16 h-16 rounded-full bg-gradient-to-br ${cat.gradient} text-white flex items-center justify-center shrink-0 shadow-lg shadow-inner">
+                            <i class="fas ${cat.icon} text-2xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="font-bold text-xl text-gray-900 group-hover:text-quantum-purple transition-colors">${cat.name}</h2>
+                            <p class="text-sm text-gray-600 font-medium mt-1 leading-snug">${cat.events}</p>
+                        </div>
+                    </a>
+                    <div class="flex items-center gap-2 shrink-0 z-10 relative">
+                        <a href="${cat.url}" target="_blank" class="w-12 h-12 md:w-14 md:h-14 flex items-center justify-center bg-white rounded-2xl hover:bg-quantum-purple hover:text-white text-gray-600 transition-all border border-gray-100 shadow-sm hover:shadow-md" title="Open Document">
+                            <i class="fas fa-external-link-alt text-xl md:text-2xl"></i>
+                        </a>
+                        <button onclick="showQR(event, ${index})" class="w-12 h-12 md:w-14 md:h-14 flex items-center justify-center bg-white rounded-2xl hover:bg-quantum-pink hover:text-white text-gray-600 transition-all border border-gray-100 shadow-sm hover:shadow-md" title="Show QR Code">
+                            <i class="fas fa-qrcode text-2xl md:text-3xl"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+
+        function showQR(e, index) {
+            if(e) e.preventDefault(); // Prevent triggering any parent anchor links if clicked inside
+            const cat = categories[index];
+            const modal = document.getElementById('qr-modal');
+            const qrContainer = document.getElementById('qrcode');
+            const linkBtn = document.getElementById('qr-link-btn');
+            const modalContent = modal.querySelector('div');
+            
+            document.getElementById('qr-title').innerText = `${cat.name} Rules`;
+            linkBtn.href = cat.url;
+            
+            qrContainer.innerHTML = '';
+            qr = new QRCode(qrContainer, {
+                text: cat.url,
+                width: 220,
+                height: 220,
+                colorDark : "#1f2937",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+            
+            modal.classList.remove('hidden');
+            // Trigger reflow
+            void modal.offsetWidth;
+            
+            modal.classList.remove('opacity-0');
+            modalContent.classList.remove('scale-95');
+            modalContent.classList.add('scale-100');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('qr-modal');
+            const modalContent = modal.querySelector('div');
+            
+            modal.classList.add('opacity-0');
+            modalContent.classList.add('scale-95');
+            modalContent.classList.remove('scale-100');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Close modal on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && !document.getElementById('qr-modal').classList.contains('hidden')) {
+                closeModal();
+            }
+        });
+
+        // Close modal on click outside
+        document.getElementById('qr-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
