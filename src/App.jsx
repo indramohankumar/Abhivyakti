@@ -202,9 +202,10 @@ function App() {
 
       {/* ─── Hero Section ─── */}
       <section className="pt-24 pb-12 sm:pt-28 sm:pb-16 md:pt-36 md:pb-24 px-4 min-h-[100dvh] flex items-center relative overflow-hidden">
-        {/* Background mandalas — smaller on mobile */}
-        <MandalaDecor className="absolute -top-16 -right-16 w-60 sm:w-80 md:w-[500px] h-60 sm:h-80 md:h-[500px] text-saffron/30 animate-[spin_60s_linear_infinite]" />
-        <MandalaDecor className="absolute -bottom-20 -left-20 w-72 sm:w-96 md:w-[600px] h-72 sm:h-96 md:h-[600px] text-quantum-purple/20 animate-[spin_80s_linear_infinite_reverse]" />
+        {/* Background mandalas — visible on all screens */}
+        <MandalaDecor className="absolute -top-10 -right-10 sm:-top-16 sm:-right-16 w-[300px] sm:w-80 md:w-[500px] h-[300px] sm:h-80 md:h-[500px] text-saffron/30 animate-[spin_60s_linear_infinite]" />
+        <MandalaDecor className="absolute -bottom-16 -left-16 sm:-bottom-20 sm:-left-20 w-[350px] sm:w-96 md:w-[600px] h-[350px] sm:h-96 md:h-[600px] text-quantum-purple/20 animate-[spin_80s_linear_infinite_reverse]" />
+        <MandalaDecor className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[250px] sm:w-[350px] h-[250px] sm:h-[350px] text-gold/10 animate-[spin_90s_linear_infinite]" />
 
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center relative z-10 w-full">
           <motion.div
@@ -291,7 +292,8 @@ function App() {
 
       {/* ─── Events Section ─── */}
       <section id="events" className="py-12 sm:py-16 md:py-20 px-4 relative z-10">
-        <MandalaDecor className="absolute top-0 right-0 w-48 sm:w-72 h-48 sm:h-72 text-gold/15 -translate-y-1/2 translate-x-1/4" />
+        <MandalaDecor className="absolute top-0 right-0 w-[280px] sm:w-72 md:w-96 h-[280px] sm:h-72 md:h-96 text-gold/15 -translate-y-1/3 translate-x-1/4 animate-[spin_70s_linear_infinite]" />
+        <MandalaDecor className="absolute bottom-0 left-0 w-[220px] sm:w-60 md:w-80 h-[220px] sm:h-60 md:h-80 text-saffron/10 translate-y-1/4 -translate-x-1/4 animate-[spin_50s_linear_infinite_reverse]" />
 
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-10 sm:mb-16">
@@ -349,7 +351,8 @@ function App() {
 
       {/* ─── Registration Section ─── */}
       <section id="register" className="py-14 sm:py-20 md:py-24 px-4 relative overflow-hidden">
-        <MandalaDecor className="absolute bottom-0 left-0 w-52 sm:w-80 h-52 sm:h-80 text-quantum-purple/10 translate-y-1/3 -translate-x-1/4" />
+        <MandalaDecor className="absolute bottom-0 left-0 w-[260px] sm:w-80 h-[260px] sm:h-80 text-quantum-purple/10 translate-y-1/3 -translate-x-1/4 animate-[spin_65s_linear_infinite]" />
+        <MandalaDecor className="absolute top-0 right-0 w-[200px] sm:w-64 h-[200px] sm:h-64 text-saffron/10 -translate-y-1/4 translate-x-1/4 animate-[spin_55s_linear_infinite_reverse]" />
 
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <motion.div
