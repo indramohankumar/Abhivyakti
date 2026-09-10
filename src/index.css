@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-quantum-purple: #8B2284;
   --color-quantum-pink: #EA1588;
@@ -9,6 +11,9 @@
   --color-gold: #D4A017;
   --color-cream: #FFF8F0;
   --color-warm-bg: #FDF6EE;
+  --color-dark-bg: #0F0F14;
+  --color-dark-card: #1A1A24;
+  --color-dark-border: #2A2A38;
   --font-sans: 'Poppins', sans-serif;
 }
 
@@ -22,25 +27,24 @@
     background-attachment: fixed;
   }
 
-  .border-ornament {
-    border-image: repeating-linear-gradient(
-      90deg,
-      #D4A017 0px,
-      #D4A017 8px,
-      transparent 8px,
-      transparent 16px
-    ) 4;
-  }
-
-  .text-shadow-warm {
-    text-shadow: 0 2px 12px rgba(212, 160, 23, 0.3);
+  .bg-cultural-dark {
+    background-color: #0F0F14;
+    background-image:
+      radial-gradient(at 0% 0%, rgba(255, 153, 51, 0.06) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(139, 34, 132, 0.08) 0px, transparent 50%),
+      radial-gradient(at 50% 100%, rgba(212, 160, 23, 0.04) 0px, transparent 50%);
+    background-attachment: fixed;
   }
 }
 
-/* Scrollbar */
+/* Scrollbar — adapts to theme */
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: #FDF6EE; }
+.dark ::-webkit-scrollbar-track { background: #0F0F14; }
 ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #8B2284, #EA1588); border-radius: 99px; }
 
 /* Smooth scroll */
 html { scroll-behavior: smooth; }
+
+/* Prevent flash of wrong theme */
+html { transition: background-color 0.3s ease; }
