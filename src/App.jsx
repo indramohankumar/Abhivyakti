@@ -152,9 +152,12 @@ function App() {
               <img
                 src="/logo.png"
                 alt="Quantum University"
-                className={`h-7 sm:h-9 md:h-10 object-contain transition-all duration-300 ${dark ? 'brightness-0 invert' : ''}`}
+                className="h-7 sm:h-9 md:h-10 object-contain transition-all duration-300"
+                style={dark ? { filter: 'brightness(0) invert(1)' } : {}}
               />
-              <span className="text-base sm:text-lg md:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-quantum-purple to-quantum-pink">
+              <span className={`text-base sm:text-lg md:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r ${
+                dark ? 'from-saffron to-pink-400' : 'from-quantum-purple to-quantum-pink'
+              }`}>
                 Abhivyakti
               </span>
             </a>
@@ -480,7 +483,7 @@ function App() {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6">
             <div className="flex items-center gap-2">
-              <img src="/logo.png" alt="Quantum University" className="h-7 sm:h-8 brightness-0 invert opacity-60" />
+              <img src="/logo.png" alt="Quantum University" className="h-7 sm:h-8 opacity-80" style={{ filter: 'brightness(0) invert(1)' }} />
               <span className="text-sm font-medium text-gray-500">×</span>
               <span className="font-semibold text-gray-300">Abhivyakti '26</span>
             </div>
