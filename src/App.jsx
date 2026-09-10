@@ -149,12 +149,13 @@ function App() {
 
             {/* Logo */}
             <a href="#" className="flex items-center gap-2.5">
-              <img
-                src="/logo.png"
-                alt="Quantum University"
-                className="h-7 sm:h-9 md:h-10 object-contain transition-all duration-300"
-                style={dark ? { filter: 'brightness(0) invert(1)' } : {}}
-              />
+              <div className={`rounded-lg px-1.5 py-1 transition-colors duration-300 ${dark ? 'bg-white/90' : ''}`}>
+                <img
+                  src="/logo.png"
+                  alt="Quantum University"
+                  className="h-6 sm:h-8 md:h-9 object-contain"
+                />
+              </div>
               <span className={`text-base sm:text-lg md:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r ${
                 dark ? 'from-saffron to-pink-400' : 'from-quantum-purple to-quantum-pink'
               }`}>
