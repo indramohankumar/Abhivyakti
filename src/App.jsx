@@ -152,7 +152,7 @@ function App() {
               <img
                 src="/logo.png"
                 alt="Quantum University"
-                className={`h-7 sm:h-9 md:h-10 object-contain ${dark ? 'brightness-0 invert opacity-80' : ''}`}
+                className={`h-7 sm:h-9 md:h-10 object-contain transition-all duration-300 ${dark ? 'brightness-0 invert' : ''}`}
               />
               <span className="text-base sm:text-lg md:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-quantum-purple to-quantum-pink">
                 Abhivyakti
