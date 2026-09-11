@@ -214,10 +214,10 @@ export default function App() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center relative z-10 w-full">
           <motion.div initial="hidden" animate="visible" variants={stagger} className="space-y-6 sm:space-y-8">
 
-            <motion.div variants={fadeUp} className="space-y-3 overflow-hidden">
+            <motion.div variants={fadeUp} className="space-y-3">
               <TypeWriter
                 text="अभिव्यक्ति"
-                className="text-gold-gradient text-[2.5rem] sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1] tracking-tight block"
+                className="text-gold-gradient text-[2.5rem] sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-normal tracking-tight block pt-2"
                 speed={120}
               />
               <TypeWriter
