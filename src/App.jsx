@@ -248,11 +248,6 @@ export default function App() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center relative z-10 w-full">
           <motion.div initial="hidden" animate="visible" variants={stagger} className="space-y-6 sm:space-y-8">
 
-            <motion.div variants={fadeUp} className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium ${dark ? 'bg-gold/10 border border-gold/20 text-gold' : 'bg-gold/10 border border-gold/25 text-gold-dark'}`}>
-              <Sparkles className="w-3.5 h-3.5" />
-              Quantum University's Annual Cultural Festival
-            </motion.div>
-
             <motion.div variants={fadeUp} className="space-y-3">
               <TypeWriter
                 text="अभिव्यक्ति"
