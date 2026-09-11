@@ -35,19 +35,42 @@ const highlights = [
 ];
 
 /* ─── Components ─── */
-const MandalaDecor = ({ className }) => (
+
+/* A richer, more cultural golden wheel / chakra */
+const GoldenWheel = ({ className }) => (
   <svg className={className} viewBox="0 0 200 200" fill="none">
-    <circle cx="100" cy="100" r="92" stroke="currentColor" strokeWidth="0.4" opacity="0.2"/>
-    <circle cx="100" cy="100" r="72" stroke="currentColor" strokeWidth="0.4" opacity="0.18"/>
-    <circle cx="100" cy="100" r="52" stroke="currentColor" strokeWidth="0.4" opacity="0.15"/>
-    <circle cx="100" cy="100" r="32" stroke="currentColor" strokeWidth="0.4" opacity="0.12"/>
-    {[...Array(12)].map((_, i) => (
-      <line key={i} x1="100" y1="8" x2="100" y2="192" stroke="currentColor" strokeWidth="0.25" opacity="0.12" transform={`rotate(${i*30} 100 100)`}/>
+    {/* Outer dotted ring */}
+    <circle cx="100" cy="100" r="96" stroke="currentColor" strokeWidth="2" strokeDasharray="6 6" opacity="0.4"/>
+    {/* Inner solid rings */}
+    <circle cx="100" cy="100" r="88" stroke="currentColor" strokeWidth="1" opacity="0.25"/>
+    <circle cx="100" cy="100" r="84" stroke="currentColor" strokeWidth="0.5" opacity="0.2"/>
+    {/* Lotus Petals / Spokes */}
+    {[...Array(16)].map((_, i) => (
+      <path key={i} d="M100 16 C 110 40, 115 60, 100 80 C 85 60, 90 40, 100 16 Z" fill="currentColor" opacity="0.15" transform={`rotate(${i*22.5} 100 100)`}/>
     ))}
-    {[...Array(8)].map((_, i) => (
-      <ellipse key={`e${i}`} cx="100" cy="100" rx="65" ry="18" stroke="currentColor" strokeWidth="0.35" opacity="0.1" transform={`rotate(${i*22.5} 100 100)`}/>
-    ))}
+    {/* Center core */}
+    <circle cx="100" cy="100" r="24" stroke="currentColor" strokeWidth="1" opacity="0.3"/>
+    <circle cx="100" cy="100" r="18" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 3" opacity="0.5"/>
+    <circle cx="100" cy="100" r="8" fill="currentColor" opacity="0.4"/>
   </svg>
+);
+
+const FloatingDiya = ({ className, delay = 0 }) => (
+  <motion.div
+    className={`absolute text-4xl sm:text-5xl lg:text-6xl drop-shadow-[0_0_15px_rgba(255,153,51,0.8)] z-0 pointer-events-none ${className}`}
+    animate={{ y: [0, -15, 0], opacity: [0.5, 1, 0.5], scale: [0.95, 1.05, 0.95] }}
+    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay }}
+  >
+    🪔
+  </motion.div>
+);
+
+const SparkleParticle = ({ className, delay = 0 }) => (
+  <motion.div
+    className={`absolute rounded-full bg-gold shadow-[0_0_10px_rgba(201,168,76,0.8)] pointer-events-none ${className}`}
+    animate={{ opacity: [0, 1, 0], scale: [0, 1.5, 0] }}
+    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay }}
+  />
 );
 
 const GoldLine = () => (
@@ -208,11 +231,27 @@ export default function App() {
 
       {/* ════════ HERO ════════ */}
       <section className="relative min-h-[100dvh] flex items-center pt-20 pb-10 sm:pt-24 sm:pb-14 md:pt-28 md:pb-20 px-4 overflow-hidden">
-        <MandalaDecor className={`absolute -top-10 -right-10 w-[320px] sm:w-[420px] md:w-[550px] h-[320px] sm:h-[420px] md:h-[550px] animate-[spin_60s_linear_infinite] ${dark ? 'text-gold/8' : 'text-gold/15'}`} />
-        <MandalaDecor className={`absolute -bottom-20 -left-20 w-[380px] sm:w-[480px] md:w-[620px] h-[380px] sm:h-[480px] md:h-[620px] animate-[spin_80s_linear_infinite_reverse] ${dark ? 'text-quantum-purple/8' : 'text-quantum-purple/10'}`} />
+        {/* Background Decorations */}
+        <GoldenWheel className={`absolute -top-10 -right-10 w-[320px] sm:w-[420px] md:w-[550px] h-[320px] sm:h-[420px] md:h-[550px] animate-[spin_60s_linear_infinite] ${dark ? 'text-gold/20' : 'text-gold/25'}`} />
+        <GoldenWheel className={`absolute -bottom-20 -left-20 w-[380px] sm:w-[480px] md:w-[620px] h-[380px] sm:h-[480px] md:h-[620px] animate-[spin_80s_linear_infinite_reverse] ${dark ? 'text-quantum-purple/15' : 'text-quantum-purple/20'}`} />
+        
+        {/* Floating Diyas & Particles */}
+        <FloatingDiya className="top-[15%] left-[5%] md:left-[10%] scale-75 md:scale-100" delay={0} />
+        <FloatingDiya className="bottom-[15%] right-[5%] md:right-[15%] scale-75 md:scale-125" delay={1.5} />
+        <FloatingDiya className="top-[25%] right-[25%] hidden lg:block scale-75 opacity-80" delay={2.5} />
+
+        <SparkleParticle className="top-1/4 left-1/3 w-2 h-2" delay={0.2} />
+        <SparkleParticle className="bottom-1/3 left-1/4 w-3 h-3" delay={1.2} />
+        <SparkleParticle className="top-1/3 right-1/4 w-2 h-2" delay={2.5} />
+        <SparkleParticle className="bottom-1/4 right-1/3 w-2 h-2" delay={0.8} />
 
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center relative z-10 w-full">
           <motion.div initial="hidden" animate="visible" variants={stagger} className="space-y-6 sm:space-y-8">
+
+            <motion.div variants={fadeUp} className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium ${dark ? 'bg-gold/10 border border-gold/20 text-gold' : 'bg-gold/10 border border-gold/25 text-gold-dark'}`}>
+              <Sparkles className="w-3.5 h-3.5" />
+              Quantum University's Annual Cultural Festival
+            </motion.div>
 
             <motion.div variants={fadeUp} className="space-y-3">
               <TypeWriter
@@ -295,7 +334,7 @@ export default function App() {
       </section>
 
       {/* ════════ HIGHLIGHTS BAR ════════ */}
-      <section className={`py-8 sm:py-10 border-y ${dark ? 'bg-dark-card/50 border-dark-border' : 'bg-gold/[0.03] border-gold/10'}`}>
+      <section className={`py-8 sm:py-10 border-y relative z-10 ${dark ? 'bg-dark-card/50 border-dark-border' : 'bg-gold/[0.03] border-gold/10'}`}>
         <div className="max-w-5xl mx-auto px-4 grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8">
           {highlights.map((h, i) => (
             <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
@@ -309,8 +348,11 @@ export default function App() {
       </section>
 
       {/* ════════ EVENTS ════════ */}
-      <section id="events" className="py-16 sm:py-20 md:py-28 px-4 relative">
-        <MandalaDecor className={`absolute top-0 right-0 w-[280px] sm:w-[380px] h-[280px] sm:h-[380px] -translate-y-1/3 translate-x-1/4 animate-[spin_70s_linear_infinite] ${dark ? 'text-gold/5' : 'text-gold/8'}`} />
+      <section id="events" className="py-16 sm:py-20 md:py-28 px-4 relative overflow-hidden">
+        <GoldenWheel className={`absolute top-0 right-0 w-[280px] sm:w-[380px] h-[280px] sm:h-[380px] -translate-y-1/3 translate-x-1/4 animate-[spin_70s_linear_infinite] ${dark ? 'text-gold/15' : 'text-gold/20'}`} />
+        
+        <FloatingDiya className="top-[10%] left-[8%] scale-75 opacity-60" delay={0.5} />
+        <SparkleParticle className="top-[20%] right-[15%] w-2 h-2" delay={1.8} />
 
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-12 sm:mb-16">
@@ -346,7 +388,10 @@ export default function App() {
 
       {/* ════════ REGISTER ════════ */}
       <section id="register" className="py-16 sm:py-20 md:py-28 px-4 relative overflow-hidden">
-        <MandalaDecor className={`absolute bottom-0 left-0 w-[260px] sm:w-80 h-[260px] sm:h-80 translate-y-1/3 -translate-x-1/4 animate-[spin_65s_linear_infinite] ${dark ? 'text-quantum-purple/5' : 'text-quantum-purple/8'}`} />
+        <GoldenWheel className={`absolute bottom-0 left-0 w-[260px] sm:w-80 h-[260px] sm:h-80 translate-y-1/3 -translate-x-1/4 animate-[spin_65s_linear_infinite] ${dark ? 'text-quantum-purple/15' : 'text-quantum-purple/20'}`} />
+        
+        <FloatingDiya className="bottom-[15%] right-[10%] scale-100 opacity-90" delay={2} />
+        <SparkleParticle className="top-1/4 left-1/4 w-3 h-3" delay={0.5} />
 
         <div className="max-w-2xl mx-auto relative z-10">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
@@ -372,7 +417,7 @@ export default function App() {
       </section>
 
       {/* ════════ FOOTER ════════ */}
-      <footer className={`pt-14 sm:pt-16 pb-6 px-4 border-t ${dark ? 'bg-black/40 border-dark-border' : 'bg-gray-950 border-gray-800'} text-white`}>
+      <footer className={`pt-14 sm:pt-16 pb-6 px-4 border-t ${dark ? 'bg-black/40 border-dark-border' : 'bg-gray-950 border-gray-800'} text-white relative z-10`}>
         <div className="max-w-7xl mx-auto">
           {/* Top row */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 pb-10 border-b border-white/10">
