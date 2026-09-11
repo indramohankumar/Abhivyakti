@@ -5,6 +5,7 @@ import {
   Music, Users, VenetianMask, Shirt, Palette, Utensils,
   Menu, X, Sun, Moon, Star, Trophy, Clock
 } from 'lucide-react';
+import { Carousel360 } from './components/ui/image-fan-carousel';
 
 /* ─── Animations ─── */
 const fadeUp = {
@@ -19,12 +20,12 @@ const stagger = {
 
 /* ─── Data ─── */
 const events = [
-  { name: 'संगीत · Music', desc: 'Indian Classical, Semi-Classical, Sufi, Folk, Devotional, Ghazal', icon: Music, color: 'from-saffron to-amber-500' },
-  { name: 'नृत्य · Dance', desc: 'Classical, Semi-Classical, Indian Folk Dance', icon: Users, color: 'from-quantum-pink to-rose-500' },
-  { name: 'नाटक · Theatre', desc: 'Indian Mythology-Based Drama & Nukkad Natak', icon: VenetianMask, color: 'from-deep-red to-red-700' },
-  { name: 'फैशन · Fashion', desc: 'Fashion Show – Indian Ethnic Wear', icon: Shirt, color: 'from-quantum-purple to-fuchsia-600' },
-  { name: 'कला · Fine Arts', desc: 'Rangoli, Painting & Visual Arts', icon: Palette, color: 'from-emerald-600 to-green-500' },
-  { name: 'पाक कला · Cuisine', desc: 'Inter-University Culinary Competition', icon: Utensils, color: 'from-gold to-burnt-orange' },
+  { name: 'संगीत · Music', desc: 'Indian Classical, Semi-Classical, Sufi, Folk, Devotional, Ghazal', icon: Music, color: 'from-saffron to-amber-500', image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&q=80&w=800' },
+  { name: 'नृत्य · Dance', desc: 'Classical, Semi-Classical, Indian Folk Dance', icon: Users, color: 'from-quantum-pink to-rose-500', image: 'https://images.unsplash.com/photo-1504609774528-69473ea48405?auto=format&fit=crop&q=80&w=800' },
+  { name: 'नाटक · Theatre', desc: 'Indian Mythology-Based Drama & Nukkad Natak', icon: VenetianMask, color: 'from-deep-red to-red-700', image: 'https://images.unsplash.com/photo-1460723237483-7a6dc9d0b212?auto=format&fit=crop&q=80&w=800' },
+  { name: 'फैशन · Fashion', desc: 'Fashion Show – Indian Ethnic Wear', icon: Shirt, color: 'from-quantum-purple to-fuchsia-600', image: 'https://images.unsplash.com/photo-1615886737525-42289c011e4f?auto=format&fit=crop&q=80&w=800' },
+  { name: 'कला · Fine Arts', desc: 'Rangoli, Painting & Visual Arts', icon: Palette, color: 'from-emerald-600 to-green-500', image: 'https://images.unsplash.com/photo-1599581896883-9b9213192415?auto=format&fit=crop&q=80&w=800' },
+  { name: 'पाक कला · Cuisine', desc: 'Inter-University Culinary Competition', icon: Utensils, color: 'from-gold to-burnt-orange', image: 'https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&q=80&w=800' },
 ];
 
 const highlights = [
@@ -350,7 +351,7 @@ export default function App() {
         <SparkleParticle className="top-[20%] right-[15%] w-2 h-2" delay={1.8} />
 
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-12 sm:mb-16">
+          <div className="text-center mb-8 sm:mb-10">
             <p className="text-gold font-semibold tracking-[0.2em] uppercase text-xs sm:text-sm mb-2">प्रतियोगिताएं · Competitions</p>
             <h2 className={`text-3xl sm:text-4xl md:text-5xl font-extrabold mb-3 ${dark ? 'text-white' : 'text-gray-900'}`}>
               Events & <span className="text-gold-gradient">Categories</span>
@@ -361,22 +362,8 @@ export default function App() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
-            {events.map((ev, i) => (
-              <motion.div key={i}
-                initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-30px' }}
-                transition={{ delay: i * 0.07, duration: 0.45 }}
-                className={`rounded-xl sm:rounded-2xl p-5 sm:p-6 border transition-all duration-200 group hover:-translate-y-1 hover:shadow-lg ${
-                  dark ? 'bg-dark-card/60 border-dark-border hover:border-gold/20 hover:shadow-gold/5' : 'bg-white/60 backdrop-blur-sm border-gold/8 hover:border-gold/25 hover:shadow-gold/10'
-                }`}
-              >
-                <div className={`w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br ${ev.color} text-white flex items-center justify-center mb-4 shadow-sm`}>
-                  <ev.icon className="w-5 h-5 sm:w-6 sm:h-6" />
-                </div>
-                <h3 className={`text-base sm:text-lg font-bold mb-1 transition-colors ${dark ? 'text-white group-hover:text-gold' : 'text-gray-900 group-hover:text-gold-dark'}`}>{ev.name}</h3>
-                <p className={`text-sm leading-relaxed ${dark ? 'text-gray-500' : 'text-gray-500'}`}>{ev.desc}</p>
-              </motion.div>
-            ))}
+          <div>
+            <Carousel360 items={events} />
           </div>
         </div>
       </section>
