@@ -231,8 +231,8 @@ export default function App() {
         </AnimatePresence>
       </motion.nav>
 
-      {/* ════════ HERO (WITH VOLUMETRIC 3D STAGE SPOTLIGHTS) ════════ */}
-      <VolumetricStudio className="min-h-[100dvh] flex items-center pt-20 pb-10 sm:pt-24 sm:pb-14 md:pt-28 md:pb-20 px-4 overflow-hidden">
+      {/* ════════ HERO ════════ */}
+      <section className="relative min-h-[100dvh] flex items-center pt-20 pb-10 sm:pt-24 sm:pb-14 md:pt-28 md:pb-20 px-4 overflow-hidden">
         {/* Background Decorations */}
         <GoldenWheel className={`absolute -top-10 -right-10 w-[320px] sm:w-[420px] md:w-[550px] h-[320px] sm:h-[420px] md:h-[550px] animate-[spin_60s_linear_infinite] ${dark ? 'text-gold/20' : 'text-gold/25'}`} />
         <GoldenWheel className={`absolute -bottom-20 -left-20 w-[380px] sm:w-[480px] md:w-[620px] h-[380px] sm:h-[480px] md:h-[620px] animate-[spin_80s_linear_infinite_reverse] ${dark ? 'text-quantum-purple/15' : 'text-quantum-purple/20'}`} />
@@ -260,32 +260,32 @@ export default function App() {
                 text="Abhivyakti 2026"
                 delay={1500}
                 speed={80}
-                className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight block text-white drop-shadow-md"
-                cursorColor="#C9A84C"
+                className={`text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight block ${dark ? 'text-white' : 'text-gray-900'}`}
+                cursorColor={dark ? '#C9A84C' : '#8B7332'}
               />
               <GoldLine />
-              <p className="text-[10px] sm:text-sm tracking-[0.2em] uppercase font-semibold text-gold-light/80">
+              <p className={`text-[10px] sm:text-sm tracking-[0.2em] uppercase font-semibold ${dark ? 'text-gray-500' : 'text-gray-400'}`}>
                 Expression of Indian Culture & Heritage
               </p>
             </motion.div>
 
-            <motion.p variants={fadeUp} className="text-sm sm:text-base md:text-lg max-w-lg leading-relaxed text-gray-300">
-              A grand five-day inter-university celebration of <strong className="text-gold">literary excellence</strong>, <strong className="text-pink-400">cultural richness</strong>, and <strong className="text-purple-300">intellectual engagement</strong> — uniting students, artists, and scholars from across India.
+            <motion.p variants={fadeUp} className={`text-sm sm:text-base md:text-lg max-w-lg leading-relaxed ${dark ? 'text-gray-400' : 'text-gray-600'}`}>
+              A grand five-day inter-university celebration of <strong className="text-gold">literary excellence</strong>, <strong className={dark ? 'text-quantum-pink' : 'text-maroon'}>cultural richness</strong>, and <strong className={dark ? 'text-purple-400' : 'text-quantum-purple'}>intellectual engagement</strong> — uniting students, artists, and scholars from across India.
             </motion.p>
 
             <motion.div variants={fadeUp} className="grid grid-cols-2 gap-3 sm:gap-4 max-w-md">
-              <div className="flex items-center gap-2.5 p-3 rounded-xl border bg-white/[0.05] border-gold/20 backdrop-blur-sm">
-                <div className="bg-gold/20 p-2 rounded-lg text-gold shrink-0"><Calendar className="w-4 h-4 sm:w-5 sm:h-5" /></div>
+              <div className={`flex items-center gap-2.5 p-3 rounded-xl border ${dark ? 'bg-white/[0.03] border-dark-border' : 'bg-white/60 border-gold/10'}`}>
+                <div className="bg-gold/10 p-2 rounded-lg text-gold shrink-0"><Calendar className="w-4 h-4 sm:w-5 sm:h-5" /></div>
                 <div>
-                  <p className="font-bold text-xs sm:text-sm text-white">Oct 2026</p>
-                  <p className="text-[10px] sm:text-xs text-gray-400">5 Days</p>
+                  <p className={`font-bold text-xs sm:text-sm ${dark ? 'text-white' : 'text-gray-900'}`}>Oct 2026</p>
+                  <p className={`text-[10px] sm:text-xs ${dark ? 'text-gray-600' : 'text-gray-500'}`}>5 Days</p>
                 </div>
               </div>
-              <div className="flex items-center gap-2.5 p-3 rounded-xl border bg-white/[0.05] border-gold/20 backdrop-blur-sm">
-                <div className="p-2 rounded-lg shrink-0 bg-quantum-purple/20 text-purple-300"><MapPin className="w-4 h-4 sm:w-5 sm:h-5" /></div>
+              <div className={`flex items-center gap-2.5 p-3 rounded-xl border ${dark ? 'bg-white/[0.03] border-dark-border' : 'bg-white/60 border-gold/10'}`}>
+                <div className={`p-2 rounded-lg shrink-0 ${dark ? 'bg-quantum-purple/15 text-purple-400' : 'bg-quantum-purple/8 text-quantum-purple'}`}><MapPin className="w-4 h-4 sm:w-5 sm:h-5" /></div>
                 <div>
-                  <p className="font-bold text-xs sm:text-sm text-white">Roorkee</p>
-                  <p className="text-[10px] sm:text-xs text-gray-400">Uttarakhand</p>
+                  <p className={`font-bold text-xs sm:text-sm ${dark ? 'text-white' : 'text-gray-900'}`}>Roorkee</p>
+                  <p className={`text-[10px] sm:text-xs ${dark ? 'text-gray-600' : 'text-gray-500'}`}>Uttarakhand</p>
                 </div>
               </div>
             </motion.div>
@@ -294,7 +294,7 @@ export default function App() {
               <a href="#register" className="bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-bg px-5 py-2.5 sm:px-7 sm:py-3 rounded-lg font-bold text-sm sm:text-base flex items-center gap-2 hover:brightness-110 active:scale-[0.97] transition-all shadow-lg shadow-gold/20">
                 Register Now <ArrowRight className="w-4 h-4" />
               </a>
-              <a href="#events" className="px-5 py-2.5 sm:px-7 sm:py-3 rounded-lg font-semibold text-sm sm:text-base active:scale-[0.97] transition-all border border-gold/30 text-gold hover:bg-gold/10">
+              <a href="#events" className={`px-5 py-2.5 sm:px-7 sm:py-3 rounded-lg font-semibold text-sm sm:text-base active:scale-[0.97] transition-all border ${dark ? 'border-gold/20 text-gold hover:bg-gold/5' : 'border-gold/30 text-gold-dark hover:bg-gold/5'}`}>
                 Explore Events
               </a>
             </motion.div>
@@ -302,33 +302,34 @@ export default function App() {
 
           {/* Hero right — Kavyanjali card */}
           <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }} className="relative mt-4 lg:mt-0">
-            <div className="absolute inset-0 blur-3xl rounded-full scale-110 bg-gold/10"></div>
-            <div className="relative p-6 sm:p-8 rounded-2xl sm:rounded-3xl border border-gold/20 overflow-hidden bg-dark-card/90 backdrop-blur-md shadow-2xl shadow-black/50">
+            <div className={`absolute inset-0 blur-3xl rounded-full scale-110 ${dark ? 'bg-gold/5' : 'bg-gold/10'}`}></div>
+            <div className={`relative p-6 sm:p-8 rounded-2xl sm:rounded-3xl border overflow-hidden ${dark ? 'bg-dark-card/80 border-dark-border shadow-2xl shadow-black/30' : 'bg-white/60 backdrop-blur-md border-gold/15 shadow-xl'}`}>
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gold-dark via-gold to-gold-light"></div>
-              <div className="absolute top-4 right-4 w-20 h-20 rounded-full blur-2xl bg-gold/10"></div>
+              <div className={`absolute top-4 right-4 w-20 h-20 rounded-full blur-2xl ${dark ? 'bg-gold/8' : 'bg-gold/15'}`}></div>
 
               <div className="relative z-10 space-y-4">
                 <div className="flex items-center gap-2">
                   <span className="bg-gradient-to-r from-gold-dark to-gold text-dark-bg text-[10px] sm:text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Grand Finale</span>
-                  <span className="text-[10px] sm:text-xs text-gray-400">Day 5</span>
+                  <span className={`text-[10px] sm:text-xs ${dark ? 'text-gray-600' : 'text-gray-400'}`}>Day 5</span>
                 </div>
                 <div>
                   <h3 className="text-gold-gradient text-3xl sm:text-4xl font-extrabold">काव्यांजलि</h3>
-                  <p className="text-lg sm:text-xl font-semibold mt-1 text-white">Kavyanjali</p>
+                  <p className={`text-lg sm:text-xl font-semibold mt-1 ${dark ? 'text-white' : 'text-gray-900'}`}>Kavyanjali</p>
                 </div>
-                <p className="text-xs tracking-[0.15em] uppercase font-medium text-gold/70">The Spectacular Kavi Sammelan</p>
+                <p className={`text-xs tracking-[0.15em] uppercase font-medium ${dark ? 'text-gold/60' : 'text-gold-dark/70'}`}>The Spectacular Kavi Sammelan</p>
                 <GoldLine />
-                <p className="text-sm leading-relaxed text-gray-300">
+                <p className={`text-sm leading-relaxed ${dark ? 'text-gray-400' : 'text-gray-600'}`}>
                   A mesmerizing poetry recital marking the grand culmination — featuring eminent literary personalities and poets from across India.
                 </p>
-                <div className="flex items-center gap-4 pt-1 text-xs text-gray-400">
+                <div className={`flex items-center gap-4 pt-1 text-xs ${dark ? 'text-gray-600' : 'text-gray-400'}`}>
                   <span className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5" /> Main Auditorium</span>
                 </div>
               </div>
             </div>
+            </div>
           </motion.div>
         </div>
-      </VolumetricStudio>
+      </section>
 
       {/* ════════ HIGHLIGHTS BAR ════════ */}
       <section className={`py-8 sm:py-10 border-y relative z-10 ${dark ? 'bg-dark-card/50 border-dark-border' : 'bg-gold/[0.03] border-gold/10'}`}>
