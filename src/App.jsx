@@ -6,7 +6,6 @@ import {
   Menu, X, Sun, Moon, Star, Trophy, Clock
 } from 'lucide-react';
 import { Carousel360 } from './components/ui/image-fan-carousel';
-import { VolumetricStudio } from './components/ui/volumetric-studio';
 
 /* ─── Animations ─── */
 const fadeUp = {
