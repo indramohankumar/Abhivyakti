@@ -6,6 +6,7 @@ import {
   Menu, X, Sun, Moon, Star, Trophy, Clock
 } from 'lucide-react';
 import { Carousel360 } from './components/ui/image-fan-carousel';
+import { VolumetricStudio } from './components/ui/volumetric-studio';
 
 /* ─── Animations ─── */
 const fadeUp = {
@@ -341,6 +342,61 @@ export default function App() {
             </motion.div>
           ))}
         </div>
+      </section>
+
+      {/* ════════ VOLUMETRIC STAGE SHOWCASE ════════ */}
+      <section className="relative w-full my-6 sm:my-10 overflow-hidden">
+        <VolumetricStudio className="min-h-[500px] sm:min-h-[600px]">
+          <div className="flex flex-col items-center justify-center w-full h-full text-center px-4 pt-16 sm:pt-20 pb-12 relative z-10 pointer-events-none">
+            
+            {/* Hindi & English Abhivyakti Titles under 3D Spotlights */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              className="mb-4"
+            >
+              <h2 className="text-5xl sm:text-7xl md:text-8xl font-extrabold tracking-tight text-gold-gradient drop-shadow-[0_10px_25px_rgba(201,168,76,0.5)]">
+                अभिव्यक्ति
+              </h2>
+              <h3 className="text-2xl sm:text-4xl font-bold text-white tracking-widest uppercase mt-2 drop-shadow-md">
+                Abhivyakti <span className="text-gold">2026</span>
+              </h3>
+            </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.8, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              className="text-sm sm:text-lg max-w-xl mb-8 text-gold-light/90 font-medium tracking-wide"
+            >
+              Step onto the grandest cultural stage of Quantum University, Roorkee — where Indian heritage meets 3D artistic magnificence.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 1.0, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              className="flex flex-wrap justify-center gap-4 pointer-events-auto"
+            >
+              <a
+                href="#register"
+                className="bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-bg px-7 py-3 rounded-full font-bold text-sm sm:text-base hover:brightness-110 active:scale-95 transition-all shadow-[0_0_25px_rgba(201,168,76,0.4)]"
+              >
+                Enter the Stage
+              </a>
+              <a
+                href="#events"
+                className="px-7 py-3 rounded-full font-semibold text-sm sm:text-base text-white border border-gold/40 hover:bg-gold/10 active:scale-95 transition-all"
+              >
+                View Arenas
+              </a>
+            </motion.div>
+          </div>
+        </VolumetricStudio>
       </section>
 
       {/* ════════ EVENTS ════════ */}
