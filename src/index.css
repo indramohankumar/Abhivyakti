@@ -5,46 +5,51 @@
 @theme {
   --color-quantum-purple: #8B2284;
   --color-quantum-pink: #EA1588;
-  --color-quantum-light: #EEF7F8;
   --color-saffron: #FF9933;
-  --color-maroon: #800000;
-  --color-gold: #D4A017;
-  --color-cream: #FFF8F0;
-  --color-warm-bg: #FDF6EE;
-  --color-dark-bg: #0F0F14;
-  --color-dark-card: #1A1A24;
-  --color-dark-border: #2A2A38;
+  --color-maroon: #800020;
+  --color-gold: #C9A84C;
+  --color-gold-light: #E8D48B;
+  --color-gold-dark: #8B7332;
+  --color-cream: #FFF9F0;
+  --color-deep-red: #8B1A1A;
+  --color-burnt-orange: #CC5500;
+  --color-dark-bg: #0C0A09;
+  --color-dark-card: #1C1917;
+  --color-dark-border: #292524;
   --font-sans: 'Poppins', sans-serif;
 }
 
 @layer utilities {
   .bg-cultural {
-    background-color: #FDF6EE;
+    background-color: #FFFBF5;
     background-image:
-      radial-gradient(at 0% 0%, rgba(255, 153, 51, 0.12) 0px, transparent 50%),
-      radial-gradient(at 100% 0%, rgba(139, 34, 132, 0.1) 0px, transparent 50%),
-      radial-gradient(at 50% 100%, rgba(212, 160, 23, 0.08) 0px, transparent 50%);
+      radial-gradient(at 10% 10%, rgba(201, 168, 76, 0.08) 0px, transparent 50%),
+      radial-gradient(at 90% 20%, rgba(139, 34, 132, 0.06) 0px, transparent 50%),
+      radial-gradient(at 50% 80%, rgba(255, 153, 51, 0.05) 0px, transparent 50%);
     background-attachment: fixed;
   }
 
   .bg-cultural-dark {
-    background-color: #0F0F14;
+    background-color: #0C0A09;
     background-image:
-      radial-gradient(at 0% 0%, rgba(255, 153, 51, 0.06) 0px, transparent 50%),
-      radial-gradient(at 100% 0%, rgba(139, 34, 132, 0.08) 0px, transparent 50%),
-      radial-gradient(at 50% 100%, rgba(212, 160, 23, 0.04) 0px, transparent 50%);
+      radial-gradient(at 10% 10%, rgba(201, 168, 76, 0.04) 0px, transparent 50%),
+      radial-gradient(at 90% 20%, rgba(139, 34, 132, 0.05) 0px, transparent 50%),
+      radial-gradient(at 50% 80%, rgba(255, 153, 51, 0.03) 0px, transparent 50%);
     background-attachment: fixed;
+  }
+
+  .text-gold-gradient {
+    background: linear-gradient(135deg, #C9A84C 0%, #E8D48B 40%, #C9A84C 60%, #8B7332 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 }
 
-/* Scrollbar — adapts to theme */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: #FDF6EE; }
-.dark ::-webkit-scrollbar-track { background: #0F0F14; }
-::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #8B2284, #EA1588); border-radius: 99px; }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #C9A84C; border-radius: 99px; }
+.dark ::-webkit-scrollbar-thumb { background: #8B7332; }
 
-/* Smooth scroll */
 html { scroll-behavior: smooth; }
-
-/* Prevent flash of wrong theme */
-html { transition: background-color 0.3s ease; }
+body { -webkit-font-smoothing: antialiased; }
