@@ -58,6 +58,50 @@ const GoldLine = () => (
   </div>
 );
 
+/* Typewriter effect — types text letter by letter */
+const TypeWriter = ({ text, className = '', speed = 100, delay = 0, cursorColor = '#C9A84C' }) => {
+  const [displayed, setDisplayed] = useState('');
+  const [showCursor, setShowCursor] = useState(true);
+  const [started, setStarted] = useState(false);
+
+  useEffect(() => {
+    const startTimeout = setTimeout(() => setStarted(true), delay);
+    return () => clearTimeout(startTimeout);
+  }, [delay]);
+
+  useEffect(() => {
+    if (!started) return;
+    if (displayed.length < text.length) {
+      const timeout = setTimeout(() => {
+        setDisplayed(text.slice(0, displayed.length + 1));
+      }, speed);
+      return () => clearTimeout(timeout);
+    }
+    // After typing done, blink cursor a few times then hide
+    const hideCursor = setTimeout(() => setShowCursor(false), 2000);
+    return () => clearTimeout(hideCursor);
+  }, [displayed, text, speed, started]);
+
+  // Blink cursor
+  const [cursorVisible, setCursorVisible] = useState(true);
+  useEffect(() => {
+    if (!showCursor) return;
+    const interval = setInterval(() => setCursorVisible(v => !v), 530);
+    return () => clearInterval(interval);
+  }, [showCursor]);
+
+  return (
+    <span className={className}>
+      {displayed}
+      {showCursor && (
+        <span style={{ color: cursorColor, fontWeight: 'normal' }} className="ml-0.5">
+          {cursorVisible ? '|' : '\u00A0'}
+        </span>
+      )}
+    </span>
+  );
+};
+
 const navLinks = ['About', 'Events', 'Kavyanjali', 'Register'];
 
 /* ─── Theme ─── */
@@ -170,18 +214,19 @@ export default function App() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center relative z-10 w-full">
           <motion.div initial="hidden" animate="visible" variants={stagger} className="space-y-6 sm:space-y-8">
 
-            <motion.div variants={fadeUp} className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium ${dark ? 'bg-gold/10 border border-gold/20 text-gold' : 'bg-gold/10 border border-gold/25 text-gold-dark'}`}>
-              <Sparkles className="w-3.5 h-3.5" />
-              Quantum University's Annual Cultural Festival
-            </motion.div>
-
-            <motion.div variants={fadeUp} className="space-y-2">
-              <h1 className="text-gold-gradient text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold leading-[0.95] tracking-tight">
-                अभिव्यक्ति
-              </h1>
-              <h2 className={`text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight ${dark ? 'text-white' : 'text-gray-900'}`}>
-                Abhivyakti <span className="text-gold">2026</span>
-              </h2>
+            <motion.div variants={fadeUp} className="space-y-3 overflow-hidden">
+              <TypeWriter
+                text="अभिव्यक्ति"
+                className="text-gold-gradient text-[2.5rem] sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1] tracking-tight block"
+                speed={120}
+              />
+              <TypeWriter
+                text="Abhivyakti 2026"
+                delay={1500}
+                speed={80}
+                className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight block ${dark ? 'text-white' : 'text-gray-900'}`}
+                cursorColor={dark ? '#C9A84C' : '#8B7332'}
+              />
               <GoldLine />
               <p className={`text-xs sm:text-sm tracking-[0.25em] uppercase font-semibold ${dark ? 'text-gray-500' : 'text-gray-400'}`}>
                 Expression of Indian Culture & Heritage
@@ -327,19 +372,75 @@ export default function App() {
       </section>
 
       {/* ════════ FOOTER ════════ */}
-      <footer className={`py-10 sm:py-12 px-4 border-t ${dark ? 'bg-black/30 border-dark-border' : 'bg-gray-900 border-gray-800'} text-white`}>
+      <footer className={`pt-14 sm:pt-16 pb-6 px-4 border-t ${dark ? 'bg-black/40 border-dark-border' : 'bg-gray-950 border-gray-800'} text-white`}>
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-5">
-            <div className="flex items-center gap-3">
-              <div className="bg-white/90 rounded-md px-1.5 py-1">
-                <img src="/logo.png" alt="Quantum University" className="h-6 sm:h-7 object-contain" />
+          {/* Top row */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 pb-10 border-b border-white/10">
+
+            {/* Brand */}
+            <div className="sm:col-span-2 lg:col-span-1 space-y-4">
+              <div className="flex items-center gap-3">
+                <div className="bg-white/90 rounded-lg px-1.5 py-1">
+                  <img src="/logo.png" alt="Quantum University" className="h-7 sm:h-8 object-contain" />
+                </div>
+                <div className="flex flex-col leading-none">
+                  <span className="text-gold-gradient font-extrabold text-base">अभिव्यक्ति</span>
+                  <span className="text-[9px] text-gray-500 tracking-[0.15em] uppercase">Abhivyakti 2026</span>
+                </div>
               </div>
-              <div className="flex flex-col leading-none">
-                <span className="text-gold-gradient font-extrabold text-sm sm:text-base">अभिव्यक्ति</span>
-                <span className="text-[9px] text-gray-500 tracking-[0.15em] uppercase">Abhivyakti 2026</span>
-              </div>
+              <p className="text-gray-500 text-sm leading-relaxed max-w-xs">
+                Quantum University's annual inter-university cultural festival celebrating Indian art, literature, and heritage.
+              </p>
             </div>
-            <p className="text-gray-500 text-xs sm:text-sm text-center">© 2026 Quantum University, Roorkee. All rights reserved.</p>
+
+            {/* Quick Links */}
+            <div>
+              <h4 className="text-gold font-semibold text-sm uppercase tracking-wider mb-4">Quick Links</h4>
+              <ul className="space-y-2.5">
+                {['About', 'Events', 'Kavyanjali', 'Register'].map(item => (
+                  <li key={item}>
+                    <a href={`#${item.toLowerCase()}`} className="text-gray-400 text-sm hover:text-gold transition-colors">{item}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Events */}
+            <div>
+              <h4 className="text-gold font-semibold text-sm uppercase tracking-wider mb-4">Events</h4>
+              <ul className="space-y-2.5">
+                {['Music', 'Dance', 'Theatre', 'Fashion', 'Fine Arts', 'Cuisine'].map(item => (
+                  <li key={item}>
+                    <span className="text-gray-400 text-sm">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Contact */}
+            <div>
+              <h4 className="text-gold font-semibold text-sm uppercase tracking-wider mb-4">Contact</h4>
+              <ul className="space-y-2.5 text-sm text-gray-400">
+                <li className="flex items-start gap-2">
+                  <MapPin className="w-4 h-4 text-gold/60 mt-0.5 shrink-0" />
+                  <span>Quantum University, Roorkee, Uttarakhand 247167</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <Calendar className="w-4 h-4 text-gold/60 shrink-0" />
+                  <span>October 2026</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Bottom row */}
+          <div className="pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+            <p className="text-gray-600 text-xs">© 2026 Quantum University, Roorkee. All rights reserved.</p>
+            <div className="flex items-center gap-1 text-gray-600 text-xs">
+              <span>Made with</span>
+              <span className="text-red-500 text-sm">❤</span>
+              <span>for Indian Culture</span>
+            </div>
           </div>
         </div>
       </footer>
