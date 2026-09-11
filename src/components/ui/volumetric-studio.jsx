@@ -111,28 +111,28 @@ function Room({
           className="absolute inset-0" 
           style={{ 
             clipPath: poly([tl, tr, br, bl]), 
-            background: spots.map(x => `radial-gradient(ellipse 25% 40% at ${x}% 68%, rgba(${lightColor},0.2) 0%, transparent 70%)`).join(", ")
+            background: spots.map(x => `radial-gradient(ellipse 20% 30% at ${x}% 68%, rgba(${lightColor},0.08) 0%, transparent 70%)`).join(", ")
           }} 
         />
         <div 
           className="absolute inset-0" 
           style={{ 
             clipPath: poly([[0, 0], tl, bl, [0, 100]]), 
-            background: `radial-gradient(ellipse 40% 50% at 15% 75%, rgba(${lightColor},0.1) 0%, transparent 60%)`
+            background: `radial-gradient(ellipse 30% 40% at 15% 75%, rgba(${lightColor},0.04) 0%, transparent 60%)`
           }} 
         />
         <div 
           className="absolute inset-0" 
           style={{ 
             clipPath: poly([[100, 0], tr, br, [100, 100]]), 
-            background: `radial-gradient(ellipse 40% 50% at 85% 75%, rgba(${lightColor},0.1) 0%, transparent 60%)`
+            background: `radial-gradient(ellipse 30% 40% at 85% 75%, rgba(${lightColor},0.04) 0%, transparent 60%)`
           }} 
         />
         <div 
           className="absolute inset-0" 
           style={{ 
             clipPath: poly([[0, 100], [100, 100], br, bl]), 
-            background: spots.map(x => `radial-gradient(ellipse 35% 30% at ${x}% 80%, rgba(${lightColor},0.08) 0%, transparent 60%)`).join(", ")
+            background: spots.map(x => `radial-gradient(ellipse 25% 20% at ${x}% 80%, rgba(${lightColor},0.03) 0%, transparent 60%)`).join(", ")
           }} 
         />
       </div>
@@ -154,19 +154,19 @@ function Room({
               willChange: "opacity"
             }}
           >
-            <Canvas camera={{ position: [0, 0, 10], fov: 45 }} shadows={false} gl={{ alpha: true }}>
-              <ambientLight intensity={0.5} />
+            <Canvas camera={{ position: [0, 0, 10], fov: 40 }} shadows={false} gl={{ alpha: true }}>
+              <ambientLight intensity={0.4} />
               <SpotLight
-                distance={12}
-                angle={0.25}
-                attenuation={6}
-                anglePower={5}
+                distance={9.5}
+                angle={0.15}
+                attenuation={8}
+                anglePower={6}
                 color={`rgb(${lightColor})`}
                 position={[0, 4.1, 0]}
                 volumetric
-                opacity={1}
-                radiusTop={0.1}
-                radiusBottom={4}
+                opacity={0.65}
+                radiusTop={0.08}
+                radiusBottom={2.2}
               />
             </Canvas>
           </motion.div>

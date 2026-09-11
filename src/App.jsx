@@ -253,18 +253,18 @@ export default function App() {
             <motion.div variants={fadeUp} className="space-y-3">
               <TypeWriter
                 text="अभिव्यक्ति"
-                className="text-gold-gradient text-[2.5rem] sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-normal tracking-tight block pt-2 drop-shadow-[0_10px_20px_rgba(201,168,76,0.4)]"
+                className="text-gold-gradient text-[2.2rem] xs:text-[2.6rem] sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight block pt-2 drop-shadow-[0_10px_20px_rgba(201,168,76,0.4)]"
                 speed={120}
               />
               <TypeWriter
                 text="Abhivyakti 2026"
                 delay={1500}
                 speed={80}
-                className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight block text-white drop-shadow-md"
+                className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight block text-white drop-shadow-md"
                 cursorColor="#C9A84C"
               />
               <GoldLine />
-              <p className="text-xs sm:text-sm tracking-[0.25em] uppercase font-semibold text-gold-light/80">
+              <p className="text-[10px] sm:text-sm tracking-[0.2em] uppercase font-semibold text-gold-light/80">
                 Expression of Indian Culture & Heritage
               </p>
             </motion.div>
