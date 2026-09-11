@@ -172,79 +172,29 @@ function Room({
           </motion.div>
         ))}
       </div>
+      {/* Light points / Bulbs (Without heavy black metal stands) */}
       <div 
         className="absolute inset-0 pointer-events-none"
-        style={{ 
-          zIndex: 31
-        }}
+        style={{ zIndex: 31 }}
       >
-        {[35, 50, 65].map((pos, i) => (
-          <div key={i} className="absolute flex flex-col items-center" style={{ left: `${pos}%`, top: '3%', transform: 'translate(-50%, -4px)' }}>
-            <div className="w-[14px] h-[34px] rounded-sm border border-zinc-900 shadow-[0_5px_10px_rgba(0,0,0,0.9),inset_0_0_4px_rgba(255,255,255,0.5)] relative overflow-hidden"
-                 style={{ background: 'linear-gradient(to right, #666 0%, #ffffff 40%, #999 60%, #333 100%)' }}>
-               <div className="absolute top-[4px] left-1/2 -translate-x-1/2 w-[6px] h-[6px] bg-zinc-900 rounded-full shadow-[inset_0_1px_1px_rgba(0,0,0,1)]" />
-               <div className="absolute bottom-[4px] left-1/2 -translate-x-1/2 w-[6px] h-[6px] bg-zinc-900 rounded-full shadow-[inset_0_1px_1px_rgba(0,0,0,1)]" />
-            </div>
-            <div className="w-[8px] h-[18px] bg-gradient-to-r from-zinc-900 via-zinc-600 to-zinc-950 border-x border-black relative">
-               <div className="absolute bottom-[-8px] left-1/2 -translate-x-1/2 w-[18px] h-[18px] rounded-full border border-zinc-900 shadow-[0_4px_8px_rgba(0,0,0,1),inset_0_1px_2px_rgba(255,255,255,0.3)]"
-                    style={{ background: 'radial-gradient(circle at top left, #777, #111)' }} />
-            </div>
-            <div className="relative mt-[6px] w-[54px] h-[64px] flex justify-center perspective-near">
-              <div className="absolute inset-0 rounded-b-2xl rounded-t-sm border border-black shadow-[0_20px_30px_rgba(0,0,0,0.9)] overflow-hidden flex flex-col justify-evenly"
-                   style={{ background: 'linear-gradient(to right, #111 0%, #3a3a3a 30%, #555 50%, #2a2a2a 80%, #000 100%)' }}>
-                 <div className="absolute inset-0 opacity-[0.35] mix-blend-overlay pointer-events-none" style={{ backgroundImage: METAL_NOISE }} />
-                 <div className="w-full h-[2px] bg-black/90 shadow-[0_1px_0_rgba(255,255,255,0.15)] z-10" />
-                 <div className="w-full h-[2px] bg-black/90 shadow-[0_1px_0_rgba(255,255,255,0.15)] z-10" />
-                 <div className="w-full h-[2px] bg-black/90 shadow-[0_1px_0_rgba(255,255,255,0.15)] z-10" />
-                 <div className="w-full h-[2px] bg-black/90 shadow-[0_1px_0_rgba(255,255,255,0.15)] z-10" />
-              </div>
-              <div className="absolute bottom-[-6px] w-[58px] h-[18px] rounded-[50%] border-2 border-zinc-900 shadow-[0_10px_15px_rgba(0,0,0,1)] flex items-center justify-center z-10 overflow-hidden"
-                   style={{ background: 'radial-gradient(ellipse at center, #222, #000)' }}>
-                 <div className="w-[34px] h-[10px] rounded-[50%] transition-all duration-700"
-                      style={{
-                        background: lightsOn ? '#FFE49E' : '#111',
-                        boxShadow: lightsOn 
-                          ? `0 0 20px 8px rgba(255,228,158,0.9), inset 0 0 8px #fff`
-                          : `inset 0 2px 5px rgba(0,0,0,0.9), inset 0 -1px 1px rgba(255,255,255,0.05)`,
-                      }}
-                 />
-              </div>
-              <div className="absolute bottom-[-18px] w-[46px] h-[20px] border border-black shadow-[0_15px_15px_rgba(0,0,0,0.8)] origin-top z-20 flex justify-center"
-                   style={{ transform: 'rotateX(-45deg)', background: 'linear-gradient(to bottom, #222, #050505)' }}>
-                 <div className="w-[80%] h-full bg-white/3" />
-              </div>
-              <div className="absolute bottom-[6px] w-[46px] h-[20px] border border-black origin-bottom z-0"
-                   style={{ transform: 'rotateX(45deg)', background: 'linear-gradient(to top, #111, #000)' }} />
-              <div className="absolute bottom-[-6px] left-[-6px] w-[14px] h-[22px] bg-zinc-900 border border-black origin-right z-10 shadow-[5px_0_10px_rgba(0,0,0,0.5)]"
-                   style={{ transform: 'rotateY(-55deg) skewY(15deg)' }} />
-              <div className="absolute bottom-[-6px] right-[-6px] w-[14px] h-[22px] bg-zinc-900 border border-black origin-left z-10 shadow-[-5px_0_10px_rgba(0,0,0,0.5)]"
-                   style={{ transform: 'rotateY(55deg) skewY(-15deg)' }} />
-            </div>
+        {spots.map((pos, i) => (
+          <div 
+            key={i} 
+            className="absolute flex flex-col items-center" 
+            style={{ left: `${pos}%`, top: '1.5%', transform: 'translate(-50%, 0)' }}
+          >
+            {/* Glowing Bulb Dot */}
+            <div 
+              className="w-3 h-3 sm:w-4 sm:h-4 rounded-full transition-all duration-700"
+              style={{
+                background: lightsOn ? '#FFE49E' : '#333',
+                boxShadow: lightsOn 
+                  ? `0 0 20px 8px rgba(255,228,158,0.9), 0 0 40px 15px rgba(255,200,100,0.4)`
+                  : `none`,
+              }}
+            />
           </div>
         ))}
-      </div>
-      <div 
-        className="absolute pointer-events-none w-full h-[80px] bg-gradient-to-b from-black/60 to-transparent blur-xl"
-        style={{ zIndex: 29, top: '4%', left: 0 }}
-      />
-      <div 
-        className="absolute inset-0 pointer-events-none"
-        style={{ 
-          zIndex: 30,
-          clipPath: poly([[0, 0], [100, 0], tr, tl])
-        }}
-      >
-        <div 
-          className="absolute w-full h-[26px]"
-          style={{ 
-            top: '3%', 
-            left: '0%', 
-            background: 'linear-gradient(to bottom, #111 0%, #3a3a3a 30%, #555 50%, #2a2a2a 80%, #000 100%)',
-            boxShadow: 'inset 0 1px 1px rgba(255,255,255,0.15), inset 0 -1px 2px rgba(0,0,0,0.9), 0 10px 20px -5px rgba(0,0,0,0.8)'
-          }}
-        >
-          <div className="absolute inset-0 opacity-[0.35] mix-blend-overlay pointer-events-none" style={{ backgroundImage: METAL_NOISE }} />
-        </div>
       </div>
       <div
         className="absolute inset-0"
