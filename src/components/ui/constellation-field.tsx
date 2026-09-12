@@ -101,7 +101,7 @@ function useAutomaticMode(enabled: boolean) {
 }
 
 function resolveBackground(mode: NeuformMode) {
-  return mode === "light" ? LIGHT_PAPER : "#070914";
+  return "transparent";
 }
 
 /** Verbatim source of src/shaders/neuform-isolated/sources/constellation-field.html (MengTo/threeui, MIT). */
