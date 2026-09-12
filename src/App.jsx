@@ -6,6 +6,8 @@ import {
   Menu, X, Sun, Moon, Star, Trophy, Clock
 } from 'lucide-react';
 import { Carousel360 } from './components/ui/image-fan-carousel';
+import ConstellationField from './components/ui/constellation-field';
+
 
 /* ─── Animations ─── */
 const fadeUp = {
@@ -56,15 +58,6 @@ const GoldenWheel = ({ className }) => (
   </svg>
 );
 
-const FloatingDiya = ({ className, delay = 0 }) => (
-  <motion.div
-    className={`absolute text-4xl sm:text-5xl lg:text-6xl drop-shadow-[0_0_15px_rgba(255,153,51,0.8)] z-0 pointer-events-none ${className}`}
-    animate={{ y: [0, -15, 0], opacity: [0.5, 1, 0.5], scale: [0.95, 1.05, 0.95] }}
-    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay }}
-  >
-    🪔
-  </motion.div>
-);
 
 const SparkleParticle = ({ className, delay = 0 }) => (
   <motion.div
@@ -163,6 +156,9 @@ export default function App() {
 
   return (
     <div className={`min-h-screen font-sans overflow-x-hidden transition-colors duration-500 ${dark ? 'bg-cultural-dark text-gray-200' : 'bg-cultural text-gray-800'}`}>
+      <div className="fixed inset-0 -z-10 pointer-events-none opacity-60">
+        <ConstellationField mode={dark ? "dark" : "light"} speed={0.8} />
+      </div>
 
       {/* ════════ NAVBAR ════════ */}
       <motion.nav
@@ -237,9 +233,8 @@ export default function App() {
         <GoldenWheel className={`absolute -bottom-20 -left-20 w-[380px] sm:w-[480px] md:w-[620px] h-[380px] sm:h-[480px] md:h-[620px] animate-[spin_80s_linear_infinite_reverse] ${dark ? 'text-quantum-purple/15' : 'text-quantum-purple/20'}`} />
         
         {/* Floating Diyas & Particles */}
-        <FloatingDiya className="top-[15%] left-[5%] md:left-[10%] scale-75 md:scale-100" delay={0} />
-        <FloatingDiya className="bottom-[15%] right-[5%] md:right-[15%] scale-75 md:scale-125" delay={1.5} />
-        <FloatingDiya className="top-[25%] right-[25%] hidden lg:block scale-75 opacity-80" delay={2.5} />
+
+
 
         <SparkleParticle className="top-1/4 left-1/3 w-2 h-2" delay={0.2} />
         <SparkleParticle className="bottom-1/3 left-1/4 w-3 h-3" delay={1.2} />
@@ -346,8 +341,6 @@ export default function App() {
       {/* ════════ EVENTS ════════ */}
       <section id="events" className="py-16 sm:py-20 md:py-28 px-4 relative overflow-hidden">
         <GoldenWheel className={`absolute top-0 right-0 w-[280px] sm:w-[380px] h-[280px] sm:h-[380px] -translate-y-1/3 translate-x-1/4 animate-[spin_70s_linear_infinite] ${dark ? 'text-gold/15' : 'text-gold/20'}`} />
-        
-        <FloatingDiya className="top-[10%] left-[8%] scale-75 opacity-60" delay={0.5} />
         <SparkleParticle className="top-[20%] right-[15%] w-2 h-2" delay={1.8} />
 
         <div className="max-w-7xl mx-auto relative z-10">
@@ -371,8 +364,6 @@ export default function App() {
       {/* ════════ REGISTER ════════ */}
       <section id="register" className="py-16 sm:py-20 md:py-28 px-4 relative overflow-hidden">
         <GoldenWheel className={`absolute bottom-0 left-0 w-[260px] sm:w-80 h-[260px] sm:h-80 translate-y-1/3 -translate-x-1/4 animate-[spin_65s_linear_infinite] ${dark ? 'text-quantum-purple/15' : 'text-quantum-purple/20'}`} />
-        
-        <FloatingDiya className="bottom-[15%] right-[10%] scale-100 opacity-90" delay={2} />
         <SparkleParticle className="top-1/4 left-1/4 w-3 h-3" delay={0.5} />
 
         <div className="max-w-2xl mx-auto relative z-10">
