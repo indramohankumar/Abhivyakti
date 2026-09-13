@@ -53,3 +53,18 @@
 
 html { scroll-behavior: smooth; }
 body { -webkit-font-smoothing: antialiased; }
+
+/* Disable fixed background on mobile — causes scroll jank on iOS/Android */
+@media (max-width: 640px) {
+  .bg-cultural,
+  .bg-cultural-dark {
+    background-attachment: scroll;
+  }
+}
+
+/* Account for sticky bottom CTA on mobile */
+@media (max-width: 768px) {
+  footer {
+    padding-bottom: 4.5rem !important;
+  }
+}

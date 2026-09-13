@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   Calendar, MapPin, Sparkles, ArrowRight, ExternalLink,
   Music, Users, VenetianMask, Shirt, Palette, Utensils,
-  Menu, X, Sun, Moon, Star, Trophy, Clock
+  Menu, X, Sun, Moon, Star, Trophy, Clock, ChevronUp
 } from 'lucide-react';
 import { Carousel360 } from './components/ui/image-fan-carousel';
 import ConstellationField from './components/ui/constellation-field';
@@ -125,6 +125,8 @@ const navLinks = ['About', 'Events', 'Photos', 'Register'];
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  const [showBottomCTA, setShowBottomCTA] = useState(false);
   const dark = true;
 
   useEffect(() => {
@@ -132,7 +134,12 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 30);
+    const fn = () => {
+      const y = window.scrollY;
+      setScrolled(y > 30);
+      setShowScrollTop(y > 400);
+      setShowBottomCTA(y > 300);
+    };
     window.addEventListener('scroll', fn, { passive: true });
     return () => window.removeEventListener('scroll', fn);
   }, []);
@@ -208,22 +215,19 @@ export default function App() {
       </motion.nav>
 
       {/* ════════ HERO ════════ */}
-      <section className="relative min-h-[100dvh] flex items-center pt-20 pb-10 sm:pt-24 sm:pb-14 md:pt-28 md:pb-20 px-4 overflow-hidden">
+      <section className="relative min-h-[85dvh] sm:min-h-[100dvh] flex items-center pt-16 pb-6 sm:pt-24 sm:pb-14 md:pt-28 md:pb-20 px-4 overflow-hidden">
         {/* Background Decorations */}
-        <GoldenWheel className={`absolute -top-10 -right-10 w-[320px] sm:w-[420px] md:w-[550px] h-[320px] sm:h-[420px] md:h-[550px] animate-[spin_60s_linear_infinite] ${dark ? 'text-gold/20' : 'text-gold/25'}`} />
-        <GoldenWheel className={`absolute -bottom-20 -left-20 w-[380px] sm:w-[480px] md:w-[620px] h-[380px] sm:h-[480px] md:h-[620px] animate-[spin_80s_linear_infinite_reverse] ${dark ? 'text-quantum-purple/15' : 'text-quantum-purple/20'}`} />
+        <GoldenWheel className={`absolute -top-10 -right-10 w-[180px] sm:w-[420px] md:w-[550px] h-[180px] sm:h-[420px] md:h-[550px] animate-[spin_60s_linear_infinite] ${dark ? 'text-gold/20' : 'text-gold/25'}`} />
+        <GoldenWheel className={`absolute -bottom-20 -left-20 w-[200px] sm:w-[480px] md:w-[620px] h-[200px] sm:h-[480px] md:h-[620px] animate-[spin_80s_linear_infinite_reverse] ${dark ? 'text-quantum-purple/15' : 'text-quantum-purple/20'}`} />
         
         {/* Floating Diyas & Particles */}
+        <SparkleParticle className="top-1/4 left-1/3 w-1.5 h-1.5 sm:w-2 sm:h-2" delay={0.2} />
+        <SparkleParticle className="bottom-1/3 left-1/4 w-2 h-2 sm:w-3 sm:h-3" delay={1.2} />
+        <SparkleParticle className="top-1/3 right-1/4 w-1.5 h-1.5 sm:w-2 sm:h-2" delay={2.5} />
+        <SparkleParticle className="bottom-1/4 right-1/3 w-1.5 h-1.5 sm:w-2 sm:h-2" delay={0.8} />
 
-
-
-        <SparkleParticle className="top-1/4 left-1/3 w-2 h-2" delay={0.2} />
-        <SparkleParticle className="bottom-1/3 left-1/4 w-3 h-3" delay={1.2} />
-        <SparkleParticle className="top-1/3 right-1/4 w-2 h-2" delay={2.5} />
-        <SparkleParticle className="bottom-1/4 right-1/3 w-2 h-2" delay={0.8} />
-
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center relative z-10 w-full pointer-events-auto">
-          <motion.div initial="hidden" animate="visible" variants={stagger} className="space-y-6 sm:space-y-8">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-16 items-center relative z-10 w-full pointer-events-auto">
+          <motion.div initial="hidden" animate="visible" variants={stagger} className="space-y-4 sm:space-y-8">
 
             <motion.div variants={fadeUp} className="space-y-3">
               <TypeWriter
@@ -244,20 +248,20 @@ export default function App() {
               </p>
             </motion.div>
 
-            <motion.p variants={fadeUp} className={`text-sm sm:text-base md:text-lg max-w-lg leading-relaxed ${dark ? 'text-gray-400' : 'text-gray-600'}`}>
+            <motion.p variants={fadeUp} className={`text-[13px] sm:text-base md:text-lg max-w-lg leading-relaxed line-clamp-3 sm:line-clamp-none ${dark ? 'text-gray-400' : 'text-gray-600'}`}>
               A grand five-day inter-university celebration of <strong className="text-gold">literary excellence</strong>, <strong className={dark ? 'text-quantum-pink' : 'text-maroon'}>cultural richness</strong>, and <strong className={dark ? 'text-purple-400' : 'text-quantum-purple'}>intellectual engagement</strong> — uniting students, artists, and scholars from across India.
             </motion.p>
 
-            <motion.div variants={fadeUp} className="grid grid-cols-2 gap-3 sm:gap-4 max-w-md">
-              <div className={`flex items-center gap-2.5 p-3 rounded-xl border ${dark ? 'bg-white/[0.03] border-dark-border' : 'bg-white/60 border-gold/10'}`}>
-                <div className="bg-gold/10 p-2 rounded-lg text-gold shrink-0"><Calendar className="w-4 h-4 sm:w-5 sm:h-5" /></div>
+            <motion.div variants={fadeUp} className="grid grid-cols-2 gap-2 sm:gap-4 max-w-md">
+              <div className={`flex items-center gap-2 p-2 sm:p-3 rounded-xl border ${dark ? 'bg-white/[0.03] border-dark-border' : 'bg-white/60 border-gold/10'}`}>
+                <div className="bg-gold/10 p-1.5 sm:p-2 rounded-lg text-gold shrink-0"><Calendar className="w-4 h-4" /></div>
                 <div>
                   <p className={`font-bold text-xs sm:text-sm ${dark ? 'text-white' : 'text-gray-900'}`}>Oct 2026</p>
                   <p className={`text-[10px] sm:text-xs ${dark ? 'text-gray-600' : 'text-gray-500'}`}>5 Days</p>
                 </div>
               </div>
-              <div className={`flex items-center gap-2.5 p-3 rounded-xl border ${dark ? 'bg-white/[0.03] border-dark-border' : 'bg-white/60 border-gold/10'}`}>
-                <div className={`p-2 rounded-lg shrink-0 ${dark ? 'bg-quantum-purple/15 text-purple-400' : 'bg-quantum-purple/8 text-quantum-purple'}`}><MapPin className="w-4 h-4 sm:w-5 sm:h-5" /></div>
+              <div className={`flex items-center gap-2 p-2 sm:p-3 rounded-xl border ${dark ? 'bg-white/[0.03] border-dark-border' : 'bg-white/60 border-gold/10'}`}>
+                <div className={`p-1.5 sm:p-2 rounded-lg shrink-0 ${dark ? 'bg-quantum-purple/15 text-purple-400' : 'bg-quantum-purple/8 text-quantum-purple'}`}><MapPin className="w-4 h-4" /></div>
                 <div>
                   <p className={`font-bold text-xs sm:text-sm ${dark ? 'text-white' : 'text-gray-900'}`}>Roorkee</p>
                   <p className={`text-[10px] sm:text-xs ${dark ? 'text-gray-600' : 'text-gray-500'}`}>Uttarakhand</p>
@@ -265,34 +269,34 @@ export default function App() {
               </div>
             </motion.div>
 
-            <motion.div variants={fadeUp} className="flex flex-wrap gap-3 pt-1">
-              <a href="#register" className="bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-bg px-5 py-2.5 sm:px-7 sm:py-3 rounded-lg font-bold text-sm sm:text-base flex items-center gap-2 hover:brightness-110 active:scale-[0.97] transition-all shadow-lg shadow-gold/20">
+            <motion.div variants={fadeUp} className="flex flex-wrap gap-2.5 sm:gap-3 pt-1">
+              <a href="#register" className="bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-bg px-4 py-2 sm:px-7 sm:py-3 rounded-lg font-bold text-[13px] sm:text-base flex items-center gap-2 hover:brightness-110 active:scale-[0.97] transition-all shadow-lg shadow-gold/20">
                 Register Now <ArrowRight className="w-4 h-4" />
               </a>
-              <a href="#events" className={`px-5 py-2.5 sm:px-7 sm:py-3 rounded-lg font-semibold text-sm sm:text-base active:scale-[0.97] transition-all border ${dark ? 'border-gold/20 text-gold hover:bg-gold/5' : 'border-gold/30 text-gold-dark hover:bg-gold/5'}`}>
+              <a href="#events" className={`px-4 py-2 sm:px-7 sm:py-3 rounded-lg font-semibold text-[13px] sm:text-base active:scale-[0.97] transition-all border ${dark ? 'border-gold/20 text-gold hover:bg-gold/5' : 'border-gold/30 text-gold-dark hover:bg-gold/5'}`}>
                 Explore Events
               </a>
             </motion.div>
           </motion.div>
 
           {/* Hero right — Photos card */}
-          <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }} className="relative mt-4 lg:mt-0">
+          <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }} className="relative mt-2 lg:mt-0">
             <div className={`absolute inset-0 blur-3xl rounded-full scale-110 ${dark ? 'bg-gold/5' : 'bg-gold/10'}`}></div>
-            <div className={`relative p-6 sm:p-8 rounded-2xl sm:rounded-3xl border overflow-hidden ${dark ? 'bg-dark-card/80 border-dark-border shadow-2xl shadow-black/30' : 'bg-white/60 backdrop-blur-md border-gold/15 shadow-xl'}`}>
+            <div className={`relative p-4 sm:p-8 rounded-2xl sm:rounded-3xl border overflow-hidden ${dark ? 'bg-dark-card/80 border-dark-border shadow-2xl shadow-black/30' : 'bg-white/60 backdrop-blur-md border-gold/15 shadow-xl'}`}>
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gold-dark via-gold to-gold-light"></div>
-              <div className={`absolute top-4 right-4 w-20 h-20 rounded-full blur-2xl ${dark ? 'bg-gold/8' : 'bg-gold/15'}`}></div>
+              <div className={`absolute top-4 right-4 w-16 h-16 sm:w-20 sm:h-20 rounded-full blur-2xl ${dark ? 'bg-gold/8' : 'bg-gold/15'}`}></div>
 
-              <div id="photos" className="relative z-10 space-y-4">
+              <div id="photos" className="relative z-10 space-y-3 sm:space-y-4">
                 <div className="flex items-center gap-2">
                   <span className="bg-gradient-to-r from-gold-dark to-gold text-dark-bg text-[10px] sm:text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Memories</span>
                 </div>
                 <div>
-                  <h3 className="text-gold-gradient text-3xl sm:text-4xl font-extrabold">चित्रशाला</h3>
-                  <p className={`text-lg sm:text-xl font-semibold mt-1 ${dark ? 'text-white' : 'text-gray-900'}`}>Photos</p>
+                  <h3 className="text-gold-gradient text-2xl sm:text-4xl font-extrabold">चित्रशाला</h3>
+                  <p className={`text-base sm:text-xl font-semibold mt-0.5 sm:mt-1 ${dark ? 'text-white' : 'text-gray-900'}`}>Photos</p>
                 </div>
-                <p className={`text-xs tracking-[0.15em] uppercase font-medium ${dark ? 'text-gold/60' : 'text-gold-dark/70'}`}>Glimpses of Abhivyakti</p>
+                <p className={`text-[10px] sm:text-xs tracking-[0.15em] uppercase font-medium ${dark ? 'text-gold/60' : 'text-gold-dark/70'}`}>Glimpses of Abhivyakti</p>
                 <GoldLine />
-                <p className={`text-sm leading-relaxed ${dark ? 'text-gray-400' : 'text-gray-600'}`}>
+                <p className={`text-xs sm:text-sm leading-relaxed ${dark ? 'text-gray-400' : 'text-gray-600'}`}>
                   {/* ADD YOUR PHOTO DETAILS OR COMPONENTS HERE */}
                   Capturing the moments of literary excellence, cultural richness, and intellectual engagement.
                 </p>
@@ -303,32 +307,32 @@ export default function App() {
       </section>
 
       {/* ════════ HIGHLIGHTS BAR ════════ */}
-      <section className={`py-8 sm:py-10 border-y relative z-10 ${dark ? 'bg-dark-card/50 border-dark-border' : 'bg-gold/[0.03] border-gold/10'}`}>
-        <div className="max-w-5xl mx-auto px-4 grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8">
+      <section className={`py-5 sm:py-10 border-y relative z-10 ${dark ? 'bg-dark-card/50 border-dark-border' : 'bg-gold/[0.03] border-gold/10'}`}>
+        <div className="max-w-5xl mx-auto px-4 grid grid-cols-4 gap-3 sm:grid-cols-4 sm:gap-8">
           {highlights.map((h, i) => (
             <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
               className="text-center">
-              <h.icon className={`w-6 h-6 mx-auto mb-2 ${dark ? 'text-gold/70' : 'text-gold'}`} />
-              <p className={`text-2xl sm:text-3xl font-extrabold ${dark ? 'text-white' : 'text-gray-900'}`}>{h.label}</p>
-              <p className={`text-xs sm:text-sm font-medium ${dark ? 'text-gray-500' : 'text-gray-500'}`}>{h.desc}</p>
+              <h.icon className={`w-5 h-5 sm:w-6 sm:h-6 mx-auto mb-1 sm:mb-2 ${dark ? 'text-gold/70' : 'text-gold'}`} />
+              <p className={`text-lg sm:text-3xl font-extrabold ${dark ? 'text-white' : 'text-gray-900'}`}>{h.label}</p>
+              <p className={`text-[10px] sm:text-sm font-medium ${dark ? 'text-gray-500' : 'text-gray-500'}`}>{h.desc}</p>
             </motion.div>
           ))}
         </div>
       </section>
 
       {/* ════════ EVENTS ════════ */}
-      <section id="events" className="py-16 sm:py-20 md:py-28 px-4 relative overflow-hidden">
-        <GoldenWheel className={`absolute top-0 right-0 w-[280px] sm:w-[380px] h-[280px] sm:h-[380px] -translate-y-1/3 translate-x-1/4 animate-[spin_70s_linear_infinite] ${dark ? 'text-gold/15' : 'text-gold/20'}`} />
-        <SparkleParticle className="top-[20%] right-[15%] w-2 h-2" delay={1.8} />
+      <section id="events" className="py-10 sm:py-20 md:py-28 px-4 relative overflow-hidden">
+        <GoldenWheel className={`absolute top-0 right-0 w-[180px] sm:w-[380px] h-[180px] sm:h-[380px] -translate-y-1/3 translate-x-1/4 animate-[spin_70s_linear_infinite] ${dark ? 'text-gold/15' : 'text-gold/20'}`} />
+        <SparkleParticle className="top-[20%] right-[15%] w-1.5 h-1.5 sm:w-2 sm:h-2" delay={1.8} />
 
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-8 sm:mb-10">
-            <p className="text-gold font-semibold tracking-[0.2em] uppercase text-xs sm:text-sm mb-2">प्रतियोगिताएं · Competitions</p>
-            <h2 className={`text-3xl sm:text-4xl md:text-5xl font-extrabold mb-3 ${dark ? 'text-white' : 'text-gray-900'}`}>
+          <div className="text-center mb-5 sm:mb-10">
+            <p className="text-gold font-semibold tracking-[0.2em] uppercase text-[10px] sm:text-sm mb-1 sm:mb-2">प्रतियोगिताएं · Competitions</p>
+            <h2 className={`text-2xl sm:text-4xl md:text-5xl font-extrabold mb-2 sm:mb-3 ${dark ? 'text-white' : 'text-gray-900'}`}>
               Events & <span className="text-gold-gradient">Categories</span>
             </h2>
             <GoldLine />
-            <p className={`max-w-lg mx-auto text-sm sm:text-base mt-3 ${dark ? 'text-gray-500' : 'text-gray-500'}`}>
+            <p className={`max-w-lg mx-auto text-xs sm:text-base mt-2 sm:mt-3 ${dark ? 'text-gray-500' : 'text-gray-500'}`}>
               Six grand arenas celebrating the soul of Indian artistic tradition.
             </p>
           </div>
@@ -340,27 +344,27 @@ export default function App() {
       </section>
 
       {/* ════════ REGISTER ════════ */}
-      <section id="register" className="py-16 sm:py-20 md:py-28 px-4 relative overflow-hidden">
-        <GoldenWheel className={`absolute bottom-0 left-0 w-[260px] sm:w-80 h-[260px] sm:h-80 translate-y-1/3 -translate-x-1/4 animate-[spin_65s_linear_infinite] ${dark ? 'text-quantum-purple/15' : 'text-quantum-purple/20'}`} />
-        <SparkleParticle className="top-1/4 left-1/4 w-3 h-3" delay={0.5} />
+      <section id="register" className="py-10 sm:py-20 md:py-28 px-4 relative overflow-hidden">
+        <GoldenWheel className={`absolute bottom-0 left-0 w-[180px] sm:w-80 h-[180px] sm:h-80 translate-y-1/3 -translate-x-1/4 animate-[spin_65s_linear_infinite] ${dark ? 'text-quantum-purple/15' : 'text-quantum-purple/20'}`} />
+        <SparkleParticle className="top-1/4 left-1/4 w-2 h-2 sm:w-3 sm:h-3" delay={0.5} />
 
         <div className="max-w-2xl mx-auto relative z-10">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
-            className={`text-center p-7 sm:p-10 md:p-14 rounded-2xl sm:rounded-3xl border relative overflow-hidden ${
+            className={`text-center p-5 sm:p-10 md:p-14 rounded-2xl sm:rounded-3xl border relative overflow-hidden ${
               dark ? 'bg-dark-card/70 border-dark-border shadow-2xl shadow-black/20' : 'bg-white/70 backdrop-blur-md border-gold/15 shadow-xl shadow-gold/5'
             }`}
           >
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gold-dark via-gold to-gold-light"></div>
 
-            <p className="text-gold-gradient text-3xl sm:text-4xl font-extrabold mb-1">समारोह में शामिल हों</p>
-            <h2 className={`text-xl sm:text-2xl md:text-3xl font-bold mb-2 ${dark ? 'text-white' : 'text-gray-900'}`}>Join the Celebration</h2>
+            <p className="text-gold-gradient text-2xl sm:text-4xl font-extrabold mb-1">समारोह में शामिल हों</p>
+            <h2 className={`text-lg sm:text-2xl md:text-3xl font-bold mb-1.5 sm:mb-2 ${dark ? 'text-white' : 'text-gray-900'}`}>Join the Celebration</h2>
             <GoldLine />
-            <p className={`text-sm sm:text-base mb-8 max-w-md mx-auto mt-3 ${dark ? 'text-gray-500' : 'text-gray-500'}`}>
+            <p className={`text-xs sm:text-base mb-5 sm:mb-8 max-w-md mx-auto mt-2 sm:mt-3 ${dark ? 'text-gray-500' : 'text-gray-500'}`}>
               Register through our official Google Form and represent your university at Abhivyakti 2026. Open to all universities across India.
             </p>
 
             <a href="https://forms.gle/your-form-link" target="_blank" rel="noopener noreferrer"
-               className="inline-flex items-center gap-2 bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-bg px-6 py-3 sm:px-8 sm:py-3.5 rounded-lg text-sm sm:text-base font-bold hover:brightness-110 active:scale-[0.97] transition-all shadow-lg shadow-gold/20">
+               className="inline-flex items-center gap-2 bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-bg px-5 py-2.5 sm:px-8 sm:py-3.5 rounded-lg text-[13px] sm:text-base font-bold hover:brightness-110 active:scale-[0.97] transition-all shadow-lg shadow-gold/20">
               Fill Registration Form <ExternalLink className="w-4 h-4" />
             </a>
           </motion.div>
@@ -368,41 +372,41 @@ export default function App() {
       </section>
 
       {/* ════════ FOOTER ════════ */}
-      <footer className={`pt-14 sm:pt-16 pb-6 px-4 border-t ${dark ? 'bg-black/40 border-dark-border' : 'bg-gray-950 border-gray-800'} text-white relative z-10`}>
+      <footer className={`pt-10 sm:pt-16 pb-6 px-4 border-t ${dark ? 'bg-black/40 border-dark-border' : 'bg-gray-950 border-gray-800'} text-white relative z-10`}>
         <div className="max-w-7xl mx-auto">
           {/* Top row */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 pb-10 border-b border-white/10">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-10 pb-8 sm:pb-10 border-b border-white/10">
 
             {/* Brand */}
-            <div className="sm:col-span-2 lg:col-span-1 space-y-4">
+            <div className="col-span-2 sm:col-span-2 lg:col-span-1 space-y-3 sm:space-y-4">
               <div className="flex items-center gap-3">
                 <div className="flex items-center transition-all duration-300">
-                  <img src="/logo.png" alt="Quantum University" className="h-7 sm:h-8 object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] brightness-110" />
+                  <img src="/logo.png" alt="Quantum University" className="h-6 sm:h-8 object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] brightness-110" />
                 </div>
                 <div className="flex flex-col leading-none">
-                  <span className="text-gold-gradient font-extrabold text-base">अभिव्यक्ति</span>
-                  <span className="text-[9px] text-gray-500 tracking-[0.15em] uppercase">Abhivyakti 2026</span>
+                  <span className="text-gold-gradient font-extrabold text-sm sm:text-base">अभिव्यक्ति</span>
+                  <span className="text-[8px] sm:text-[9px] text-gray-500 tracking-[0.15em] uppercase">Abhivyakti 2026</span>
                 </div>
               </div>
-              <p className="text-gray-500 text-sm leading-relaxed max-w-xs">
+              <p className="text-gray-500 text-xs sm:text-sm leading-relaxed max-w-xs">
                 Quantum University's annual inter-university cultural festival celebrating Indian art, literature, and heritage.
               </p>
             </div>
 
             {/* Quick Links */}
             <div>
-              <h4 className="text-gold font-semibold text-sm uppercase tracking-wider mb-4">Quick Links</h4>
-              <ul className="space-y-2.5">
+              <h4 className="text-gold font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3 sm:mb-4">Quick Links</h4>
+              <ul className="space-y-2 sm:space-y-2.5">
                 {['About', 'Events', 'Photos', 'Register'].map(item => (
                   <li key={item}>
-                    <a href={`#${item.toLowerCase()}`} className="text-gray-400 text-sm hover:text-gold transition-colors">{item}</a>
+                    <a href={`#${item.toLowerCase()}`} className="text-gray-400 text-xs sm:text-sm hover:text-gold transition-colors">{item}</a>
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Events */}
-            <div>
+            {/* Events — hidden on mobile, shown on lg+ */}
+            <div className="hidden lg:block">
               <h4 className="text-gold font-semibold text-sm uppercase tracking-wider mb-4">Events</h4>
               <ul className="space-y-2.5">
                 {['Music', 'Dance', 'Theatre', 'Fashion', 'Fine Arts', 'Cuisine'].map(item => (
@@ -415,14 +419,14 @@ export default function App() {
 
             {/* Contact */}
             <div>
-              <h4 className="text-gold font-semibold text-sm uppercase tracking-wider mb-4">Contact</h4>
-              <ul className="space-y-2.5 text-sm text-gray-400">
+              <h4 className="text-gold font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3 sm:mb-4">Contact</h4>
+              <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm text-gray-400">
                 <li className="flex items-start gap-2">
-                  <MapPin className="w-4 h-4 text-gold/60 mt-0.5 shrink-0" />
+                  <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gold/60 mt-0.5 shrink-0" />
                   <span>Quantum University, Roorkee, Uttarakhand 247167</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <Calendar className="w-4 h-4 text-gold/60 shrink-0" />
+                  <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gold/60 shrink-0" />
                   <span>October 2026</span>
                 </li>
               </ul>
@@ -430,9 +434,9 @@ export default function App() {
           </div>
 
           {/* Bottom row */}
-          <div className="pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
-            <p className="text-gray-600 text-xs">© 2026 Quantum University, Roorkee. All rights reserved.</p>
-            <div className="flex items-center gap-1 text-gray-600 text-xs">
+          <div className="pt-4 sm:pt-6 flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-3">
+            <p className="text-gray-600 text-[10px] sm:text-xs">© 2026 Quantum University, Roorkee. All rights reserved.</p>
+            <div className="flex items-center gap-1 text-gray-600 text-[10px] sm:text-xs">
               <span>Made with</span>
               <span className="text-red-500 text-sm">❤</span>
               <span>for Indian Culture</span>
@@ -440,6 +444,47 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+      {/* ════════ STICKY MOBILE BOTTOM CTA ════════ */}
+      <AnimatePresence>
+        {showBottomCTA && (
+          <motion.div
+            initial={{ y: 100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 100, opacity: 0 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+            className="fixed bottom-0 left-0 right-0 z-50 md:hidden"
+          >
+            <div className={`px-4 py-3 backdrop-blur-xl border-t ${dark ? 'bg-dark-bg/95 border-dark-border' : 'bg-white/95 border-gold/10'}`}>
+              <a href="#register"
+                 className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-bg py-2.5 rounded-xl font-bold text-sm active:scale-[0.97] transition-all shadow-lg shadow-gold/25">
+                <Sparkles className="w-4 h-4" />
+                Register for Abhivyakti 2026
+                <ArrowRight className="w-4 h-4" />
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* ════════ SCROLL TO TOP ════════ */}
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.5 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className={`fixed bottom-20 md:bottom-8 right-4 z-50 w-10 h-10 rounded-full flex items-center justify-center shadow-lg active:scale-90 transition-transform ${
+              dark ? 'bg-dark-card border border-dark-border text-gold shadow-black/30' : 'bg-white border border-gold/20 text-gold-dark shadow-gold/10'
+            }`}
+            aria-label="Scroll to top"
+          >
+            <ChevronUp className="w-5 h-5" />
+          </motion.button>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

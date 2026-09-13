@@ -36,7 +36,7 @@ const THUMB_SIZE_CLASSES =
 
 // Size classes — active center image
 const CENTER_SIZE_CLASSES =
-  "w-44 h-44 sm:w-48 sm:h-48 md:w-64 md:h-64 lg:w-80 lg:h-80";
+  "w-36 h-36 sm:w-48 sm:h-48 md:w-64 md:h-64 lg:w-80 lg:h-80";
 
 // Nav button size
 const BUTTON_SIZE_CLASSES = "w-9 h-9 sm:w-10 sm:h-10";
@@ -113,10 +113,10 @@ export const Carousel360 = ({ items }) => {
   }, []);
 
   return (
-    <div className="relative w-full flex flex-col items-center justify-center select-none py-6 sm:py-10">
+    <div className="relative w-full flex flex-col items-center justify-center select-none py-4 sm:py-10">
       <div
         ref={containerRef}
-        className="relative w-[92%] max-w-[600px] aspect-[5/3] flex items-center justify-center"
+        className="relative w-[96%] sm:w-[92%] max-w-[600px] aspect-[4/3] sm:aspect-[5/3] flex items-center justify-center"
       >
         <div
           className="relative w-full h-full"
