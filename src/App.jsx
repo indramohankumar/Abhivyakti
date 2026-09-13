@@ -152,8 +152,8 @@ export default function App() {
 
   return (
     <div className={`min-h-screen font-sans overflow-x-hidden transition-colors duration-500 ${dark ? 'bg-cultural-dark text-gray-200' : 'bg-cultural text-gray-800'}`}>
-      <div className="fixed inset-0 z-0 pointer-events-none opacity-60">
-        <ConstellationField mode={dark ? "dark" : "light"} speed={0.8} />
+      <div className="fixed inset-0 z-0 pointer-events-none opacity-75">
+        <ConstellationField mode={dark ? "dark" : "light"} speed={1} opacity={0.85} />
       </div>
 
       {/* ════════ NAVBAR ════════ */}
@@ -252,19 +252,25 @@ export default function App() {
               A grand five-day inter-university celebration of <strong className="text-gold">literary excellence</strong>, <strong className={dark ? 'text-quantum-pink' : 'text-maroon'}>cultural richness</strong>, and <strong className={dark ? 'text-purple-400' : 'text-quantum-purple'}>intellectual engagement</strong> — uniting students, artists, and scholars from across India.
             </motion.p>
 
-            <motion.div variants={fadeUp} className="grid grid-cols-2 gap-2 sm:gap-4 max-w-md">
-              <div className={`flex items-center gap-2 p-2 sm:p-3 rounded-xl border ${dark ? 'bg-white/[0.03] border-dark-border' : 'bg-white/60 border-gold/10'}`}>
-                <div className="bg-gold/10 p-1.5 sm:p-2 rounded-lg text-gold shrink-0"><Calendar className="w-4 h-4" /></div>
-                <div>
-                  <p className={`font-bold text-xs sm:text-sm ${dark ? 'text-white' : 'text-gray-900'}`}>Oct 2026</p>
-                  <p className={`text-[10px] sm:text-xs ${dark ? 'text-gray-600' : 'text-gray-500'}`}>5 Days</p>
+            <motion.div variants={fadeUp} className="max-w-md">
+              <div className={`flex items-center gap-0 rounded-2xl border overflow-hidden ${dark ? 'bg-white/[0.03] border-dark-border backdrop-blur-sm' : 'bg-white/60 border-gold/10 backdrop-blur-sm'}`}>
+                {/* Date */}
+                <div className="flex items-center gap-2.5 px-3 py-2.5 sm:px-5 sm:py-3.5 flex-1">
+                  <div className="bg-gold/10 p-1.5 sm:p-2 rounded-lg text-gold shrink-0"><Calendar className="w-4 h-4" /></div>
+                  <div>
+                    <p className={`font-bold text-xs sm:text-sm ${dark ? 'text-white' : 'text-gray-900'}`}>Oct 2026</p>
+                    <p className={`text-[10px] sm:text-xs ${dark ? 'text-gray-600' : 'text-gray-500'}`}>5 Days Festival</p>
+                  </div>
                 </div>
-              </div>
-              <div className={`flex items-center gap-2 p-2 sm:p-3 rounded-xl border ${dark ? 'bg-white/[0.03] border-dark-border' : 'bg-white/60 border-gold/10'}`}>
-                <div className={`p-1.5 sm:p-2 rounded-lg shrink-0 ${dark ? 'bg-quantum-purple/15 text-purple-400' : 'bg-quantum-purple/8 text-quantum-purple'}`}><MapPin className="w-4 h-4" /></div>
-                <div>
-                  <p className={`font-bold text-xs sm:text-sm ${dark ? 'text-white' : 'text-gray-900'}`}>Roorkee</p>
-                  <p className={`text-[10px] sm:text-xs ${dark ? 'text-gray-600' : 'text-gray-500'}`}>Uttarakhand</p>
+                {/* Gold divider */}
+                <div className={`w-px self-stretch ${dark ? 'bg-gradient-to-b from-transparent via-gold/30 to-transparent' : 'bg-gradient-to-b from-transparent via-gold/20 to-transparent'}`}></div>
+                {/* Location */}
+                <div className="flex items-center gap-2.5 px-3 py-2.5 sm:px-5 sm:py-3.5 flex-1">
+                  <div className={`p-1.5 sm:p-2 rounded-lg shrink-0 ${dark ? 'bg-quantum-purple/15 text-purple-400' : 'bg-quantum-purple/8 text-quantum-purple'}`}><MapPin className="w-4 h-4" /></div>
+                  <div>
+                    <p className={`font-bold text-xs sm:text-sm ${dark ? 'text-white' : 'text-gray-900'}`}>Roorkee</p>
+                    <p className={`text-[10px] sm:text-xs ${dark ? 'text-gray-600' : 'text-gray-500'}`}>Uttarakhand</p>
+                  </div>
                 </div>
               </div>
             </motion.div>

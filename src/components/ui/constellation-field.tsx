@@ -282,13 +282,26 @@ const CONSTELLATION_FIELD_SOURCE = String.raw`<!DOCTYPE html>
                 nodes.push({
                     x: Math.random() * width,
                     y: Math.random() * height,
-                    vx: (Math.random() - 0.5) * 0.3,
-                    vy: (Math.random() - 0.5) * 0.3,
+                    vx: (Math.random() - 0.5) * 0.04,
+                    vy: (Math.random() - 0.5) * 0.04,
                     radius: Math.random() * 2.4 + 1.8
                 });
             }
         }
         initNodes();
+
+        // Scroll-reactive force — nodes interact with user scrolling
+        let scrollForceY = 0;
+        let scrollForceX = 0;
+        const SCROLL_DAMPING = 0.88;
+
+        // Listen for scroll data from parent window
+        window.addEventListener('message', function(e) {
+            if (e.data && e.data.type === 'threeui-scroll') {
+                scrollForceY = (e.data.deltaY || 0) * 0.4;
+                scrollForceX = (e.data.deltaY || 0) * 0.08;
+            }
+        });
 
         // Pointer gravity tracker
         document.addEventListener('mousemove', e => {
@@ -329,12 +342,15 @@ const CONSTELLATION_FIELD_SOURCE = String.raw`<!DOCTYPE html>
             }
 
             nodes.forEach(node => {
-                node.x += node.vx;
-                node.y += node.vy;
+                // Apply scroll force + tiny base drift
+                node.x += node.vx + scrollForceX;
+                node.y += node.vy + scrollForceY;
                 
-                // Bounce off edges
-                if(node.x < 0 || node.x > width) node.vx *= -1;
-                if(node.y < 0 || node.y > height) node.vy *= -1;
+                // Wrap around edges smoothly
+                if(node.x > width + 20) { node.x = -20; }
+                if(node.x < -20) { node.x = width + 20; }
+                if(node.y > height + 20) { node.y = -20; }
+                if(node.y < -20) { node.y = height + 20; }
 
                 // Gentle Pointer gravity
                 const pd = dist(node, pointer);
@@ -355,6 +371,13 @@ const CONSTELLATION_FIELD_SOURCE = String.raw`<!DOCTYPE html>
                 ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
                 ctx.fill();
             });
+
+            // Dampen scroll forces — nodes settle back to static
+            scrollForceX *= SCROLL_DAMPING;
+            scrollForceY *= SCROLL_DAMPING;
+            // Kill tiny residual force
+            if (Math.abs(scrollForceX) < 0.001) scrollForceX = 0;
+            if (Math.abs(scrollForceY) < 0.001) scrollForceY = 0;
 
             ctx.globalAlpha = 1;
             requestAnimationFrame(animateCanvas);
@@ -462,12 +485,12 @@ function patchConstellationField(
       `ctx.lineWidth = ${Number(Math.max(0.25, strokeWidth).toFixed(2))};`,
     )
     .replace(
-      "node.x += node.vx;",
-      "node.x += node.vx * ((window.__SF_CONTROLS&&window.__SF_CONTROLS.speed)||1);",
+      "node.x += node.vx + scrollForceX;",
+      "node.x += (node.vx + scrollForceX) * ((window.__SF_CONTROLS&&window.__SF_CONTROLS.speed)||1);",
     )
     .replace(
-      "node.y += node.vy;",
-      "node.y += node.vy * ((window.__SF_CONTROLS&&window.__SF_CONTROLS.speed)||1);",
+      "node.y += node.vy + scrollForceY;",
+      "node.y += (node.vy + scrollForceY) * ((window.__SF_CONTROLS&&window.__SF_CONTROLS.speed)||1);",
     );
   if (mode === "light") {
     next = next
@@ -681,6 +704,22 @@ export default function ConstellationField({
     safeStrokeWidth,
     source,
   ]);
+
+  // Forward parent scroll events to iframe so nodes react to scrolling
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+    const onScroll = () => {
+      const frame = iframeRef.current?.contentWindow;
+      if (!frame) return;
+      const deltaY = window.scrollY - lastScrollY;
+      lastScrollY = window.scrollY;
+      if (deltaY !== 0) {
+        frame.postMessage({ type: 'threeui-scroll', deltaY }, '*');
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const filter =
     safeHue === 0 && safeSaturation === 1 && safeBrightness === 1
