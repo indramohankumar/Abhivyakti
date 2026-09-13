@@ -162,8 +162,8 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex justify-between items-center h-14 sm:h-16 md:h-[72px]">
             <a href="#" className="flex items-center gap-2.5">
-              <div className={`rounded-lg px-1.5 py-1 transition-colors duration-300 ${dark ? 'bg-white/90' : ''}`}>
-                <img src="/logo.png" alt="Quantum University" className="h-6 sm:h-8 md:h-9 object-contain" />
+              <div className="flex items-center gap-2.5 transition-all duration-300">
+                <img src="/logo.png" alt="Quantum University" className={`h-6 sm:h-8 md:h-9 object-contain ${dark ? 'drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] brightness-110' : 'mix-blend-multiply'}`} />
               </div>
               <div className="flex flex-col leading-none">
                 <span className="text-gold-gradient text-base sm:text-lg md:text-xl font-extrabold tracking-tight">अभिव्यक्ति</span>
@@ -376,8 +376,8 @@ export default function App() {
             {/* Brand */}
             <div className="sm:col-span-2 lg:col-span-1 space-y-4">
               <div className="flex items-center gap-3">
-                <div className="bg-white/90 rounded-lg px-1.5 py-1">
-                  <img src="/logo.png" alt="Quantum University" className="h-7 sm:h-8 object-contain" />
+                <div className="flex items-center transition-all duration-300">
+                  <img src="/logo.png" alt="Quantum University" className="h-7 sm:h-8 object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] brightness-110" />
                 </div>
                 <div className="flex flex-col leading-none">
                   <span className="text-gold-gradient font-extrabold text-base">अभिव्यक्ति</span>
