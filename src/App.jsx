@@ -119,28 +119,17 @@ const TypeWriter = ({ text, className = '', speed = 100, delay = 0, cursorColor 
   );
 };
 
-const navLinks = ['About', 'Events', 'Kavyanjali', 'Register'];
-
-/* ─── Theme ─── */
-function useTheme() {
-  const [dark, setDark] = useState(() => {
-    if (typeof window === 'undefined') return false;
-    const s = localStorage.getItem('theme');
-    if (s) return s === 'dark';
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
-  });
-  useEffect(() => {
-    document.documentElement.classList.toggle('dark', dark);
-    localStorage.setItem('theme', dark ? 'dark' : 'light');
-  }, [dark]);
-  return [dark, () => setDark(d => !d)];
-}
+const navLinks = ['About', 'Events', 'Photos', 'Register'];
 
 /* ─── App ─── */
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [dark, toggleDark] = useTheme();
+  const dark = true;
+
+  useEffect(() => {
+    document.documentElement.classList.add('dark');
+  }, []);
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 30);
@@ -189,20 +178,12 @@ export default function App() {
                   {item}
                 </a>
               ))}
-              <button onClick={toggleDark} className={`ml-2 w-9 h-9 flex items-center justify-center rounded-lg transition-colors ${dark ? 'text-gold hover:bg-gold/10' : 'text-gray-500 hover:bg-gray-100'}`} aria-label="Toggle theme">
-                <AnimatePresence mode="wait">
-                  <motion.div key={dark ? 'sun' : 'moon'} initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
-                    {dark ? <Sun className="w-[18px] h-[18px]" /> : <Moon className="w-[18px] h-[18px]" />}
-                  </motion.div>
-                </AnimatePresence>
-              </button>
+
               <a href="#register" className="ml-2 bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-bg px-5 py-2 rounded-lg font-semibold text-sm hover:brightness-110 transition-all">Register Now</a>
             </div>
 
             <div className="flex items-center gap-1 md:hidden">
-              <button onClick={toggleDark} className={`w-9 h-9 flex items-center justify-center rounded-lg ${dark ? 'text-gold' : 'text-gray-500'}`} aria-label="Toggle theme">
-                {dark ? <Sun className="w-[18px] h-[18px]" /> : <Moon className="w-[18px] h-[18px]" />}
-              </button>
+
               <button onClick={() => setMenuOpen(!menuOpen)} className={`w-10 h-10 flex items-center justify-center rounded-lg ${dark ? 'text-gray-300' : 'text-gray-700'}`} aria-label="Menu">
                 {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </button>
@@ -294,30 +275,27 @@ export default function App() {
             </motion.div>
           </motion.div>
 
-          {/* Hero right — Kavyanjali card */}
+          {/* Hero right — Photos card */}
           <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }} className="relative mt-4 lg:mt-0">
             <div className={`absolute inset-0 blur-3xl rounded-full scale-110 ${dark ? 'bg-gold/5' : 'bg-gold/10'}`}></div>
             <div className={`relative p-6 sm:p-8 rounded-2xl sm:rounded-3xl border overflow-hidden ${dark ? 'bg-dark-card/80 border-dark-border shadow-2xl shadow-black/30' : 'bg-white/60 backdrop-blur-md border-gold/15 shadow-xl'}`}>
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gold-dark via-gold to-gold-light"></div>
               <div className={`absolute top-4 right-4 w-20 h-20 rounded-full blur-2xl ${dark ? 'bg-gold/8' : 'bg-gold/15'}`}></div>
 
-              <div className="relative z-10 space-y-4">
+              <div id="photos" className="relative z-10 space-y-4">
                 <div className="flex items-center gap-2">
-                  <span className="bg-gradient-to-r from-gold-dark to-gold text-dark-bg text-[10px] sm:text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Grand Finale</span>
-                  <span className={`text-[10px] sm:text-xs ${dark ? 'text-gray-600' : 'text-gray-400'}`}>Day 5</span>
+                  <span className="bg-gradient-to-r from-gold-dark to-gold text-dark-bg text-[10px] sm:text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Memories</span>
                 </div>
                 <div>
-                  <h3 className="text-gold-gradient text-3xl sm:text-4xl font-extrabold">काव्यांजलि</h3>
-                  <p className={`text-lg sm:text-xl font-semibold mt-1 ${dark ? 'text-white' : 'text-gray-900'}`}>Kavyanjali</p>
+                  <h3 className="text-gold-gradient text-3xl sm:text-4xl font-extrabold">चित्रशाला</h3>
+                  <p className={`text-lg sm:text-xl font-semibold mt-1 ${dark ? 'text-white' : 'text-gray-900'}`}>Photos</p>
                 </div>
-                <p className={`text-xs tracking-[0.15em] uppercase font-medium ${dark ? 'text-gold/60' : 'text-gold-dark/70'}`}>The Spectacular Kavi Sammelan</p>
+                <p className={`text-xs tracking-[0.15em] uppercase font-medium ${dark ? 'text-gold/60' : 'text-gold-dark/70'}`}>Glimpses of Abhivyakti</p>
                 <GoldLine />
                 <p className={`text-sm leading-relaxed ${dark ? 'text-gray-400' : 'text-gray-600'}`}>
-                  A mesmerizing poetry recital marking the grand culmination — featuring eminent literary personalities and poets from across India.
+                  {/* ADD YOUR PHOTO DETAILS OR COMPONENTS HERE */}
+                  Capturing the moments of literary excellence, cultural richness, and intellectual engagement.
                 </p>
-                <div className={`flex items-center gap-4 pt-1 text-xs ${dark ? 'text-gray-600' : 'text-gray-400'}`}>
-                  <span className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5" /> Main Auditorium</span>
-                </div>
               </div>
             </div>
           </motion.div>
@@ -415,7 +393,7 @@ export default function App() {
             <div>
               <h4 className="text-gold font-semibold text-sm uppercase tracking-wider mb-4">Quick Links</h4>
               <ul className="space-y-2.5">
-                {['About', 'Events', 'Kavyanjali', 'Register'].map(item => (
+                {['About', 'Events', 'Photos', 'Register'].map(item => (
                   <li key={item}>
                     <a href={`#${item.toLowerCase()}`} className="text-gray-400 text-sm hover:text-gold transition-colors">{item}</a>
                   </li>
