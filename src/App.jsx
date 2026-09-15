@@ -119,7 +119,7 @@ const TypeWriter = ({ text, className = '', speed = 100, delay = 0, cursorColor 
   );
 };
 
-const navLinks = ['About', 'Events', 'Photos', 'Register'];
+const navLinks = ['Events', 'Photos', 'Register'];
 
 /* ─── App ─── */
 export default function App() {
@@ -403,7 +403,7 @@ export default function App() {
             <div>
               <h4 className="text-gold font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3 sm:mb-4">Quick Links</h4>
               <ul className="space-y-2 sm:space-y-2.5">
-                {['About', 'Events', 'Photos', 'Register'].map(item => (
+                {['Events', 'Photos', 'Register'].map(item => (
                   <li key={item}>
                     <a href={`#${item.toLowerCase()}`} className="text-gray-400 text-xs sm:text-sm hover:text-gold transition-colors">{item}</a>
                   </li>
