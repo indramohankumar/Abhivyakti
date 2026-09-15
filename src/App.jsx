@@ -22,12 +22,12 @@ const stagger = {
 
 /* ─── Data ─── */
 const events = [
-  { name: 'संगीत · Music', desc: 'Indian Classical, Semi-Classical, Sufi, Folk, Devotional, Ghazal', icon: Music, color: 'from-saffron to-amber-500', image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&q=80&w=800' },
-  { name: 'नृत्य · Dance', desc: 'Classical, Semi-Classical, Indian Folk Dance', icon: Users, color: 'from-quantum-pink to-rose-500', image: 'https://images.unsplash.com/photo-1504609774528-69473ea48405?auto=format&fit=crop&q=80&w=800' },
-  { name: 'नाटक · Theatre', desc: 'Indian Mythology-Based Drama & Nukkad Natak', icon: VenetianMask, color: 'from-deep-red to-red-700', image: 'https://images.unsplash.com/photo-1460723237483-7a6dc9d0b212?auto=format&fit=crop&q=80&w=800' },
-  { name: 'फैशन · Fashion', desc: 'Fashion Show – Indian Ethnic Wear', icon: Shirt, color: 'from-quantum-purple to-fuchsia-600', image: 'https://images.unsplash.com/photo-1615886737525-42289c011e4f?auto=format&fit=crop&q=80&w=800' },
-  { name: 'कला · Fine Arts', desc: 'Rangoli, Painting & Visual Arts', icon: Palette, color: 'from-emerald-600 to-green-500', image: 'https://images.unsplash.com/photo-1599581896883-9b9213192415?auto=format&fit=crop&q=80&w=800' },
-  { name: 'पाक कला · Cuisine', desc: 'Inter-University Culinary Competition', icon: Utensils, color: 'from-gold to-burnt-orange', image: 'https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&q=80&w=800' },
+  { name: 'संगीत · Music', desc: 'Indian Classical, Semi-Classical, Sufi, Folk, Devotional, Ghazal', icon: Music, color: 'from-saffron to-amber-500', image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&q=80&w=800', rulesLink: 'https://docs.google.com/document/d/1VBvLQH9djme__Lp4jUQhwt6ucDpfdZI9/edit?usp=drive_link&ouid=110613590784742549939&rtpof=true&sd=true' },
+  { name: 'नृत्य · Dance', desc: 'Classical, Semi-Classical, Indian Folk Dance', icon: Users, color: 'from-quantum-pink to-rose-500', image: 'https://images.unsplash.com/photo-1504609774528-69473ea48405?auto=format&fit=crop&q=80&w=800', rulesLink: 'https://docs.google.com/document/d/1kTYN4YAfi4wZLbi0jXVPfSnWy3AGj0bq/edit?usp=drive_link&ouid=110613590784742549939&rtpof=true&sd=true' },
+  { name: 'नाटक · Theatre', desc: 'Indian Mythology-Based Drama & Nukkad Natak', icon: VenetianMask, color: 'from-deep-red to-red-700', image: 'https://images.unsplash.com/photo-1460723237483-7a6dc9d0b212?auto=format&fit=crop&q=80&w=800', rulesLink: 'https://docs.google.com/document/d/1Up1NfeKEmbHRGvk1ebK3Y3b9DgSlfKCl/edit?usp=drive_link&ouid=110613590784742549939&rtpof=true&sd=true' },
+  { name: 'फैशन · Fashion', desc: 'Fashion Show – Indian Ethnic Wear', icon: Shirt, color: 'from-quantum-purple to-fuchsia-600', image: 'https://images.unsplash.com/photo-1615886737525-42289c011e4f?auto=format&fit=crop&q=80&w=800', rulesLink: 'https://docs.google.com/document/d/1Up1NfeKEmbHRGvk1ebK3Y3b9DgSlfKCl/edit?usp=drive_link&ouid=110613590784742549939&rtpof=true&sd=true' },
+  { name: 'कला · Fine Arts', desc: 'Rangoli, Painting & Visual Arts', icon: Palette, color: 'from-emerald-600 to-green-500', image: 'https://images.unsplash.com/photo-1599581896883-9b9213192415?auto=format&fit=crop&q=80&w=800', rulesLink: 'https://docs.google.com/document/d/1p7WUPCg8X38o5GBbRvRXxVpvxlfYU7x4/edit?usp=drive_link&ouid=110613590784742549939&rtpof=true&sd=true' },
+  { name: 'पाक कला · Cuisine', desc: 'Inter-University Culinary Competition', icon: Utensils, color: 'from-gold to-burnt-orange', image: 'https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&q=80&w=800', rulesLink: 'https://docs.google.com/document/d/13uCjopZokuFAOhwk73wHC2EBSj2sjJiP/edit?usp=drive_link&ouid=110613590784742549939&rtpof=true&sd=true' },
 ];
 
 const highlights = [
@@ -423,43 +423,31 @@ export default function App() {
               </ul>
             </div>
 
-            {/* Contact */}
-            <div>
-              <h4 className="text-gold font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3 sm:mb-4">Contact</h4>
-              <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm text-gray-400">
+            {/* Connect Us */}
+            <div className="flex flex-col">
+              <h4 className="text-gold font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3 sm:mb-4">Connect Us</h4>
+              <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm text-gray-400 mb-4">
                 <li className="flex items-start gap-2">
                   <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gold/60 mt-0.5 shrink-0" />
-                  <span>Quantum University, Roorkee, Uttarakhand 247167</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gold/60 shrink-0" />
-                  <span>October 2026</span>
+                  <span className="leading-tight">Quantum University, Roorkee, Uttarakhand 247167</span>
                 </li>
               </ul>
-            </div>
-          </div>
-
-          {/* Connect Us / Map */}
-          <div className="py-8 sm:py-10 border-b border-white/10">
-            <h4 className="text-gold font-semibold text-xs sm:text-sm uppercase tracking-wider mb-4 sm:mb-5 flex items-center justify-center sm:justify-start gap-2">
-              <MapPin className="w-4 h-4" />
-              Connect Us
-            </h4>
-            <div className={`w-full h-48 sm:h-72 rounded-2xl overflow-hidden border ${dark ? 'border-white/10' : 'border-gray-800'} relative shadow-xl`}>
-              <iframe 
-                title="Quantum University Roorkee Map"
-                src="https://maps.google.com/maps?q=Quantum%20University,%20Roorkee,%20Uttarakhand&t=&z=13&ie=UTF8&iwloc=&output=embed" 
-                className="w-full h-full"
-                style={{ 
-                  border: 0, 
-                  filter: dark ? 'invert(90%) hue-rotate(180deg) contrast(90%) brightness(85%)' : 'none' 
-                }}
-                allowFullScreen="" 
-                loading="lazy" 
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-              {/* Optional slight gold tint overlay */}
-              <div className="absolute inset-0 bg-gold/5 pointer-events-none mix-blend-overlay"></div>
+              {/* Small Map */}
+              <div className={`w-full h-32 sm:h-40 mt-auto rounded-xl overflow-hidden border ${dark ? 'border-white/10' : 'border-gray-800'} relative shadow-md opacity-80 hover:opacity-100 transition-opacity`}>
+                <iframe 
+                  title="Quantum University Roorkee Map"
+                  src="https://maps.google.com/maps?q=Quantum%20University,%20Roorkee,%20Uttarakhand&t=&z=13&ie=UTF8&iwloc=&output=embed" 
+                  className="w-full h-full"
+                  style={{ 
+                    border: 0, 
+                    filter: dark ? 'invert(90%) hue-rotate(180deg) contrast(90%) brightness(85%)' : 'none' 
+                  }}
+                  allowFullScreen="" 
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+                <div className="absolute inset-0 bg-gold/5 pointer-events-none mix-blend-overlay"></div>
+              </div>
             </div>
           </div>
 
