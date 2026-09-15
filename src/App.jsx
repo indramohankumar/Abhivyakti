@@ -400,7 +400,7 @@ export default function App() {
             </div>
 
             {/* Quick Links */}
-            <div className="col-span-2 sm:col-span-1">
+            <div>
               <h4 className="text-gold font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3 sm:mb-4">Quick Links</h4>
               <ul className="space-y-2 sm:space-y-2.5">
                 {['About', 'Events', 'Photos', 'Register'].map(item => (
@@ -424,26 +424,20 @@ export default function App() {
             </div>
 
             {/* Connect Us */}
-            <div className="col-span-2 sm:col-span-1 flex flex-col">
+            <div className="flex flex-col">
               <h4 className="text-gold font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3 sm:mb-4">Connect Us</h4>
-              
-              {/* Premium Address Block */}
-              <div className={`flex items-start gap-3 p-3 sm:p-0 mb-4 sm:mb-5 rounded-xl sm:rounded-none sm:bg-transparent border sm:border-0 ${dark ? 'bg-white/[0.02] border-white/5' : 'bg-black/[0.02] border-black/5'}`}>
-                <div className={`p-2 rounded-lg shrink-0 ${dark ? 'bg-gold/10' : 'bg-gold/20'}`}>
-                  <MapPin className="w-4 h-4 text-gold" />
-                </div>
-                <div className="flex flex-col text-xs sm:text-sm text-gray-400">
-                  <span className={`font-semibold mb-0.5 ${dark ? 'text-gray-300' : 'text-gray-800'}`}>Quantum University</span>
-                  <span className="leading-relaxed">Roorkee, Uttarakhand 247167</span>
-                </div>
-              </div>
-
-              {/* Taller Map for Mobile */}
-              <div className={`w-full h-48 sm:h-36 rounded-xl overflow-hidden border ${dark ? 'border-white/10 shadow-[0_5px_15px_rgba(0,0,0,0.3)]' : 'border-gray-200 shadow-md'} relative group`}>
+              <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm text-gray-400 mb-4">
+                <li className="flex items-start gap-2">
+                  <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gold/60 mt-0.5 shrink-0" />
+                  <span className="leading-tight">Quantum University, Roorkee, Uttarakhand 247167</span>
+                </li>
+              </ul>
+              {/* Small Map */}
+              <div className={`w-full h-32 sm:h-40 mt-auto rounded-xl overflow-hidden border ${dark ? 'border-white/10' : 'border-gray-800'} relative shadow-md opacity-80 hover:opacity-100 transition-opacity`}>
                 <iframe 
                   title="Quantum University Roorkee Map"
                   src="https://maps.google.com/maps?q=Quantum%20University,%20Roorkee,%20Uttarakhand&t=&z=13&ie=UTF8&iwloc=&output=embed" 
-                  className="w-full h-full transition-opacity duration-300 opacity-85 group-hover:opacity-100"
+                  className="w-full h-full"
                   style={{ 
                     border: 0, 
                     filter: dark ? 'invert(90%) hue-rotate(180deg) contrast(90%) brightness(85%)' : 'none' 
@@ -452,7 +446,7 @@ export default function App() {
                   loading="lazy" 
                   referrerPolicy="no-referrer-when-downgrade"
                 />
-                <div className="absolute inset-0 bg-gold/10 pointer-events-none mix-blend-overlay opacity-50 group-hover:opacity-0 transition-opacity"></div>
+                <div className="absolute inset-0 bg-gold/5 pointer-events-none mix-blend-overlay"></div>
               </div>
             </div>
           </div>
