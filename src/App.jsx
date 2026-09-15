@@ -31,10 +31,10 @@ const events = [
 ];
 
 const highlights = [
-  { icon: Trophy, label: '50+', desc: 'Universities' },
-  { icon: Users, label: '5000+', desc: 'Participants' },
+  { icon: Trophy, label: '10+', desc: 'Universities' },
+  { icon: Users, label: '500+', desc: 'Participants' },
   { icon: Star, label: '6', desc: 'Categories' },
-  { icon: Clock, label: '5', desc: 'Days' },
+  { icon: Clock, label: '3', desc: 'Days' },
 ];
 
 /* ─── Components ─── */
@@ -249,7 +249,7 @@ export default function App() {
             </motion.div>
 
             <motion.p variants={fadeUp} className={`text-[13px] sm:text-base md:text-lg max-w-lg leading-relaxed line-clamp-3 sm:line-clamp-none ${dark ? 'text-gray-400' : 'text-gray-600'}`}>
-              A grand five-day inter-university celebration of <strong className="text-gold">literary excellence</strong>, <strong className={dark ? 'text-quantum-pink' : 'text-maroon'}>cultural richness</strong>, and <strong className={dark ? 'text-purple-400' : 'text-quantum-purple'}>intellectual engagement</strong> — uniting students, artists, and scholars from across India.
+              A grand Three-day inter-university celebration of <strong className="text-gold">literary excellence</strong>, <strong className={dark ? 'text-quantum-pink' : 'text-maroon'}>cultural richness</strong>, and <strong className={dark ? 'text-purple-400' : 'text-quantum-purple'}>intellectual engagement</strong> — uniting students, artists, and scholars from across India.
             </motion.p>
 
             <motion.div variants={fadeUp} className="max-w-md">
@@ -259,7 +259,7 @@ export default function App() {
                   <div className="bg-gold/10 p-1.5 sm:p-2 rounded-lg text-gold shrink-0"><Calendar className="w-4 h-4" /></div>
                   <div>
                     <p className={`font-bold text-xs sm:text-sm ${dark ? 'text-white' : 'text-gray-900'}`}>Oct 2026</p>
-                    <p className={`text-[10px] sm:text-xs ${dark ? 'text-gray-600' : 'text-gray-500'}`}>5 Days Festival</p>
+                    <p className={`text-[10px] sm:text-xs ${dark ? 'text-gray-600' : 'text-gray-500'}`}>3 Days Festival</p>
                   </div>
                 </div>
                 {/* Gold divider */}
@@ -443,9 +443,7 @@ export default function App() {
           <div className="pt-4 sm:pt-6 flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-3">
             <p className="text-gray-600 text-[10px] sm:text-xs">© 2026 Quantum University, Roorkee. All rights reserved.</p>
             <div className="flex items-center gap-1 text-gray-600 text-[10px] sm:text-xs">
-              <span>Made with</span>
-              <span className="text-red-500 text-sm">❤</span>
-              <span>for Indian Culture</span>
+             
             </div>
           </div>
         </div>
