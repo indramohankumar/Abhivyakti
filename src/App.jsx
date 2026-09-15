@@ -173,7 +173,7 @@ export default function App() {
                 <img src="/logo.png" alt="Quantum University" className={`h-6 sm:h-8 md:h-9 object-contain ${dark ? 'drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] brightness-110' : 'mix-blend-multiply'}`} />
               </div>
               <div className="flex flex-col leading-none">
-                <span className="text-gold-gradient text-base sm:text-lg md:text-xl font-extrabold tracking-tight">अभिव्यक्ति</span>
+                <span className="text-gold-gradient text-base sm:text-lg md:text-xl font-extrabold tracking-tight pt-1 pb-1">अभिव्यक्ति</span>
                 <span className={`text-[9px] sm:text-[10px] tracking-[0.2em] uppercase font-medium ${dark ? 'text-gray-500' : 'text-gray-400'}`}>Abhivyakti</span>
               </div>
             </a>
@@ -297,7 +297,7 @@ export default function App() {
                   <span className="bg-gradient-to-r from-gold-dark to-gold text-dark-bg text-[10px] sm:text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Memories</span>
                 </div>
                 <div>
-                  <h3 className="text-gold-gradient text-2xl sm:text-4xl font-extrabold">चित्रशाला</h3>
+                  <h3 className="text-gold-gradient text-2xl sm:text-4xl font-extrabold pb-1 pt-2 leading-normal">चित्रशाला</h3>
                   <p className={`text-base sm:text-xl font-semibold mt-0.5 sm:mt-1 ${dark ? 'text-white' : 'text-gray-900'}`}>Photos</p>
                 </div>
                 <p className={`text-[10px] sm:text-xs tracking-[0.15em] uppercase font-medium ${dark ? 'text-gold/60' : 'text-gold-dark/70'}`}>Glimpses of Abhivyakti</p>
@@ -362,7 +362,7 @@ export default function App() {
           >
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gold-dark via-gold to-gold-light"></div>
 
-            <p className="text-gold-gradient text-2xl sm:text-4xl font-extrabold mb-1">समारोह में शामिल हों</p>
+            <p className="text-gold-gradient text-2xl sm:text-4xl font-extrabold mb-1 pt-2 pb-1">समारोह में शामिल हों</p>
             <h2 className={`text-lg sm:text-2xl md:text-3xl font-bold mb-1.5 sm:mb-2 ${dark ? 'text-white' : 'text-gray-900'}`}>Join the Celebration</h2>
             <GoldLine />
             <p className={`text-xs sm:text-base mb-5 sm:mb-8 max-w-md mx-auto mt-2 sm:mt-3 ${dark ? 'text-gray-500' : 'text-gray-500'}`}>
@@ -390,7 +390,7 @@ export default function App() {
                   <img src="/logo.png" alt="Quantum University" className="h-6 sm:h-8 object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] brightness-110" />
                 </div>
                 <div className="flex flex-col leading-none">
-                  <span className="text-gold-gradient font-extrabold text-sm sm:text-base">अभिव्यक्ति</span>
+                  <span className="text-gold-gradient font-extrabold text-sm sm:text-base pt-1 pb-1">अभिव्यक्ति</span>
                   <span className="text-[8px] sm:text-[9px] text-gray-500 tracking-[0.15em] uppercase">Abhivyakti 2026</span>
                 </div>
               </div>
