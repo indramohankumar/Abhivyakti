@@ -400,7 +400,7 @@ export default function App() {
             </div>
 
             {/* Quick Links */}
-            <div>
+            <div className="col-span-2 sm:col-span-1">
               <h4 className="text-gold font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3 sm:mb-4">Quick Links</h4>
               <ul className="space-y-2 sm:space-y-2.5">
                 {['About', 'Events', 'Photos', 'Register'].map(item => (
@@ -424,7 +424,7 @@ export default function App() {
             </div>
 
             {/* Connect Us */}
-            <div className="flex flex-col">
+            <div className="col-span-2 sm:col-span-1 flex flex-col">
               <h4 className="text-gold font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3 sm:mb-4">Connect Us</h4>
               <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm text-gray-400 mb-4">
                 <li className="flex items-start gap-2">
