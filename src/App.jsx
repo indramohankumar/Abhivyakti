@@ -439,6 +439,30 @@ export default function App() {
             </div>
           </div>
 
+          {/* Connect Us / Map */}
+          <div className="py-8 sm:py-10 border-b border-white/10">
+            <h4 className="text-gold font-semibold text-xs sm:text-sm uppercase tracking-wider mb-4 sm:mb-5 flex items-center justify-center sm:justify-start gap-2">
+              <MapPin className="w-4 h-4" />
+              Connect Us
+            </h4>
+            <div className={`w-full h-48 sm:h-72 rounded-2xl overflow-hidden border ${dark ? 'border-white/10' : 'border-gray-800'} relative shadow-xl`}>
+              <iframe 
+                title="Quantum University Roorkee Map"
+                src="https://maps.google.com/maps?q=Quantum%20University,%20Roorkee,%20Uttarakhand&t=&z=13&ie=UTF8&iwloc=&output=embed" 
+                className="w-full h-full"
+                style={{ 
+                  border: 0, 
+                  filter: dark ? 'invert(90%) hue-rotate(180deg) contrast(90%) brightness(85%)' : 'none' 
+                }}
+                allowFullScreen="" 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+              {/* Optional slight gold tint overlay */}
+              <div className="absolute inset-0 bg-gold/5 pointer-events-none mix-blend-overlay"></div>
+            </div>
+          </div>
+
           {/* Bottom row */}
           <div className="pt-4 sm:pt-6 flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-3">
             <p className="text-gray-600 text-[10px] sm:text-xs">© 2026 Quantum University, Roorkee. All rights reserved.</p>
