@@ -284,10 +284,10 @@ export default function InterSchool() {
             <motion.div variants={fadeUp} className="inline-block px-4 py-1.5 rounded-full bg-gold/10 border border-gold/20 text-gold text-xs font-bold tracking-widest uppercase mb-4">
               Oct, 22nd 2026
             </motion.div>
-            <motion.h1 variants={fadeUp} className="text-4xl md:text-6xl font-extrabold text-gold-gradient drop-shadow-[0_10px_20px_rgba(201,168,76,0.3)] py-3 leading-normal md:leading-normal">
+            <motion.h1 variants={fadeUp} className="font-serif text-4xl md:text-6xl font-extrabold text-gold-gradient drop-shadow-[0_10px_20px_rgba(201,168,76,0.3)] py-3 leading-normal md:leading-normal">
               Expressions of Bharat
             </motion.h1>
-            <motion.h2 variants={fadeUp} className="text-xl md:text-2xl font-bold text-white tracking-wide">
+            <motion.h2 variants={fadeUp} className="font-serif text-xl md:text-2xl font-bold text-white tracking-wide">
               Parampara, Sanskriti & Srijan
             </motion.h2>
             <GoldLine />
@@ -311,7 +311,7 @@ export default function InterSchool() {
                   
                   <div className="flex-1">
                     <Icon className={`w-10 h-10 mb-6 ${event.textColor}`} />
-                    <h3 className="text-2xl font-bold text-white mb-2">{event.title}</h3>
+                    <h3 className="font-serif text-2xl font-bold text-white mb-2">{event.title}</h3>
                     <p className="text-gray-400 text-sm leading-relaxed mb-6 font-medium">
                       Theme: "{event.theme}"
                     </p>
@@ -346,14 +346,14 @@ export default function InterSchool() {
             className="flex flex-col items-center justify-center mt-16 pb-12"
           >
             <div className="relative group">
-              <div className="absolute -inset-1.5 bg-gradient-to-r from-quantum-pink via-gold to-quantum-purple rounded-full blur-md opacity-70 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
+              <div className="absolute -inset-1.5 bg-gradient-to-r from-gold via-gold-light to-gold-dark rounded-full blur-md opacity-40 group-hover:opacity-70 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
               <a 
                 href="#" 
-                className="relative inline-flex items-center gap-3 px-12 py-5 bg-dark-card rounded-full border border-gold/50 text-gold-gradient font-extrabold text-2xl uppercase tracking-widest hover:scale-105 transition-all duration-300 shadow-xl overflow-hidden"
+                className="relative inline-flex items-center gap-3 px-12 py-5 bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-bg rounded-full font-extrabold text-xl md:text-2xl uppercase tracking-widest hover:scale-105 transition-all duration-300 shadow-xl overflow-hidden"
               >
-                <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+                <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/30 to-transparent"></div>
                 <span className="relative z-10">Register Now</span>
-                <Sparkles className="w-6 h-6 text-gold relative z-10" />
+                <Sparkles className="w-6 h-6 text-dark-bg relative z-10" />
               </a>
             </div>
             <p className="mt-6 text-gray-400 text-sm font-medium tracking-wide">Join us on Oct 22nd, 2026</p>
@@ -400,7 +400,7 @@ export default function InterSchool() {
                 <div className="flex items-center gap-3">
                   <activeModal.icon className={`w-6 h-6 ${activeModal.textColor}`} />
                   <div>
-                    <h2 className="text-xl font-bold text-white leading-tight">{activeModal.title}</h2>
+                    <h2 className="font-serif text-xl font-bold text-white leading-tight">{activeModal.title}</h2>
                     <p className={`text-xs mt-1 ${activeModal.textColor} font-medium`}>{activeModal.theme}</p>
                   </div>
                 </div>

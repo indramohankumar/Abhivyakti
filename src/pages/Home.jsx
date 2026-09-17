@@ -349,7 +349,7 @@ export default function Home() {
       </section>
 
       {/* ════════ HIGHLIGHTS BAR ════════ */}
-      <section className={`py-5 sm:py-10 border-y relative z-10 ${dark ? 'bg-dark-card/50 border-dark-border' : 'bg-gold/[0.03] border-gold/10'}`}>
+      <section className={`py-8 sm:py-14 border-y relative z-10 ${dark ? 'bg-dark-card/50 border-dark-border' : 'bg-gold/[0.03] border-gold/10'}`}>
         <div className="max-w-5xl mx-auto px-4 grid grid-cols-4 gap-3 sm:grid-cols-4 sm:gap-8">
           {highlights.map((h, i) => (
             <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}

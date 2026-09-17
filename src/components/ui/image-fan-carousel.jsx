@@ -181,7 +181,7 @@ export const Carousel360 = ({ items }) => {
               {/* Beautiful Dark Gradient Overlay & Text */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end p-4 sm:p-5 md:p-6 text-left">
                  <div className="transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                   <h3 className="text-white text-lg sm:text-xl md:text-2xl font-bold mb-1 shadow-black drop-shadow-md">
+                   <h3 className="font-serif text-white text-lg sm:text-xl md:text-2xl font-bold mb-1 shadow-black drop-shadow-md">
                      {activeItem.name}
                    </h3>
                    <p className="text-white/80 text-xs sm:text-sm font-medium drop-shadow-sm line-clamp-2 mb-2 sm:mb-3">
