@@ -254,9 +254,12 @@ export default function InterSchool() {
           <ArrowLeft className="w-5 h-5" />
           <span className="font-semibold tracking-wide uppercase text-sm">Back to Home</span>
         </Link>
-        <div className="flex flex-col items-end leading-none">
-          <span className="text-gold-gradient text-lg md:text-xl font-extrabold tracking-tight pt-1 pb-1">अभिव्यक्ति</span>
-          <span className="text-[10px] tracking-[0.2em] uppercase font-medium text-gray-500">Inter-School</span>
+        <div className="flex items-center gap-2.5">
+          <img src="/logo.png" alt="Quantum University" className="h-6 sm:h-8 md:h-9 object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] brightness-110" />
+          <div className="flex flex-col leading-none">
+            <span className="text-gold-gradient text-lg md:text-xl font-extrabold tracking-tight pt-1 pb-1">अभिव्यक्ति</span>
+            <span className="text-[9px] sm:text-[10px] tracking-[0.2em] uppercase font-medium text-gray-400">Inter-School</span>
+          </div>
         </div>
       </nav>
 
