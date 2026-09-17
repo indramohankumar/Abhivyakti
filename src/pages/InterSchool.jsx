@@ -249,18 +249,19 @@ export default function InterSchool() {
       </div>
 
       {/* Navigation */}
-      <nav className="relative z-50 pt-6 px-4 md:px-8 max-w-7xl mx-auto flex justify-between items-center">
-        <Link to="/" className="flex items-center gap-2 text-gold hover:text-gold-light transition-colors">
-          <ArrowLeft className="w-5 h-5" />
-          <span className="font-semibold tracking-wide uppercase text-sm">Back to Home</span>
-        </Link>
-        <div className="flex items-center gap-2.5">
-          <img src="/logo.png" alt="Quantum University" className="h-6 sm:h-8 md:h-9 object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] brightness-110" />
+      <nav className="relative z-50 pt-5 sm:pt-6 px-4 md:px-8 max-w-7xl mx-auto flex justify-between items-center">
+        <div className="flex items-center gap-2 sm:gap-2.5">
+          <img src="/logo.png" alt="Quantum University" className="h-7 sm:h-8 md:h-9 object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] brightness-110" />
           <div className="flex flex-col leading-none">
-            <span className="text-gold-gradient text-lg md:text-xl font-extrabold tracking-tight pt-1 pb-1">अभिव्यक्ति</span>
-            <span className="text-[9px] sm:text-[10px] tracking-[0.2em] uppercase font-medium text-gray-400">Inter-School</span>
+            <span className="text-gold-gradient text-base sm:text-lg md:text-xl font-extrabold tracking-tight pt-1 pb-1">अभिव्यक्ति</span>
+            <span className="text-[8px] sm:text-[10px] tracking-[0.2em] uppercase font-medium text-gray-400">Inter-School</span>
           </div>
         </div>
+        <Link to="/" className="flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-0 sm:py-0 sm:bg-transparent bg-white/5 border border-white/10 sm:border-none rounded-lg text-gold hover:text-gold-light transition-colors">
+          <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+          <span className="font-semibold tracking-wide uppercase text-[10px] sm:text-sm hidden sm:inline">Back to Home</span>
+          <span className="font-semibold tracking-wide uppercase text-[10px] sm:hidden">Home</span>
+        </Link>
       </nav>
 
       <main className="relative z-10 pt-10 pb-20 px-4">
