@@ -21,14 +21,13 @@ const stagger = {
   visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
 };
 
-/* ─── Data ─── */
 const events = [
-  { name: 'संगीत · Music', desc: 'Indian Classical, Semi-Classical, Sufi, Folk, Devotional, Ghazal', icon: Music, color: 'from-saffron to-amber-500', image: 'https://media.gettyimages.com/id/1314574070/photo/indian-musician-zakir-hussain-plays-tabla-as-he-performs-at-a-benefit-concert-in-celebration.jpg?s=612x612&w=0&k=20&c=aSLEAXpLnf8pg2QThlp-PN67NqigErOp4HHBJPmpRwo=', rulesLink: 'https://docs.google.com/document/d/1VBvLQH9djme__Lp4jUQhwt6ucDpfdZI9/edit?usp=drive_link&ouid=110613590784742549939&rtpof=true&sd=true' },
-  { name: 'नृत्य · Dance', desc: 'Classical, Semi-Classical, Indian Folk Dance', icon: Users, color: 'from-quantum-pink to-rose-500', image: 'https://images.unsplash.com/photo-1764014792668-bc484714744f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGNsYXNzaWNhbCUyMGRhbmNlfGVufDB8fDB8fHww', rulesLink: 'https://docs.google.com/document/d/1kTYN4YAfi4wZLbi0jXVPfSnWy3AGj0bq/edit?usp=drive_link&ouid=110613590784742549939&rtpof=true&sd=true' },
-  { name: 'नाटक · Theatre', desc: 'Indian Mythology-Based Drama & Nukkad Natak', icon: VenetianMask, color: 'from-deep-red to-red-700', image: 'https://media.gettyimages.com/id/1198572409/photo/dancers-perform-classical-dance-at-khajuraho-dance-festival-india.jpg?s=2048x2048&w=gi&k=20&c=u2I1ceuU3KFBrfBWNNYQiO2hmZQxBSK075CS3umQUoQ=', rulesLink: 'https://docs.google.com/document/d/1Up1NfeKEmbHRGvk1ebK3Y3b9DgSlfKCl/edit?usp=drive_link&ouid=110613590784742549939&rtpof=true&sd=true' },
+  { name: 'संगीत · Music', desc: 'Indian Classical, Semi-Classical, Sufi, Indian Folk, Devotional, Ghazal', icon: Music, color: 'from-saffron to-amber-500', image: 'https://media.gettyimages.com/id/1314574070/photo/indian-musician-zakir-hussain-plays-tabla-as-he-performs-at-a-benefit-concert-in-celebration.jpg?s=612x612&w=0&k=20&c=aSLEAXpLnf8pg2QThlp-PN67NqigErOp4HHBJPmpRwo=', rulesLink: 'https://docs.google.com/document/d/1VBvLQH9djme__Lp4jUQhwt6ucDpfdZI9/edit?usp=drive_link&ouid=110613590784742549939&rtpof=true&sd=true' },
+  { name: 'नृत्य · Dance', desc: 'Classical, Semi-Classical, Indian Folk', icon: Users, color: 'from-quantum-pink to-rose-500', image: 'https://images.unsplash.com/photo-1764014792668-bc484714744f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGNsYXNzaWNhbCUyMGRhbmNlfGVufDB8fDB8fHww', rulesLink: 'https://docs.google.com/document/d/1kTYN4YAfi4wZLbi0jXVPfSnWy3AGj0bq/edit?usp=drive_link&ouid=110613590784742549939&rtpof=true&sd=true' },
+  { name: 'नाटक · Theatre', desc: 'Indian Mythology-Based Drama', icon: VenetianMask, color: 'from-deep-red to-red-700', image: 'https://media.gettyimages.com/id/1198572409/photo/dancers-perform-classical-dance-at-khajuraho-dance-festival-india.jpg?s=2048x2048&w=gi&k=20&c=u2I1ceuU3KFBrfBWNNYQiO2hmZQxBSK075CS3umQUoQ=', rulesLink: 'https://docs.google.com/document/d/1Up1NfeKEmbHRGvk1ebK3Y3b9DgSlfKCl/edit?usp=drive_link&ouid=110613590784742549939&rtpof=true&sd=true' },
   { name: 'फैशन · Fashion', desc: 'Fashion Show – Indian Ethnic Wear', icon: Shirt, color: 'from-quantum-purple to-fuchsia-600', image: 'https://media.gettyimages.com/id/2287626362/photo/delhi-india-models-walk-the-runway-during-the-house-of-masaba-show-at-india-couture-week-2026.jpg?s=612x612&w=0&k=20&c=WxbMRhqopDZfljOvv5AAaR1O7KEZwvSboR-zXerDA7E=', rulesLink: 'https://docs.google.com/document/d/1Up1NfeKEmbHRGvk1ebK3Y3b9DgSlfKCl/edit?usp=drive_link&ouid=110613590784742549939&rtpof=true&sd=true' },
-  { name: 'कला · Fine Arts', desc: 'Rangoli, Painting & Visual Arts', icon: Palette, color: 'from-emerald-600 to-green-500', image: 'https://www.shutterstock.com/image-photo/intricate-traditional-handdrawn-kalamkari-peacock-600w-2460598057.jpg', rulesLink: 'https://docs.google.com/document/d/1p7WUPCg8X38o5GBbRvRXxVpvxlfYU7x4/edit?usp=drive_link&ouid=110613590784742549939&rtpof=true&sd=true' },
-  { name: 'पाक कला · Cuisine', desc: 'Inter-University Culinary Competition', icon: Utensils, color: 'from-gold to-burnt-orange', image: 'https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&q=80&w=800', rulesLink: 'https://docs.google.com/document/d/13uCjopZokuFAOhwk73wHC2EBSj2sjJiP/edit?usp=drive_link&ouid=110613590784742549939&rtpof=true&sd=true' },
+  { name: 'कला · Fine Arts', desc: 'Rangoli', icon: Palette, color: 'from-emerald-600 to-green-500', image: 'https://www.shutterstock.com/image-photo/intricate-traditional-handdrawn-kalamkari-peacock-600w-2460598057.jpg', rulesLink: 'https://docs.google.com/document/d/1p7WUPCg8X38o5GBbRvRXxVpvxlfYU7x4/edit?usp=drive_link&ouid=110613590784742549939&rtpof=true&sd=true' },
+  { name: 'पाक कला · Indian Cuisine', desc: 'Lost Recipes – Culinary Competition', icon: Utensils, color: 'from-gold to-burnt-orange', image: 'https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&q=80&w=800', rulesLink: 'https://docs.google.com/document/d/13uCjopZokuFAOhwk73wHC2EBSj2sjJiP/edit?usp=drive_link&ouid=110613590784742549939&rtpof=true&sd=true' },
 ];
 
 const highlights = [
@@ -335,6 +334,127 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ════════ FESTIVAL JOURNEY ════════ */}
+      <section className="py-16 sm:py-24 relative overflow-hidden">
+
+        <div className="max-w-5xl mx-auto px-4 relative z-10">
+          <div className="text-center mb-14 sm:mb-20">
+            <p className="text-gold font-semibold tracking-[0.2em] uppercase text-xs mb-2">3 Days of Glory</p>
+            <h2 className={`text-3xl sm:text-4xl md:text-5xl font-extrabold mb-3 ${dark ? 'text-white' : 'text-gray-900'}`}>
+              The <span className="text-gold-gradient">Festival Journey</span>
+            </h2>
+            <GoldLine />
+          </div>
+
+          <div className="relative max-w-4xl mx-auto">
+
+            {/* ── Flowing golden line (desktop) ── */}
+            <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 hidden sm:block pointer-events-none">
+              <div className="absolute inset-0 w-[3px] bg-gradient-to-b from-transparent via-gold/50 to-transparent rounded-full"></div>
+              <motion.div
+                className="absolute w-[3px] rounded-full"
+                style={{ left: 0, height: '80px', background: 'linear-gradient(to bottom, transparent, #E8D48B, transparent)' }}
+                animate={{ top: ['-10%', '110%'] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+              />
+            </div>
+
+            {/* ── Flowing golden line (mobile) ── */}
+            <div className="absolute left-5 top-0 bottom-0 sm:hidden pointer-events-none">
+              <div className="absolute inset-0 w-[2px] bg-gradient-to-b from-transparent via-gold/40 to-transparent"></div>
+              <motion.div
+                className="absolute w-[2px] rounded-full"
+                style={{ left: 0, height: '50px', background: 'linear-gradient(to bottom, transparent, #E8D48B, transparent)' }}
+                animate={{ top: ['-5%', '105%'] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              />
+            </div>
+
+            <div className="space-y-20 sm:space-y-28 relative z-10">
+
+              {/* ── DAY 1 · Inter-School ── */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.6 }}
+                className="relative flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-12 pl-14 sm:pl-0"
+              >
+                <div className="sm:w-[46%] sm:text-right">
+                  <span className="inline-block px-3 py-1 bg-gold/10 text-gold text-[11px] font-bold uppercase tracking-widest rounded-full mb-3 border border-gold/20">Day 1 · Oct 22nd</span>
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">Inter-School Events</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed max-w-xs sm:ml-auto mb-4">
+                    Young minds compete in Declamation, Fine Arts, Story Telling & Skit.
+                  </p>
+                  <div className="flex flex-wrap gap-1.5 sm:justify-end mb-4">
+                    {['Declamation', 'Fine Arts', 'Story Telling', 'Skit'].map(tag => (
+                      <span key={tag} className="px-2 py-0.5 text-[10px] font-semibold bg-gold/8 text-gold/80 border border-gold/15 rounded-full">{tag}</span>
+                    ))}
+                  </div>
+                  <Link to="/inter-school" className="inline-flex items-center gap-1.5 text-sm font-bold text-gold hover:text-white transition-colors group">
+                    Explore <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
+
+                {/* Node */}
+                <div className="absolute left-5 sm:left-1/2 -translate-x-1/2 top-1 sm:top-1/2 sm:-translate-y-1/2 z-20">
+                  <div className="w-8 h-8 rounded-full bg-dark-bg border-[3px] border-gold flex items-center justify-center shadow-[0_0_20px_rgba(201,168,76,0.5)]">
+                    <div className="w-2.5 h-2.5 bg-gold rounded-full animate-pulse"></div>
+                  </div>
+                </div>
+
+                {/* Poster Image */}
+                <div className="sm:w-[46%]">
+                  <div className="relative rounded-2xl overflow-hidden border border-gold/15 group shadow-lg shadow-gold/5 hover:shadow-gold/15 transition-shadow duration-500">
+                    <img src="/poster-school.png" alt="Inter-School Events Poster" className="w-full object-cover group-hover:scale-[1.02] transition-transform duration-700" />
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* ── DAY 2 & 3 · Inter-University ── */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.6 }}
+                className="relative flex flex-col sm:flex-row-reverse items-start sm:items-center gap-6 sm:gap-12 pl-14 sm:pl-0"
+              >
+                <div className="sm:w-[46%]">
+                  <span className="inline-block px-3 py-1 bg-quantum-pink/10 text-quantum-pink text-[11px] font-bold uppercase tracking-widest rounded-full mb-3 border border-quantum-pink/20">Day 2 & 3 · Oct 23rd-24th</span>
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">Inter-University Events</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed max-w-xs mb-4">
+                    The grand stage — universities from across India, six mega categories.
+                  </p>
+                  <div className="flex flex-wrap gap-1.5 mb-4">
+                    {['Music', 'Dance', 'Theatre', 'Fashion', 'Fine Arts', 'Cuisine'].map(tag => (
+                      <span key={tag} className="px-2 py-0.5 text-[10px] font-semibold bg-quantum-pink/8 text-quantum-pink/80 border border-quantum-pink/15 rounded-full">{tag}</span>
+                    ))}
+                  </div>
+                  <a href="#events" className="inline-flex items-center gap-1.5 text-sm font-bold text-quantum-pink hover:text-white transition-colors group">
+                    Explore <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  </a>
+                </div>
+
+                {/* Node */}
+                <div className="absolute left-5 sm:left-1/2 -translate-x-1/2 top-1 sm:top-1/2 sm:-translate-y-1/2 z-20">
+                  <div className="w-8 h-8 rounded-full bg-dark-bg border-[3px] border-quantum-pink flex items-center justify-center shadow-[0_0_20px_rgba(234,21,136,0.5)]">
+                    <div className="w-2.5 h-2.5 bg-quantum-pink rounded-full animate-pulse"></div>
+                  </div>
+                </div>
+
+                {/* Poster Image */}
+                <div className="sm:w-[46%]">
+                  <div className="relative rounded-2xl overflow-hidden border border-quantum-pink/15 group shadow-lg shadow-quantum-pink/5 hover:shadow-quantum-pink/15 transition-shadow duration-500">
+                    <img src="/poster-university.png" alt="Inter-University Events Poster" className="w-full object-cover group-hover:scale-[1.02] transition-transform duration-700" />
+                  </div>
+                </div>
+              </motion.div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ════════ EVENTS ════════ */}
       <section id="events" className="py-10 sm:py-20 md:py-28 px-4 relative overflow-hidden">
         <GoldenWheel className={`absolute top-0 right-0 w-[180px] sm:w-[380px] h-[180px] sm:h-[380px] -translate-y-1/3 translate-x-1/4 animate-[spin_70s_linear_infinite] ${dark ? 'text-gold/15' : 'text-gold/20'}`} />
@@ -420,16 +540,26 @@ export default function Home() {
               </ul>
             </div>
 
-            {/* Events — hidden on mobile, shown on lg+ */}
+            {/* Contact Details */}
             <div className="hidden lg:block">
-              <h4 className="text-gold font-semibold text-sm uppercase tracking-wider mb-4">Events</h4>
-              <ul className="space-y-2.5">
-                {['Music', 'Dance', 'Theatre', 'Fashion', 'Fine Arts', 'Cuisine'].map(item => (
-                  <li key={item}>
-                    <span className="text-gray-400 text-sm">{item}</span>
-                  </li>
-                ))}
-              </ul>
+              <h4 className="text-gold font-semibold text-sm uppercase tracking-wider mb-4">Contact Us</h4>
+              <div className="space-y-4 text-sm text-gray-400">
+                <div>
+                  <p className="text-white font-medium mb-1">Student Coordinators</p>
+                  <p>Shivam Prakash: 74829 42186</p>
+                  <p>Archii: 93028 42951</p>
+                </div>
+                <div>
+                  <p className="text-white font-medium mb-1">Convener</p>
+                  <p>Mr Abhishek Kumar: 89794 61479</p>
+                </div>
+                <div>
+                  <p className="text-white font-medium mb-1">Co-Conveners</p>
+                  <p>Dr Poulami: 74318 69712</p>
+                  <p>Ms Tapsi Rana: 70880 43974</p>
+                  <p>Mr Vibhanshu: 81717 09548</p>
+                </div>
+              </div>
             </div>
 
             {/* Connect Us */}
