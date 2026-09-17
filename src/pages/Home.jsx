@@ -179,12 +179,15 @@ export default function Home() {
             </a>
 
             <div className="hidden md:flex items-center gap-1">
-              {navLinks.slice(0, 3).map(item => (
-                <a key={item} href={`#${item.toLowerCase()}`}
-                   className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${dark ? 'text-gray-400 hover:text-gold hover:bg-gold/5' : 'text-gray-600 hover:text-maroon hover:bg-gold/5'}`}>
-                  {item}
-                </a>
-              ))}
+              <a href="#journey" className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${dark ? 'text-gray-400 hover:text-gold hover:bg-gold/5' : 'text-gray-600 hover:text-maroon hover:bg-gold/5'}`}>
+                Journey
+              </a>
+              <a href="#events" className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${dark ? 'text-gray-400 hover:text-gold hover:bg-gold/5' : 'text-gray-600 hover:text-maroon hover:bg-gold/5'}`}>
+                Inter-University
+              </a>
+              <a href="#photos" className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${dark ? 'text-gray-400 hover:text-gold hover:bg-gold/5' : 'text-gray-600 hover:text-maroon hover:bg-gold/5'}`}>
+                Photos
+              </a>
               <a href="#contact" className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${dark ? 'text-gray-400 hover:text-gold hover:bg-gold/5' : 'text-gray-600 hover:text-maroon hover:bg-gold/5'}`}>
                 Contact
               </a>
@@ -198,7 +201,6 @@ export default function Home() {
             </div>
 
             <div className="flex items-center gap-1 md:hidden">
-
               <button onClick={() => setMenuOpen(!menuOpen)} className={`w-10 h-10 flex items-center justify-center rounded-lg ${dark ? 'text-gray-300' : 'text-gray-700'}`} aria-label="Menu">
                 {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </button>
@@ -211,15 +213,19 @@ export default function Home() {
             <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.25 }}
               className={`md:hidden overflow-hidden backdrop-blur-xl border-t ${dark ? 'bg-dark-bg/95 border-dark-border' : 'bg-white/95 border-gold/10'}`}>
               <div className="px-4 pt-2 pb-4 space-y-1">
-                {navLinks.map(item => (
-                  <a key={item} href={`#${item.toLowerCase()}`} onClick={() => setMenuOpen(false)}
-                     className={`block px-4 py-3 font-medium rounded-lg transition-colors ${dark ? 'text-gray-300 active:bg-gold/10' : 'text-gray-700 active:bg-gold/10'}`}>{item}</a>
-                ))}
-                <a href="#contact" onClick={() => setMenuOpen(false)}
-                   className={`block px-4 py-3 font-medium rounded-lg transition-colors ${dark ? 'text-gray-300 active:bg-gold/10' : 'text-gray-700 active:bg-gold/10'}`}>Contact Us</a>
-                <Link to="/inter-school" onClick={() => setMenuOpen(false)} className={`mt-2 block px-4 py-3 font-bold rounded-lg transition-colors flex items-center gap-2 ${dark ? 'text-quantum-purple bg-quantum-purple/10 border border-quantum-purple/20' : 'text-quantum-purple bg-quantum-purple/10 border border-quantum-purple/20'}`}>
-                  <Sparkles className="w-4 h-4" /> Inter-School
+                <Link to="/inter-school" onClick={() => setMenuOpen(false)} className={`mb-2 block px-4 py-3 font-bold rounded-lg transition-colors flex items-center gap-2 ${dark ? 'text-quantum-purple bg-quantum-purple/10 border border-quantum-purple/20' : 'text-quantum-purple bg-quantum-purple/10 border border-quantum-purple/20'}`}>
+                  <Sparkles className="w-4 h-4" /> Inter-School Events
                 </Link>
+                <a href="#events" onClick={() => setMenuOpen(false)} className={`block px-4 py-3 font-medium rounded-lg transition-colors ${dark ? 'text-gray-300 active:bg-gold/10' : 'text-gray-700 active:bg-gold/10'}`}>
+                  Inter-University Events
+                </a>
+                <a href="#photos" onClick={() => setMenuOpen(false)} className={`block px-4 py-3 font-medium rounded-lg transition-colors ${dark ? 'text-gray-300 active:bg-gold/10' : 'text-gray-700 active:bg-gold/10'}`}>
+                  Photos
+                </a>
+                <a href="#contact" onClick={() => setMenuOpen(false)} className={`block px-4 py-3 font-medium rounded-lg transition-colors ${dark ? 'text-gray-300 active:bg-gold/10' : 'text-gray-700 active:bg-gold/10'}`}>
+                  Contact Us
+                </a>
+                
                 <a href="#register" onClick={() => setMenuOpen(false)} className="block mt-3 text-center bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-bg px-5 py-3 rounded-lg font-bold text-sm">Register Now</a>
               </div>
             </motion.div>
@@ -340,7 +346,7 @@ export default function Home() {
       </section>
 
       {/* ════════ FESTIVAL JOURNEY ════════ */}
-      <section className="py-16 sm:py-24 relative overflow-hidden">
+      <section id="journey" className="py-16 sm:py-24 relative overflow-hidden">
 
         <div className="max-w-5xl mx-auto px-4 relative z-10">
           <div className="text-center mb-14 sm:mb-20">
@@ -534,7 +540,7 @@ export default function Home() {
             </div>
 
             {/* Quick Links */}
-            <div className="col-span-1">
+            <div className="col-span-2 sm:col-span-1 lg:col-span-1">
               <h4 className="text-gold font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3 sm:mb-4">Quick Links</h4>
               <ul className="space-y-2 sm:space-y-2.5">
                 {['Events', 'Photos', 'Register'].map(item => (
