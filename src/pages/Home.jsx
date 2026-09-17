@@ -185,6 +185,9 @@ export default function Home() {
                   {item}
                 </a>
               ))}
+              <a href="#contact" className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${dark ? 'text-gray-400 hover:text-gold hover:bg-gold/5' : 'text-gray-600 hover:text-maroon hover:bg-gold/5'}`}>
+                Contact
+              </a>
 
               <Link to="/inter-school" className="ml-2 relative group flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-quantum-purple bg-quantum-purple/10 border border-quantum-purple/30 rounded-lg hover:bg-quantum-purple/20 transition-all overflow-hidden shadow-[0_0_10px_rgba(168,85,247,0.1)]">
                 <Sparkles className="w-4 h-4" /> Inter-School
@@ -212,10 +215,12 @@ export default function Home() {
                   <a key={item} href={`#${item.toLowerCase()}`} onClick={() => setMenuOpen(false)}
                      className={`block px-4 py-3 font-medium rounded-lg transition-colors ${dark ? 'text-gray-300 active:bg-gold/10' : 'text-gray-700 active:bg-gold/10'}`}>{item}</a>
                 ))}
-                <Link to="/inter-school" onClick={() => setMenuOpen(false)} className={`block px-4 py-3 font-bold rounded-lg transition-colors flex items-center gap-2 ${dark ? 'text-quantum-purple bg-quantum-purple/10 border border-quantum-purple/20' : 'text-quantum-purple bg-quantum-purple/10 border border-quantum-purple/20'}`}>
+                <a href="#contact" onClick={() => setMenuOpen(false)}
+                   className={`block px-4 py-3 font-medium rounded-lg transition-colors ${dark ? 'text-gray-300 active:bg-gold/10' : 'text-gray-700 active:bg-gold/10'}`}>Contact Us</a>
+                <Link to="/inter-school" onClick={() => setMenuOpen(false)} className={`mt-2 block px-4 py-3 font-bold rounded-lg transition-colors flex items-center gap-2 ${dark ? 'text-quantum-purple bg-quantum-purple/10 border border-quantum-purple/20' : 'text-quantum-purple bg-quantum-purple/10 border border-quantum-purple/20'}`}>
                   <Sparkles className="w-4 h-4" /> Inter-School
                 </Link>
-                <a href="#register" onClick={() => setMenuOpen(false)} className="block mt-2 text-center bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-bg px-5 py-3 rounded-lg font-semibold text-sm">Register Now</a>
+                <a href="#register" onClick={() => setMenuOpen(false)} className="block mt-3 text-center bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-bg px-5 py-3 rounded-lg font-bold text-sm">Register Now</a>
               </div>
             </motion.div>
           )}
@@ -507,10 +512,10 @@ export default function Home() {
       </section>
 
       {/* ════════ FOOTER ════════ */}
-      <footer className={`pt-10 sm:pt-16 pb-6 px-4 border-t ${dark ? 'bg-black/40 border-dark-border' : 'bg-gray-950 border-gray-800'} text-white relative z-10`}>
+      <footer id="contact" className={`pt-10 sm:pt-16 pb-6 px-4 border-t ${dark ? 'bg-black/40 border-dark-border' : 'bg-gray-950 border-gray-800'} text-white relative z-10`}>
         <div className="max-w-7xl mx-auto">
           {/* Top row */}
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-10 pb-8 sm:pb-10 border-b border-white/10">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 pb-8 sm:pb-10 border-b border-white/10">
 
             {/* Brand */}
             <div className="col-span-2 sm:col-span-2 lg:col-span-1 space-y-3 sm:space-y-4">
@@ -529,7 +534,7 @@ export default function Home() {
             </div>
 
             {/* Quick Links */}
-            <div>
+            <div className="col-span-1">
               <h4 className="text-gold font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3 sm:mb-4">Quick Links</h4>
               <ul className="space-y-2 sm:space-y-2.5">
                 {['Events', 'Photos', 'Register'].map(item => (
@@ -541,9 +546,9 @@ export default function Home() {
             </div>
 
             {/* Contact Details */}
-            <div className="hidden lg:block">
-              <h4 className="text-gold font-semibold text-sm uppercase tracking-wider mb-4">Contact Us</h4>
-              <div className="space-y-4 text-sm text-gray-400">
+            <div className="col-span-2 sm:col-span-1 lg:col-span-1 order-last sm:order-none">
+              <h4 className="text-gold font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3 sm:mb-4">Contact Us</h4>
+              <div className="space-y-4 text-xs sm:text-sm text-gray-400">
                 <div>
                   <p className="text-white font-medium mb-1">Student Coordinators</p>
                   <p>Shivam Prakash: 74829 42186</p>
@@ -563,7 +568,7 @@ export default function Home() {
             </div>
 
             {/* Connect Us */}
-            <div className="flex flex-col">
+            <div className="col-span-2 sm:col-span-2 lg:col-span-1 flex flex-col">
               <h4 className="text-gold font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3 sm:mb-4">Connect Us</h4>
               <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm text-gray-400 mb-4">
                 <li className="flex items-start gap-2">
