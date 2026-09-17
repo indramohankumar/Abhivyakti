@@ -552,9 +552,9 @@ export default function Home() {
             </div>
 
             {/* Contact Details */}
-            <div className="col-span-2 sm:col-span-1 lg:col-span-1 order-last sm:order-none">
+            <div className="col-span-1 sm:col-span-1 lg:col-span-1">
               <h4 className="text-gold font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3 sm:mb-4">Contact Us</h4>
-              <div className="space-y-4 text-xs sm:text-sm text-gray-400">
+              <div className="space-y-4 text-[10px] sm:text-sm text-gray-400">
                 <div>
                   <p className="text-white font-medium mb-1">Student Coordinators</p>
                   <p>Shivam Prakash: 74829 42186</p>
@@ -574,16 +574,16 @@ export default function Home() {
             </div>
 
             {/* Connect Us */}
-            <div className="col-span-2 sm:col-span-2 lg:col-span-1 flex flex-col">
+            <div className="col-span-1 sm:col-span-1 lg:col-span-1 flex flex-col">
               <h4 className="text-gold font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3 sm:mb-4">Connect Us</h4>
-              <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm text-gray-400 mb-4">
+              <ul className="space-y-2 sm:space-y-2.5 text-[10px] sm:text-sm text-gray-400 mb-4">
                 <li className="flex items-start gap-2">
                   <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gold/60 mt-0.5 shrink-0" />
                   <span className="leading-tight">Quantum University, Roorkee, Uttarakhand 247167</span>
                 </li>
               </ul>
               {/* Small Map */}
-              <div className={`w-full h-32 sm:h-40 mt-auto rounded-xl overflow-hidden border ${dark ? 'border-white/10' : 'border-gray-800'} relative shadow-md opacity-80 hover:opacity-100 transition-opacity`}>
+              <div className={`w-full h-24 sm:h-40 mt-auto rounded-xl overflow-hidden border ${dark ? 'border-white/10' : 'border-gray-800'} relative shadow-md opacity-80 hover:opacity-100 transition-opacity`}>
                 <iframe 
                   title="Quantum University Roorkee Map"
                   src="https://maps.google.com/maps?q=Quantum%20University,%20Roorkee,%20Uttarakhand&t=&z=13&ie=UTF8&iwloc=&output=embed" 
