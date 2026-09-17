@@ -404,8 +404,8 @@ export default function Home() {
                 </div>
 
                 {/* Poster Image */}
-                <div className="sm:w-[46%]">
-                  <div className="relative rounded-2xl overflow-hidden border border-gold/15 group shadow-lg shadow-gold/5 hover:shadow-gold/15 transition-shadow duration-500">
+                <div className="w-[85%] max-w-[240px] sm:max-w-none sm:w-[46%] mt-2 sm:mt-0">
+                  <div className="relative rounded-xl sm:rounded-2xl overflow-hidden border border-gold/15 group shadow-lg shadow-gold/5 hover:shadow-gold/15 transition-shadow duration-500">
                     <img src="/poster-school.png" alt="Inter-School Events Poster" className="w-full object-cover group-hover:scale-[1.02] transition-transform duration-700" />
                   </div>
                 </div>
@@ -443,8 +443,8 @@ export default function Home() {
                 </div>
 
                 {/* Poster Image */}
-                <div className="sm:w-[46%]">
-                  <div className="relative rounded-2xl overflow-hidden border border-quantum-pink/15 group shadow-lg shadow-quantum-pink/5 hover:shadow-quantum-pink/15 transition-shadow duration-500">
+                <div className="w-[85%] max-w-[240px] sm:max-w-none sm:w-[46%] mt-2 sm:mt-0">
+                  <div className="relative rounded-xl sm:rounded-2xl overflow-hidden border border-quantum-pink/15 group shadow-lg shadow-quantum-pink/5 hover:shadow-quantum-pink/15 transition-shadow duration-500">
                     <img src="/poster-university.png" alt="Inter-University Events Poster" className="w-full object-cover group-hover:scale-[1.02] transition-transform duration-700" />
                   </div>
                 </div>
