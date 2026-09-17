@@ -281,10 +281,10 @@ export default function InterSchool() {
           {/* ── Zero-G Toggle ── */}
           <button 
             onClick={() => setZeroG(!zeroG)}
-            className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold transition-all duration-300 ${zeroG ? 'bg-quantum-purple text-white shadow-[0_0_15px_rgba(168,85,247,0.8)] border border-quantum-purple' : 'bg-white/5 text-gray-400 border border-white/10 hover:text-white hover:bg-white/10'}`}
+            title="Toggle Anti-Gravity"
+            className={`flex items-center justify-center w-8 h-8 rounded-full transition-all duration-300 ${zeroG ? 'bg-quantum-purple text-white shadow-[0_0_15px_rgba(168,85,247,0.8)] border border-quantum-purple' : 'bg-white/5 text-gray-400 border border-white/10 hover:text-white hover:bg-white/10'}`}
           >
-            <Magnet className={`w-3.5 h-3.5 ${zeroG ? 'animate-pulse' : ''}`} />
-            G = {zeroG ? '0' : '9.8'} m/s²
+            <Magnet className={`w-4 h-4 ${zeroG ? 'animate-pulse' : ''}`} />
           </button>
         </div>
         
