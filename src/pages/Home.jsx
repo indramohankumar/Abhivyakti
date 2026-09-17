@@ -144,6 +144,20 @@ export default function Home() {
     return () => window.removeEventListener('scroll', fn);
   }, []);
 
+  const handleNavClick = (e, id) => {
+    e.preventDefault();
+    setMenuOpen(false);
+    setTimeout(() => {
+      const element = document.getElementById(id);
+      if (element) {
+        const headerOffset = 80;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+      }
+    }, 150); // slight delay lets the mobile menu begin closing
+  };
+
   useEffect(() => {
     const fn = () => { if (window.innerWidth >= 768) setMenuOpen(false); };
     window.addEventListener('resize', fn);
@@ -179,16 +193,16 @@ export default function Home() {
             </a>
 
             <div className="hidden md:flex items-center gap-1">
-              <a href="#journey" className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${dark ? 'text-gray-400 hover:text-gold hover:bg-gold/5' : 'text-gray-600 hover:text-maroon hover:bg-gold/5'}`}>
+              <a href="#journey" onClick={(e) => handleNavClick(e, 'journey')} className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${dark ? 'text-gray-400 hover:text-gold hover:bg-gold/5' : 'text-gray-600 hover:text-maroon hover:bg-gold/5'}`}>
                 Journey
               </a>
-              <a href="#events" className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${dark ? 'text-gray-400 hover:text-gold hover:bg-gold/5' : 'text-gray-600 hover:text-maroon hover:bg-gold/5'}`}>
+              <a href="#events" onClick={(e) => handleNavClick(e, 'events')} className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${dark ? 'text-gray-400 hover:text-gold hover:bg-gold/5' : 'text-gray-600 hover:text-maroon hover:bg-gold/5'}`}>
                 Inter-University
               </a>
-              <a href="#photos" className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${dark ? 'text-gray-400 hover:text-gold hover:bg-gold/5' : 'text-gray-600 hover:text-maroon hover:bg-gold/5'}`}>
+              <a href="#photos" onClick={(e) => handleNavClick(e, 'photos')} className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${dark ? 'text-gray-400 hover:text-gold hover:bg-gold/5' : 'text-gray-600 hover:text-maroon hover:bg-gold/5'}`}>
                 Photos
               </a>
-              <a href="#contact" className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${dark ? 'text-gray-400 hover:text-gold hover:bg-gold/5' : 'text-gray-600 hover:text-maroon hover:bg-gold/5'}`}>
+              <a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${dark ? 'text-gray-400 hover:text-gold hover:bg-gold/5' : 'text-gray-600 hover:text-maroon hover:bg-gold/5'}`}>
                 Contact
               </a>
 
@@ -197,7 +211,7 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-500 ease-in-out"></div>
               </Link>
               
-              <a href="#register" className="ml-2 bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-bg px-5 py-2 rounded-lg font-semibold text-sm hover:brightness-110 transition-all">Register Now</a>
+              <a href="#register" onClick={(e) => handleNavClick(e, 'register')} className="ml-2 bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-bg px-5 py-2 rounded-lg font-semibold text-sm hover:brightness-110 transition-all">Register Now</a>
             </div>
 
             <div className="flex items-center gap-1 md:hidden">
@@ -216,17 +230,20 @@ export default function Home() {
                 <Link to="/inter-school" onClick={() => setMenuOpen(false)} className={`mb-2 block px-4 py-3 font-bold rounded-lg transition-colors flex items-center gap-2 ${dark ? 'text-quantum-purple bg-quantum-purple/10 border border-quantum-purple/20' : 'text-quantum-purple bg-quantum-purple/10 border border-quantum-purple/20'}`}>
                   <Sparkles className="w-4 h-4" /> Inter-School Events
                 </Link>
-                <a href="#events" onClick={() => setMenuOpen(false)} className={`block px-4 py-3 font-medium rounded-lg transition-colors ${dark ? 'text-gray-300 active:bg-gold/10' : 'text-gray-700 active:bg-gold/10'}`}>
+                <a href="#journey" onClick={(e) => handleNavClick(e, 'journey')} className={`block px-4 py-3 font-medium rounded-lg transition-colors ${dark ? 'text-gray-300 active:bg-gold/10' : 'text-gray-700 active:bg-gold/10'}`}>
+                  Festival Journey
+                </a>
+                <a href="#events" onClick={(e) => handleNavClick(e, 'events')} className={`block px-4 py-3 font-medium rounded-lg transition-colors ${dark ? 'text-gray-300 active:bg-gold/10' : 'text-gray-700 active:bg-gold/10'}`}>
                   Inter-University Events
                 </a>
-                <a href="#photos" onClick={() => setMenuOpen(false)} className={`block px-4 py-3 font-medium rounded-lg transition-colors ${dark ? 'text-gray-300 active:bg-gold/10' : 'text-gray-700 active:bg-gold/10'}`}>
+                <a href="#photos" onClick={(e) => handleNavClick(e, 'photos')} className={`block px-4 py-3 font-medium rounded-lg transition-colors ${dark ? 'text-gray-300 active:bg-gold/10' : 'text-gray-700 active:bg-gold/10'}`}>
                   Photos
                 </a>
-                <a href="#contact" onClick={() => setMenuOpen(false)} className={`block px-4 py-3 font-medium rounded-lg transition-colors ${dark ? 'text-gray-300 active:bg-gold/10' : 'text-gray-700 active:bg-gold/10'}`}>
+                <a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className={`block px-4 py-3 font-medium rounded-lg transition-colors ${dark ? 'text-gray-300 active:bg-gold/10' : 'text-gray-700 active:bg-gold/10'}`}>
                   Contact Us
                 </a>
                 
-                <a href="#register" onClick={() => setMenuOpen(false)} className="block mt-3 text-center bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-bg px-5 py-3 rounded-lg font-bold text-sm">Register Now</a>
+                <a href="#register" onClick={(e) => handleNavClick(e, 'register')} className="block mt-3 text-center bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-bg px-5 py-3 rounded-lg font-bold text-sm">Register Now</a>
               </div>
             </motion.div>
           )}
