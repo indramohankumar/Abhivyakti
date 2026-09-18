@@ -489,6 +489,67 @@ export default function InterSchool() {
           </div>
         )}
       </AnimatePresence>
+
+      {/* ════════ FOOTER ════════ */}
+      <footer id="contact" className="relative z-10 pt-10 sm:pt-16 pb-6 bg-dark-card/90 border-t border-dark-border backdrop-blur-md">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-8 border-b border-white/10">
+            {/* Brand */}
+            <div className="col-span-1 sm:col-span-2 lg:col-span-2 space-y-4">
+              <div className="flex items-center gap-3">
+                <img src="/logo.png" alt="Quantum University" className="h-8 object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] brightness-110" />
+                <div className="flex flex-col leading-none">
+                  <span className="text-gold-gradient font-extrabold text-base pt-1 pb-1">अभिव्यक्ति</span>
+                  <span className="text-[9px] text-gray-500 tracking-[0.15em] uppercase">Inter-School Events 2026</span>
+                </div>
+              </div>
+              <p className="text-gray-500 text-sm leading-relaxed max-w-sm">
+                Join us for a celebration of our heritage, culture, and creativity. "Expressions of Bharat – Parampara, Sanskriti & Srijan".
+              </p>
+            </div>
+
+            {/* Contact Details */}
+            <div className="col-span-1 sm:col-span-2 lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-8">
+              <div>
+                <h4 className="text-gold font-semibold text-xs sm:text-sm uppercase tracking-wider mb-4">Contact Us</h4>
+                <div className="space-y-4 text-xs sm:text-sm text-gray-400">
+                  <div>
+                    <p className="text-white font-medium mb-1">Convener</p>
+                    <p>Dr. Pushpender Singh: 98991 42233</p>
+                  </div>
+                  <div>
+                    <p className="text-white font-medium mb-1">Co-Conveners</p>
+                    <p>Dr. Nirmesh Sharma: 97600 87704</p>
+                    <p>Dr. Varsha Gupta: 70156 60812</p>
+                    <p>Dr. Mousmi Agarwal: 98971 93757</p>
+                  </div>
+                  <div>
+                    <p className="text-white font-medium mb-1">Student Coordinators</p>
+                    <p>Dhruv Bhati: 79062 16206</p>
+                    <p>Nilbrata Das: 89748 94143</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Connect Us */}
+              <div className="flex flex-col">
+                <h4 className="text-gold font-semibold text-xs sm:text-sm uppercase tracking-wider mb-4">Connect Us</h4>
+                <ul className="space-y-2.5 text-xs sm:text-sm text-gray-400 mb-4">
+                  <li className="flex items-start gap-2">
+                    <MapPin className="w-4 h-4 text-gold/60 mt-0.5 shrink-0" />
+                    <span className="leading-tight">Quantum University, Roorkee, Uttarakhand 247167</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          {/* Bottom row */}
+          <div className="pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+            <p className="text-gray-600 text-[10px] sm:text-xs">© 2026 Quantum University, Roorkee. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
