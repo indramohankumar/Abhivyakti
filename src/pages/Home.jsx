@@ -705,19 +705,19 @@ export default function Home() {
               <h4 className="text-gold font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3 sm:mb-4">Contact Us</h4>
               <div className="space-y-4 text-[10px] sm:text-sm text-gray-400">
                 <div>
+                  <p className="text-white font-medium mb-1">Student Coordinators</p>
+                  <p>Shivam Prakash: 74829 42186</p>
+                  <p>Archii: 93028 42951</p>
+                </div>
+                <div>
                   <p className="text-white font-medium mb-1">Convener</p>
-                  <p>Dr. Pushpender Singh: 98991 42233</p>
+                  <p>Mr Abhishek Kumar: 89794 61479</p>
                 </div>
                 <div>
                   <p className="text-white font-medium mb-1">Co-Conveners</p>
-                  <p>Dr. Nirmesh Sharma: 97600 87704</p>
-                  <p>Dr. Varsha Gupta: 70156 60812</p>
-                  <p>Dr. Mousmi Agarwal: 98971 93757</p>
-                </div>
-                <div>
-                  <p className="text-white font-medium mb-1">Student Coordinators</p>
-                  <p>Dhruv Bhati: 79062 16206</p>
-                  <p>Nilbrata Das: 89748 94143</p>
+                  <p>Dr Poulami: 74318 69712</p>
+                  <p>Ms Tapsi Rana: 70880 43974</p>
+                  <p>Mr Vibhanshu: 81717 09548</p>
                 </div>
               </div>
             </div>
