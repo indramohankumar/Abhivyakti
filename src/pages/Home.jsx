@@ -255,8 +255,8 @@ export default function Home() {
   const [bgOpacity, setBgOpacity] = useState(0.75);
   const [bgShift, setBgShift] = useState(0);
   useMotionValueEvent(scrollY, "change", (y) => {
-    // Fade gently from 0.75 → 0.25 (always stays slightly visible)
-    setBgOpacity(Math.max(0.25, 0.75 - (y / 1200) * 0.5));
+    // Barely fade: 0.75 → 0.55 (stays strong throughout)
+    setBgOpacity(Math.max(0.55, 0.75 - (y / 2000) * 0.2));
     // Parallax drift upward as user scrolls
     setBgShift(-y * 0.15);
   });
