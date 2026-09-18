@@ -261,10 +261,10 @@ export default function Home() {
   return (
     <div className={`min-h-screen font-sans overflow-x-hidden transition-colors duration-500 ${dark ? 'bg-cultural-dark text-gray-200' : 'bg-cultural text-gray-800'}`}>
       <div
-        className="fixed inset-0 z-0 pointer-events-none opacity-75"
+        className="fixed inset-0 z-0 pointer-events-none opacity-100"
         style={{ transform: `translateY(${bgShift}px)` }}
       >
-        <ConstellationField mode={dark ? "dark" : "light"} speed={1} opacity={0.85} />
+        <ConstellationField mode={dark ? "dark" : "light"} speed={1} opacity={1.0} />
       </div>
 
       {/* ════════ NAVBAR ════════ */}
