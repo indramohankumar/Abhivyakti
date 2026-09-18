@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent, useInView } from 'framer-motion';
 import {
   Calendar, MapPin, Sparkles, ArrowRight, ExternalLink,
   Music, Users, VenetianMask, Shirt, Palette, Utensils,
@@ -31,11 +31,72 @@ const events = [
 ];
 
 const highlights = [
-  { icon: Trophy, label: '10+', desc: 'Universities' },
-  { icon: Users, label: '500+', desc: 'Participants' },
-  { icon: Star, label: '6', desc: 'Categories' },
-  { icon: Clock, label: '3', desc: 'Days' },
+  { icon: Trophy, label: '10', suffix: '+', desc: 'Universities' },
+  { icon: Users, label: '500', suffix: '+', desc: 'Participants' },
+  { icon: Star, label: '6', suffix: '', desc: 'Categories' },
+  { icon: Clock, label: '3', suffix: '', desc: 'Days' },
 ];
+
+/* ─── CountUp: animates a number from 0 → end when scrolled into view ─── */
+const CountUp = ({ end, suffix = '', duration = 2000 }) => {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-50px" });
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!inView) return;
+    const target = parseInt(end);
+    const startTime = performance.now();
+
+    const step = (now) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      // Ease out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.round(eased * target));
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }, [inView, end, duration]);
+
+  return <span ref={ref}>{count}{suffix}</span>;
+};
+
+/* ─── TiltPoster: 3D perspective tilt on hover with gold ambient shadow ─── */
+const TiltPoster = ({ src, alt, glowColor = 'rgba(201,168,76,0.3)', borderColor = 'border-gold/15' }) => {
+  const cardRef = useRef(null);
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    setTilt({ x: y * -15, y: x * 15 });
+  };
+
+  const handleMouseLeave = () => setTilt({ x: 0, y: 0 });
+
+  return (
+    <div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="relative"
+      style={{ perspective: 800 }}
+    >
+      <motion.div
+        animate={{ rotateX: tilt.x, rotateY: tilt.y }}
+        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+        className={`relative rounded-xl sm:rounded-2xl overflow-hidden border ${borderColor} group`}
+        style={{ boxShadow: `0 10px 40px ${glowColor}, 0 0 80px ${glowColor}` }}
+      >
+        <img src={src} alt={alt} className="w-full object-cover group-hover:scale-[1.03] transition-transform duration-700" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
+      </motion.div>
+    </div>
+  );
+};
 
 /* ─── Components ─── */
 
@@ -129,6 +190,31 @@ export default function Home() {
   const [showBottomCTA, setShowBottomCTA] = useState(false);
   const dark = true;
 
+  /* ─── Countdown Timer ─── */
+  const EVENT_START = new Date('2026-10-22T09:00:00+05:30').getTime();
+  const EVENT_END = new Date('2026-10-24T23:59:59+05:30').getTime();
+
+  const calcCountdown = () => {
+    const now = Date.now();
+    if (now >= EVENT_START && now <= EVENT_END) return { isLive: true, isPast: false, days: 0, hours: 0, minutes: 0, seconds: 0 };
+    if (now > EVENT_END) return { isLive: false, isPast: true, days: 0, hours: 0, minutes: 0, seconds: 0 };
+    const diff = EVENT_START - now;
+    return {
+      isLive: false, isPast: false,
+      days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+      minutes: Math.floor((diff / (1000 * 60)) % 60),
+      seconds: Math.floor((diff / 1000) % 60),
+    };
+  };
+
+  const [countdown, setCountdown] = useState(calcCountdown);
+
+  useEffect(() => {
+    const timer = setInterval(() => setCountdown(calcCountdown()), 1000);
+    return () => clearInterval(timer);
+  }, []);
+
   useEffect(() => {
     document.documentElement.classList.add('dark');
   }, []);
@@ -164,9 +250,23 @@ export default function Home() {
     return () => window.removeEventListener('resize', fn);
   }, []);
 
+  /* ─── Scroll-based constellation fade + flow ─── */
+  const { scrollY } = useScroll();
+  const [bgOpacity, setBgOpacity] = useState(0.75);
+  const [bgShift, setBgShift] = useState(0);
+  useMotionValueEvent(scrollY, "change", (y) => {
+    // Fade gently from 0.75 → 0.25 (always stays slightly visible)
+    setBgOpacity(Math.max(0.25, 0.75 - (y / 1200) * 0.5));
+    // Parallax drift upward as user scrolls
+    setBgShift(-y * 0.15);
+  });
+
   return (
     <div className={`min-h-screen font-sans overflow-x-hidden transition-colors duration-500 ${dark ? 'bg-cultural-dark text-gray-200' : 'bg-cultural text-gray-800'}`}>
-      <div className="fixed inset-0 z-0 pointer-events-none opacity-75">
+      <div
+        className="fixed inset-0 z-0 pointer-events-none"
+        style={{ opacity: bgOpacity, transform: `translateY(${bgShift}px)` }}
+      >
         <ConstellationField mode={dark ? "dark" : "light"} speed={1} opacity={0.85} />
       </div>
 
@@ -289,26 +389,63 @@ export default function Home() {
             </motion.p>
 
             <motion.div variants={fadeUp} className="max-w-md">
-              <div className={`flex items-center gap-0 rounded-2xl border overflow-hidden ${dark ? 'bg-white/[0.03] border-dark-border backdrop-blur-sm' : 'bg-white/60 border-gold/10 backdrop-blur-sm'}`}>
-                {/* Date */}
-                <div className="flex items-center gap-2.5 px-3 py-2.5 sm:px-5 sm:py-3.5 flex-1">
-                  <div className="bg-gold/10 p-1.5 sm:p-2 rounded-lg text-gold shrink-0"><Calendar className="w-4 h-4" /></div>
+              {countdown.isLive ? (
+                /* ── LIVE MODE ── */
+                <div className="flex items-center gap-3 px-5 py-3.5 rounded-2xl border border-red-500/30 bg-red-500/[0.06] backdrop-blur-sm">
+                  <div className="relative flex items-center justify-center">
+                    <span className="absolute w-4 h-4 rounded-full bg-red-500 animate-ping opacity-40"></span>
+                    <span className="relative w-3 h-3 rounded-full bg-red-500"></span>
+                  </div>
                   <div>
-                    <p className={`font-bold text-xs sm:text-sm ${dark ? 'text-white' : 'text-gray-900'}`}>Oct 2026</p>
-                    <p className={`text-[10px] sm:text-xs ${dark ? 'text-gray-600' : 'text-gray-500'}`}>3 Days Festival</p>
+                    <p className="text-red-400 font-extrabold text-sm sm:text-base tracking-wider uppercase">Event is Live</p>
+                    <p className="text-gray-500 text-[10px] sm:text-xs">Oct 22–24, 2026 · Quantum University</p>
                   </div>
                 </div>
-                {/* Gold divider */}
-                <div className={`w-px self-stretch ${dark ? 'bg-gradient-to-b from-transparent via-gold/30 to-transparent' : 'bg-gradient-to-b from-transparent via-gold/20 to-transparent'}`}></div>
-                {/* Location */}
-                <div className="flex items-center gap-2.5 px-3 py-2.5 sm:px-5 sm:py-3.5 flex-1">
-                  <div className={`p-1.5 sm:p-2 rounded-lg shrink-0 ${dark ? 'bg-quantum-purple/15 text-purple-400' : 'bg-quantum-purple/8 text-quantum-purple'}`}><MapPin className="w-4 h-4" /></div>
+              ) : countdown.isPast ? (
+                /* ── POST EVENT ── */
+                <div className="flex items-center gap-3 px-5 py-3.5 rounded-2xl border border-gold/20 bg-gold/[0.04] backdrop-blur-sm">
+                  <Sparkles className="w-5 h-5 text-gold" />
                   <div>
-                    <p className={`font-bold text-xs sm:text-sm ${dark ? 'text-white' : 'text-gray-900'}`}>Roorkee</p>
-                    <p className={`text-[10px] sm:text-xs ${dark ? 'text-gray-600' : 'text-gray-500'}`}>Uttarakhand</p>
+                    <p className="text-gold font-bold text-sm">Abhivyakti 2026 has concluded</p>
+                    <p className="text-gray-500 text-[10px] sm:text-xs">Thank you for being part of the celebration!</p>
                   </div>
                 </div>
-              </div>
+              ) : (
+                /* ── COUNTDOWN MODE ── */
+                <div className={`rounded-2xl border overflow-hidden ${dark ? 'bg-white/[0.02] border-dark-border backdrop-blur-sm' : 'bg-white/60 border-gold/10 backdrop-blur-sm'}`}>
+                  <div className="px-3 py-2 sm:px-4 sm:py-2.5 flex items-center justify-between border-b border-white/5">
+                    <div className="flex items-center gap-2">
+                      <Calendar className="w-3.5 h-3.5 text-gold/60" />
+                      <span className="text-[10px] sm:text-xs text-gray-500 font-semibold uppercase tracking-wider">Starts Oct 22, 2026</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <MapPin className="w-3 h-3 text-gold/40" />
+                      <span className="text-[10px] sm:text-xs text-gray-600">Roorkee</span>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-4 divide-x divide-white/5">
+                    {[
+                      { val: countdown.days, label: 'Days' },
+                      { val: countdown.hours, label: 'Hours' },
+                      { val: countdown.minutes, label: 'Min' },
+                      { val: countdown.seconds, label: 'Sec' },
+                    ].map((unit) => (
+                      <div key={unit.label} className="py-3 sm:py-4 text-center">
+                        <motion.p
+                          key={unit.val}
+                          initial={{ y: -8, opacity: 0 }}
+                          animate={{ y: 0, opacity: 1 }}
+                          transition={{ duration: 0.25 }}
+                          className={`text-xl sm:text-3xl font-extrabold tabular-nums ${dark ? 'text-white' : 'text-gray-900'}`}
+                        >
+                          {String(unit.val).padStart(2, '0')}
+                        </motion.p>
+                        <p className="text-[8px] sm:text-[10px] text-gray-600 font-semibold uppercase tracking-widest mt-0.5">{unit.label}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </motion.div>
 
             <motion.div variants={fadeUp} className="flex flex-wrap gap-2.5 sm:gap-3 pt-1">
@@ -349,14 +486,16 @@ export default function Home() {
       </section>
 
       {/* ════════ HIGHLIGHTS BAR ════════ */}
-      <section className={`py-8 sm:py-14 border-y relative z-10 ${dark ? 'bg-dark-card/50 border-dark-border' : 'bg-gold/[0.03] border-gold/10'}`}>
+      <section className={`py-10 sm:py-16 border-y relative z-10 ${dark ? 'bg-dark-card/50 border-dark-border' : 'bg-gold/[0.03] border-gold/10'}`}>
         <div className="max-w-5xl mx-auto px-4 grid grid-cols-4 gap-3 sm:grid-cols-4 sm:gap-8">
           {highlights.map((h, i) => (
-            <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+            <motion.div key={i} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.12, duration: 0.5 }}
               className="text-center">
-              <h.icon className={`w-5 h-5 sm:w-6 sm:h-6 mx-auto mb-1 sm:mb-2 ${dark ? 'text-gold/70' : 'text-gold'}`} />
-              <p className={`text-lg sm:text-3xl font-extrabold ${dark ? 'text-white' : 'text-gray-900'}`}>{h.label}</p>
-              <p className={`text-[10px] sm:text-sm font-medium ${dark ? 'text-gray-500' : 'text-gray-500'}`}>{h.desc}</p>
+              <h.icon className={`w-5 h-5 sm:w-7 sm:h-7 mx-auto mb-2 sm:mb-3 ${dark ? 'text-gold/60' : 'text-gold'}`} />
+              <p className="text-gold-gradient text-3xl sm:text-5xl md:text-6xl font-extrabold leading-none">
+                <CountUp end={h.label} suffix={h.suffix} duration={1800 + i * 400} />
+              </p>
+              <p className={`text-[9px] sm:text-xs font-semibold uppercase tracking-[0.15em] mt-1.5 sm:mt-2 ${dark ? 'text-gray-600' : 'text-gray-500'}`}>{h.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -433,9 +572,7 @@ export default function Home() {
 
                 {/* Poster Image */}
                 <div className="w-[85%] max-w-[240px] sm:max-w-none sm:w-[46%] mt-2 sm:mt-0">
-                  <div className="relative rounded-xl sm:rounded-2xl overflow-hidden border border-gold/15 group shadow-lg shadow-gold/5 hover:shadow-gold/15 transition-shadow duration-500">
-                    <img src="/poster-school.png" alt="Inter-School Events Poster" className="w-full object-cover group-hover:scale-[1.02] transition-transform duration-700" />
-                  </div>
+                  <TiltPoster src="/poster-school.png" alt="Inter-School Events Poster" glowColor="rgba(201,168,76,0.25)" borderColor="border-gold/15" />
                 </div>
               </motion.div>
 
@@ -472,9 +609,7 @@ export default function Home() {
 
                 {/* Poster Image */}
                 <div className="w-[85%] max-w-[240px] sm:max-w-none sm:w-[46%] mt-2 sm:mt-0">
-                  <div className="relative rounded-xl sm:rounded-2xl overflow-hidden border border-quantum-pink/15 group shadow-lg shadow-quantum-pink/5 hover:shadow-quantum-pink/15 transition-shadow duration-500">
-                    <img src="/poster-university.png" alt="Inter-University Events Poster" className="w-full object-cover group-hover:scale-[1.02] transition-transform duration-700" />
-                  </div>
+                  <TiltPoster src="/poster-university.png" alt="Inter-University Events Poster" glowColor="rgba(234,21,136,0.2)" borderColor="border-quantum-pink/15" />
                 </div>
               </motion.div>
 
