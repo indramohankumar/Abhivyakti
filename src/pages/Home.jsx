@@ -250,13 +250,10 @@ export default function Home() {
     return () => window.removeEventListener('resize', fn);
   }, []);
 
-  /* ─── Scroll-based constellation fade + flow ─── */
+  /* ─── Scroll-based constellation flow ─── */
   const { scrollY } = useScroll();
-  const [bgOpacity, setBgOpacity] = useState(0.75);
   const [bgShift, setBgShift] = useState(0);
   useMotionValueEvent(scrollY, "change", (y) => {
-    // Barely fade: 0.75 → 0.55 (stays strong throughout)
-    setBgOpacity(Math.max(0.55, 0.75 - (y / 2000) * 0.2));
     // Parallax drift upward as user scrolls
     setBgShift(-y * 0.15);
   });
@@ -264,8 +261,8 @@ export default function Home() {
   return (
     <div className={`min-h-screen font-sans overflow-x-hidden transition-colors duration-500 ${dark ? 'bg-cultural-dark text-gray-200' : 'bg-cultural text-gray-800'}`}>
       <div
-        className="fixed inset-0 z-0 pointer-events-none"
-        style={{ opacity: bgOpacity, transform: `translateY(${bgShift}px)` }}
+        className="fixed inset-0 z-0 pointer-events-none opacity-75"
+        style={{ transform: `translateY(${bgShift}px)` }}
       >
         <ConstellationField mode={dark ? "dark" : "light"} speed={1} opacity={0.85} />
       </div>
