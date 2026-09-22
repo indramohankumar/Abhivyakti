@@ -282,7 +282,7 @@ export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [showBottomCTA, setShowBottomCTA] = useState(false);
-  const dark = false;
+  const dark = true;
 
   const journeyRef = useRef(null);
   const { scrollYProgress: journeyScroll } = useScroll({
@@ -455,96 +455,90 @@ export default function Home() {
       </motion.nav>
 
       {/* ════════ HERO ════════ */}
-      <section className="relative min-h-[85dvh] sm:min-h-[100dvh] flex items-center pt-16 pb-6 sm:pt-24 sm:pb-14 md:pt-28 md:pb-20 px-4 overflow-hidden">
-        {/* Background Decorations */}
-        <GoldenWheel className={`absolute -top-10 -right-10 w-[180px] sm:w-[420px] md:w-[550px] h-[180px] sm:h-[420px] md:h-[550px] animate-[spin_60s_linear_infinite] ${dark ? 'text-gold/20' : 'text-gold/25'}`} />
-        <GoldenWheel className={`absolute -bottom-20 -left-20 w-[200px] sm:w-[480px] md:w-[620px] h-[200px] sm:h-[480px] md:h-[620px] animate-[spin_80s_linear_infinite_reverse] ${dark ? 'text-quantum-purple/15' : 'text-quantum-purple/20'}`} />
+      {/* 🚀 HERO (Using Uploaded Theme Splash) 🚀 */}
+      <section className="relative min-h-[90dvh] sm:min-h-[100dvh] flex flex-col items-center justify-end pt-16 pb-12 sm:pt-24 sm:pb-20 px-4 overflow-hidden bg-[#0A0505]">
         
+        {/* The Uploaded Theme Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-top sm:bg-center z-0"
+          style={{ backgroundImage: "url('/theme-bg.png')" }}
+        />
+        
+        {/* Gradient overlay to seamlessly fade into the deep black/brown body */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0505] via-[#0A0505]/40 to-transparent z-0 pointer-events-none" />
+
         {/* Floating Diyas & Particles */}
-        <SparkleParticle className="top-1/4 left-1/3 w-1.5 h-1.5 sm:w-2 sm:h-2" delay={0.2} />
-        <SparkleParticle className="bottom-1/3 left-1/4 w-2 h-2 sm:w-3 sm:h-3" delay={1.2} />
-        <SparkleParticle className="top-1/3 right-1/4 w-1.5 h-1.5 sm:w-2 sm:h-2" delay={2.5} />
-        <SparkleParticle className="bottom-1/4 right-1/3 w-1.5 h-1.5 sm:w-2 sm:h-2" delay={0.8} />
+        <SparkleParticle className="top-1/4 left-1/3 w-1.5 h-1.5 sm:w-2 sm:h-2 z-10" delay={0.2} />
+        <SparkleParticle className="bottom-1/3 left-1/4 w-2 h-2 sm:w-3 sm:h-3 z-10" delay={1.2} />
+        <SparkleParticle className="top-1/3 right-1/4 w-1.5 h-1.5 sm:w-2 sm:h-2 z-10" delay={2.5} />
+        <SparkleParticle className="bottom-1/4 right-1/3 w-1.5 h-1.5 sm:w-2 sm:h-2 z-10" delay={0.8} />
 
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-16 items-center relative z-10 w-full pointer-events-auto">
-          <motion.div initial="hidden" animate="visible" variants={stagger} className="space-y-4 sm:space-y-8">
+        {/* Centered Content (placed below the image's built-in typography) */}
+        <div className="relative z-10 w-full max-w-4xl mx-auto flex flex-col items-center text-center mt-auto pointer-events-auto pt-40 sm:pt-64 pb-10">
+          <motion.div initial="hidden" animate="visible" variants={stagger} className="space-y-6 sm:space-y-8 flex flex-col items-center w-full">
 
-            <motion.div variants={fadeUp} className="space-y-3">
-              <TypeWriter
-                text="अभिव्यक्ति"
-                className={`font-hindi text-[3rem] xs:text-[3.5rem] sm:text-7xl md:text-8xl lg:text-[9rem] font-extrabold leading-tight tracking-normal block pt-2 ${dark ? 'text-gold-gradient drop-shadow-[0_10px_20px_rgba(201,168,76,0.4)]' : 'text-maroon drop-shadow-sm'}`}
-                speed={120}
-              />
+            <motion.div variants={fadeUp} className="space-y-3 flex flex-col items-center">
               <TypeWriter
                 text="Abhivyakti 2026"
-                delay={1500}
+                delay={500}
                 speed={80}
-                className={`font-serif text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight block ${dark ? 'text-white' : 'text-maroon drop-shadow-md'}`}
-                cursorColor={dark ? '#C9A84C' : '#800020'}
+                className="font-serif text-2xl sm:text-4xl md:text-5xl font-black tracking-tight block text-white drop-shadow-md"
+                cursorColor="#C9A84C"
               />
               <GoldLine />
-              <p className={`text-[10px] sm:text-sm tracking-[0.2em] uppercase font-semibold ${dark ? 'text-gray-500' : 'text-gray-400'}`}>
+              <p className="text-[10px] sm:text-sm tracking-[0.2em] uppercase font-semibold text-gray-400">
                 Expression of Indian Culture & Heritage
               </p>
             </motion.div>
 
-            <motion.p variants={fadeUp} className={`text-[13px] sm:text-base md:text-lg max-w-lg leading-relaxed line-clamp-3 sm:line-clamp-none ${dark ? 'text-gray-400' : 'text-gray-600'}`}>
-              A grand Three-day inter-university celebration of <strong className="text-gold">literary excellence</strong>, <strong className={dark ? 'text-quantum-pink' : 'text-maroon'}>cultural richness</strong>, and <strong className={dark ? 'text-purple-400' : 'text-quantum-purple'}>intellectual engagement</strong> — uniting students, artists, and scholars from across India.
+            <motion.p variants={fadeUp} className="text-[13px] sm:text-base md:text-lg max-w-2xl leading-relaxed text-gray-400 font-light">
+              A grand Three-day inter-university celebration of <strong className="text-gold">literary excellence</strong>, <strong className="text-quantum-pink">cultural richness</strong>, and <strong className="text-purple-400">intellectual engagement</strong> — uniting students, artists, and scholars from across India.
             </motion.p>
 
-            <motion.div variants={fadeUp} className="max-w-md">
+            <motion.div variants={fadeUp} className="w-full max-w-md mx-auto">
               {countdown.isLive ? (
-                /* ── LIVE MODE ── */
-                <div className="flex items-center gap-3 px-5 py-3.5 rounded-2xl border border-red-500/30 bg-red-500/[0.06] backdrop-blur-sm">
+                <div className="flex items-center justify-center gap-3 px-5 py-3.5 rounded-2xl border border-red-500/30 bg-red-500/[0.06] backdrop-blur-sm">
                   <div className="relative flex items-center justify-center">
                     <span className="absolute w-4 h-4 rounded-full bg-red-500 animate-ping opacity-40"></span>
                     <span className="relative w-3 h-3 rounded-full bg-red-500"></span>
                   </div>
-                  <div>
+                  <div className="text-left">
                     <p className="text-red-400 font-extrabold text-sm sm:text-base tracking-wider uppercase">Event is Live</p>
-                    <p className="text-gray-500 text-[10px] sm:text-xs">Oct 22–24, 2026 · Quantum University</p>
+                    <p className="text-gray-500 text-[10px] sm:text-xs">Oct 22-24, 2026 • Quantum University</p>
                   </div>
                 </div>
               ) : countdown.isPast ? (
-                /* ── POST EVENT ── */
-                <div className="flex items-center gap-3 px-5 py-3.5 rounded-2xl border border-gold/20 bg-gold/[0.04] backdrop-blur-sm">
+                <div className="flex items-center justify-center gap-3 px-5 py-3.5 rounded-2xl border border-gold/20 bg-gold/[0.04] backdrop-blur-sm">
                   <Sparkles className="w-5 h-5 text-gold" />
-                  <div>
+                  <div className="text-left">
                     <p className="text-gold font-bold text-sm">Abhivyakti 2026 has concluded</p>
                     <p className="text-gray-500 text-[10px] sm:text-xs">Thank you for being part of the celebration!</p>
                   </div>
                 </div>
               ) : (
-                /* ── COUNTDOWN MODE ── */
-                <div className={`rounded-2xl border overflow-hidden ${dark ? 'bg-white/[0.02] border-dark-border backdrop-blur-sm' : 'bg-white/60 border-gold/10 backdrop-blur-sm'}`}>
-                  <div className="px-3 py-2 sm:px-4 sm:py-2.5 flex items-center justify-between border-b border-white/5">
+                <div className="rounded-2xl border overflow-hidden bg-white/[0.02] border-white/10 backdrop-blur-sm shadow-[0_0_30px_rgba(201,168,76,0.05)]">
+                  <div className="px-3 py-2 sm:px-4 sm:py-2.5 flex items-center justify-between border-b border-white/10 bg-black/40">
                     <div className="flex items-center gap-2">
-                      <Calendar className="w-3.5 h-3.5 text-gold/60" />
-                      <span className="text-[10px] sm:text-xs text-gray-500 font-semibold uppercase tracking-wider">Starts Oct 22, 2026</span>
+                      <Calendar className="w-3.5 h-3.5 text-gold/80" />
+                      <span className="text-[10px] sm:text-xs text-gray-300 font-semibold uppercase tracking-wider">Starts Oct 22, 2026</span>
                     </div>
                     <div className="flex items-center gap-1.5">
-                      <MapPin className="w-3 h-3 text-gold/40" />
-                      <span className="text-[10px] sm:text-xs text-gray-600">Roorkee</span>
+                      <MapPin className="w-3 h-3 text-gold/60" />
+                      <span className="text-[10px] sm:text-xs text-gray-400">Roorkee</span>
                     </div>
                   </div>
-                  <div className="grid grid-cols-4 divide-x divide-white/5">
+                  <div className="grid grid-cols-4 divide-x divide-white/10 bg-black/20">
                     {[
                       { val: countdown.days, label: 'Days' },
                       { val: countdown.hours, label: 'Hours' },
                       { val: countdown.minutes, label: 'Min' },
                       { val: countdown.seconds, label: 'Sec' },
-                    ].map((unit) => (
-                      <div key={unit.label} className="py-3 sm:py-4 text-center">
-                        <motion.p
-                          key={unit.val}
-                          initial={{ y: -8, opacity: 0 }}
-                          animate={{ y: 0, opacity: 1 }}
-                          transition={{ duration: 0.25 }}
-                          className={`font-serif text-xl sm:text-3xl font-black tabular-nums ${dark ? 'text-white' : 'text-maroon'}`}
-                        >
-                          {String(unit.val).padStart(2, '0')}
-                        </motion.p>
-                        <p className="text-[8px] sm:text-[10px] text-gray-600 font-semibold uppercase tracking-widest mt-0.5">{unit.label}</p>
+                    ].map((item, i) => (
+                      <div key={i} className="flex flex-col items-center justify-center py-2.5 sm:py-4 px-1">
+                        <span className="text-2xl sm:text-4xl font-black text-white tracking-tighter tabular-nums drop-shadow-[0_2px_10px_rgba(201,168,76,0.3)]">
+                          {String(item.val).padStart(2, '0')}
+                        </span>
+                        <span className="text-[8px] sm:text-[10px] text-gold/80 uppercase font-bold tracking-widest mt-1">{item.label}</span>
                       </div>
                     ))}
                   </div>
@@ -552,36 +546,28 @@ export default function Home() {
               )}
             </motion.div>
 
-            <motion.div variants={fadeUp} className="flex flex-wrap gap-2.5 sm:gap-3 pt-1">
-              <a href="#register" className="bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-bg px-4 py-2 sm:px-7 sm:py-3 rounded-lg font-bold text-[13px] sm:text-base flex items-center gap-2 hover:brightness-110 active:scale-[0.97] transition-all shadow-lg shadow-gold/20">
-                Register Now <ArrowRight className="w-4 h-4" />
+            <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 sm:pt-6 w-full">
+              <a 
+                href="https://docs.google.com/forms/d/e/1FAIpQLSfmgwAHb9CEGP9jj13wmTf3regVu8ikecjMfDCEYg53orF0Mg/viewform?usp=header"
+                target="_blank"
+                rel="noreferrer"
+                className="group relative px-6 sm:px-8 py-3.5 sm:py-4 bg-gradient-to-r from-[#C9A84C] via-[#E8D48B] to-[#8B7332] hover:brightness-110 rounded-full overflow-hidden shadow-[0_0_30px_rgba(201,168,76,0.3)] transition-all hover:scale-105 w-full sm:w-auto"
+              >
+                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>
+                <span className="relative flex items-center justify-center gap-2 text-[#0A0505] font-extrabold tracking-[0.2em] uppercase text-xs sm:text-sm">
+                  Register Inter-University <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </span>
               </a>
-              <a href="#events" className={`px-4 py-2 sm:px-7 sm:py-3 rounded-lg font-semibold text-[13px] sm:text-base active:scale-[0.97] transition-all border ${dark ? 'border-gold/20 text-gold hover:bg-gold/5' : 'border-gold/30 text-gold-dark hover:bg-gold/5'}`}>
-                Explore Events
-              </a>
+              <Link 
+                to="/inter-school"
+                className="group relative px-6 sm:px-8 py-3.5 sm:py-4 bg-black/40 hover:bg-black/60 border border-white/10 hover:border-gold/50 rounded-full backdrop-blur-md transition-all w-full sm:w-auto hover:shadow-[0_0_20px_rgba(201,168,76,0.2)]"
+              >
+                <span className="flex items-center justify-center gap-2 text-gray-200 group-hover:text-gold font-bold tracking-[0.1em] uppercase text-xs sm:text-sm">
+                  Inter-School Events <ArrowRight className="w-4 h-4 opacity-50 group-hover:opacity-100 transition-opacity" />
+                </span>
+              </Link>
             </motion.div>
-          </motion.div>
 
-          {/* Hero right — Photos card */}
-          <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }} className="relative mt-2 lg:mt-0">
-            <div className={`absolute inset-0 blur-3xl rounded-full scale-110 ${dark ? 'bg-gold/5' : 'bg-gold/10'}`}></div>
-            <div className={`relative p-4 sm:p-8 rounded-2xl sm:rounded-3xl border overflow-hidden ${dark ? 'bg-dark-card/80 border-dark-border shadow-2xl shadow-black/30' : 'bg-white/60 backdrop-blur-md border-gold/15 shadow-xl'}`}>
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gold-dark via-gold to-gold-light"></div>
-              <div className={`absolute top-4 right-4 w-16 h-16 sm:w-20 sm:h-20 rounded-full blur-2xl ${dark ? 'bg-gold/8' : 'bg-gold/15'}`}></div>
-
-              <div id="photos" className="relative z-10 space-y-3 sm:space-y-4">
-                <div className="flex items-center gap-2">
-                  <span className="bg-gradient-to-r from-gold-dark to-gold text-dark-bg text-[10px] sm:text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Memories</span>
-                </div>
-                <div>
-                  <h3 className="text-gold-gradient text-2xl sm:text-4xl font-extrabold pb-1 pt-2 leading-normal">चित्रशाला</h3>
-                  <p className={`font-serif text-base sm:text-2xl font-black mt-0.5 sm:mt-1 ${dark ? 'text-white' : 'text-maroon'}`}>Photos</p>
-                </div>
-                <p className={`text-[10px] sm:text-xs tracking-[0.15em] uppercase font-medium ${dark ? 'text-gold/60' : 'text-gold-dark/70'}`}>Glimpses of Abhivyakti</p>
-                <GoldLine />
-                <PhotoCarousel />
-              </div>
-            </div>
           </motion.div>
         </div>
       </section>

@@ -8,14 +8,14 @@
   --color-saffron: #FF9933;
   --color-maroon: #800020;
   --color-gold: #C9A84C;
-  --color-gold-light: #E8D48B;
-  --color-gold-dark: #8B7332;
+  --color-gold-light: #F3DA8C;
+  --color-gold-dark: #A27329;
   --color-cream: #FFF9F0;
   --color-deep-red: #8B1A1A;
   --color-burnt-orange: #CC5500;
-  --color-dark-bg: #0C0A09;
-  --color-dark-card: #1C1917;
-  --color-dark-border: #292524;
+  --color-dark-bg: #0A0505;
+  --color-dark-card: #150A08;
+  --color-dark-border: #2A1710;
   --font-sans: 'Outfit', 'Poppins', sans-serif;
   --font-serif: 'Playfair Display', serif;
   --font-hindi: 'Rozha One', 'Yatra One', serif;
@@ -32,11 +32,11 @@
   }
 
   .bg-cultural-dark {
-    background-color: #0C0A09;
+    background-color: #0A0505;
     background-image:
-      radial-gradient(at 10% 10%, rgba(201, 168, 76, 0.04) 0px, transparent 50%),
-      radial-gradient(at 90% 20%, rgba(139, 34, 132, 0.05) 0px, transparent 50%),
-      radial-gradient(at 50% 80%, rgba(255, 153, 51, 0.03) 0px, transparent 50%);
+      radial-gradient(at 10% 10%, rgba(201, 168, 76, 0.05) 0px, transparent 50%),
+      radial-gradient(at 50% 50%, rgba(78, 48, 28, 0.15) 0px, transparent 70%),
+      radial-gradient(at 90% 90%, rgba(201, 168, 76, 0.03) 0px, transparent 50%);
     background-attachment: fixed;
   }
 
