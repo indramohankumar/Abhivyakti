@@ -81,8 +81,8 @@ const events = [
 ];
 
 const highlights = [
-  { icon: Trophy, label: '10', suffix: '+', desc: 'Universities' },
-  { icon: Users, label: '500', suffix: '+', desc: 'Participants' },
+  { icon: Trophy, label: '50', suffix: '+', desc: 'Universities' },
+  { icon: Users, label: '1000', suffix: '+', desc: 'Participants' },
   { icon: Star, label: '6', suffix: '', desc: 'Categories' },
   { icon: Clock, label: '3', suffix: '', desc: 'Days' },
 ];
@@ -536,18 +536,27 @@ export default function Home() {
       </section>
 
       {/* ════════ HIGHLIGHTS BAR ════════ */}
-      <section className={`py-10 sm:py-16 border-y relative z-10 ${dark ? 'bg-dark-card/50 border-dark-border' : 'bg-gold/[0.03] border-gold/10'}`}>
-        <div className="max-w-5xl mx-auto px-4 grid grid-cols-4 gap-3 sm:grid-cols-4 sm:gap-8">
-          {highlights.map((h, i) => (
-            <motion.div key={i} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.12, duration: 0.5 }}
-              className="text-center">
-              <h.icon className={`w-5 h-5 sm:w-7 sm:h-7 mx-auto mb-2 sm:mb-3 ${dark ? 'text-gold/60' : 'text-gold'}`} />
-              <p className="text-gold-gradient text-3xl sm:text-5xl md:text-6xl font-extrabold leading-none">
-                <CountUp end={h.label} suffix={h.suffix} duration={1800 + i * 400} />
-              </p>
-              <p className={`text-[9px] sm:text-xs font-semibold uppercase tracking-[0.15em] mt-1.5 sm:mt-2 ${dark ? 'text-gray-600' : 'text-gray-500'}`}>{h.desc}</p>
-            </motion.div>
-          ))}
+      <section className="relative z-20 py-8 sm:py-16 px-4 -mt-8 sm:-mt-12">
+        <div className={`max-w-6xl mx-auto rounded-3xl sm:rounded-[2.5rem] shadow-2xl relative overflow-hidden backdrop-blur-2xl border ${dark ? 'bg-dark-card/80 border-gold/20 shadow-black/50' : 'bg-white/70 border-maroon/20 shadow-maroon/10'}`}>
+          <div className="absolute inset-0 bg-gradient-to-br from-gold/10 to-transparent pointer-events-none"></div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-y-12 gap-x-4 sm:gap-8 px-6 py-10 sm:p-14 relative z-10">
+            {highlights.map((h, i) => (
+              <motion.div key={i} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.12, duration: 0.5 }}
+                className="text-center group flex flex-col items-center">
+                
+                <div className={`w-14 h-14 sm:w-16 sm:h-16 mb-4 sm:mb-5 rounded-2xl flex items-center justify-center transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3 shadow-lg ${dark ? 'bg-black/40 border border-white/10 shadow-black/50' : 'bg-white border border-maroon/10 shadow-maroon/5'}`}>
+                  <h.icon className={`w-6 h-6 sm:w-8 sm:h-8 ${dark ? 'text-gold' : 'text-maroon'}`} />
+                </div>
+                
+                <p className="text-gold-gradient text-4xl sm:text-5xl md:text-6xl font-extrabold leading-none drop-shadow-sm mb-2">
+                  <CountUp end={h.label} suffix={h.suffix} duration={1800 + i * 400} />
+                </p>
+                
+                <p className={`text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] ${dark ? 'text-gray-400' : 'text-gray-600'}`}>{h.desc}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
