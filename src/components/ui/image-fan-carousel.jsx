@@ -118,10 +118,10 @@ export const Carousel360 = ({ items }) => {
         ref={containerRef}
         drag="x"
         dragConstraints={{ left: 0, right: 0 }}
-        dragElastic={0.05}
+        dragElastic={0.25}
         onDragEnd={(e, { offset, velocity }) => {
-          if (offset.x < -40 || velocity.x < -200) rotateCarousel("right");
-          else if (offset.x > 40 || velocity.x > 200) rotateCarousel("left");
+          if (offset.x < -30 || velocity.x < -200) rotateCarousel("left");
+          else if (offset.x > 30 || velocity.x > 200) rotateCarousel("right");
         }}
         className="relative w-[96%] sm:w-[92%] max-w-[600px] aspect-[4/3] sm:aspect-[5/3] flex items-center justify-center cursor-grab active:cursor-grabbing touch-pan-y"
       >
