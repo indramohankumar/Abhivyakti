@@ -701,7 +701,7 @@ export default function Home() {
               Register through our official Google Form and represent your university at Abhivyakti 2026. Open to all universities across India.
             </p>
 
-            <a href="https://forms.gle/your-form-link" target="_blank" rel="noopener noreferrer"
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfmgwAHb9CEGP9jj13wmTf3regVu8ikecjMfDCEYg53orF0Mg/viewform?usp=header" target="_blank" rel="noopener noreferrer"
                className="inline-flex items-center gap-2 bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-bg px-5 py-2.5 sm:px-8 sm:py-3.5 rounded-lg text-[13px] sm:text-base font-bold hover:brightness-110 active:scale-[0.97] transition-all shadow-lg shadow-gold/20">
               Fill Registration Form <ExternalLink className="w-4 h-4" />
             </a>
