@@ -73,11 +73,29 @@ export function AntaragniEventsGrid({ events }) {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
                     transition={{ duration: 0.3, delay: 0.1 }}
-                    className="overflow-hidden"
+                    className="overflow-hidden flex flex-col items-start"
                   >
-                    <p className="text-gray-300 text-xs sm:text-sm md:text-base line-clamp-2 mb-5 font-light tracking-wide max-w-md">
+                    <p className="text-gray-300 text-xs sm:text-sm md:text-base line-clamp-1 mb-3 font-light tracking-wide max-w-md">
                       {event.desc}
                     </p>
+
+                    {/* Sub-Events Glowing Tags */}
+                    {event.subEvents && (
+                      <div className="flex flex-wrap gap-2 mb-5 max-w-lg">
+                        {event.subEvents.map((sub, i) => (
+                          <motion.span 
+                            key={i}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: 0.15 + (i * 0.05) }}
+                            className="text-[9px] sm:text-[11px] px-3 py-1.5 rounded-full border border-[#ff6b35]/30 bg-[#ff6b35]/10 text-orange-200 backdrop-blur-md whitespace-nowrap shadow-[0_0_10px_rgba(255,107,53,0.1)] font-medium tracking-wide"
+                          >
+                            {sub}
+                          </motion.span>
+                        ))}
+                      </div>
+                    )}
+
                     <a 
                       href={event.rulesLink}
                       target="_blank"
