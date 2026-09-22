@@ -7,6 +7,7 @@ import {
   Menu, X, Sun, Moon, Star, Trophy, Clock, ChevronUp
 } from 'lucide-react';
 import { Carousel360 } from '../components/ui/image-fan-carousel';
+import { AntaragniEventsGrid } from '../components/ui/antaragni-events';
 import CulturalDust from '../components/ui/cultural-dust';
 import { ParallaxMandalaBackground } from '../components/ui/parallax-mandala';
 
@@ -701,8 +702,8 @@ export default function Home() {
             </p>
           </div>
 
-          <div>
-            <Carousel360 items={events} />
+          <div className="w-full mt-4 sm:mt-10 lg:mt-16">
+            <AntaragniEventsGrid events={events} />
           </div>
         </div>
       </section>
