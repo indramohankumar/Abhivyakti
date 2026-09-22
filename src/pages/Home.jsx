@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { Carousel360 } from '../components/ui/image-fan-carousel';
 import CulturalDust from '../components/ui/cultural-dust';
+import { ParallaxMandalaBackground } from '../components/ui/parallax-mandala';
 
 
 /* ─── Animations ─── */
@@ -326,6 +327,7 @@ export default function Home() {
       >
         <CulturalDust mode={dark ? "dark" : "light"} opacity={1.0} speed={0.8} />
       </div>
+      <ParallaxMandalaBackground />
 
       {/* ════════ NAVBAR ════════ */}
       <motion.nav

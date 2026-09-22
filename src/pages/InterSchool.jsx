@@ -3,6 +3,7 @@ import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useSp
 import { Sparkles, MapPin, Calendar, Users, Mic, ArrowLeft, Palette, BookOpen, Drama, X, ChevronRight, Magnet, Music } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import CulturalDust from '../components/ui/cultural-dust';
+import { ParallaxMandalaBackground } from '../components/ui/parallax-mandala';
 
 /* ─── Animations ─── */
 const fadeUp = {
@@ -272,6 +273,7 @@ export default function InterSchool() {
       >
         <CulturalDust mode={dark ? "dark" : "light"} speed={zeroG ? 2.5 : 0.8} />
       </motion.div>
+      <ParallaxMandalaBackground />
 
       {/* Navigation */}
       <nav className="relative z-50 pt-5 sm:pt-6 px-4 md:px-8 max-w-7xl mx-auto flex justify-between items-center">
