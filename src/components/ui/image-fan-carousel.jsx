@@ -114,9 +114,16 @@ export const Carousel360 = ({ items }) => {
 
   return (
     <div className="relative w-full flex flex-col items-center justify-center select-none py-4 sm:py-10">
-      <div
+      <motion.div
         ref={containerRef}
-        className="relative w-[96%] sm:w-[92%] max-w-[600px] aspect-[4/3] sm:aspect-[5/3] flex items-center justify-center"
+        drag="x"
+        dragConstraints={{ left: 0, right: 0 }}
+        dragElastic={0.05}
+        onDragEnd={(e, { offset, velocity }) => {
+          if (offset.x < -40 || velocity.x < -200) rotateCarousel("right");
+          else if (offset.x > 40 || velocity.x > 200) rotateCarousel("left");
+        }}
+        className="relative w-[96%] sm:w-[92%] max-w-[600px] aspect-[4/3] sm:aspect-[5/3] flex items-center justify-center cursor-grab active:cursor-grabbing touch-pan-y"
       >
         <div
           className="relative w-full h-full"
@@ -204,7 +211,7 @@ export const Carousel360 = ({ items }) => {
             </motion.div>
           </AnimatePresence>
         </div>
-      </div>
+      </motion.div>
 
       <div className="flex items-center gap-3 mt-6 sm:mt-8 z-30">
         <button
