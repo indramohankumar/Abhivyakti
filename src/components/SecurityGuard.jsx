@@ -35,14 +35,14 @@ export default function SecurityGuard() {
 
     // Optional: Aggressive Debugger Trap
     // When devtools is open, this freezes the page
-    const blockDevTools = setInterval(() => {
-      Function("debugger")();
-    }, 50);
+    // const blockDevTools = setInterval(() => {
+    //   Function("debugger")();
+    // }, 50);
 
     return () => {
       document.removeEventListener('contextmenu', handleContextMenu);
       document.removeEventListener('keydown', handleKeyDown);
-      clearInterval(blockDevTools);
+      // clearInterval(blockDevTools);
     };
   }, []);
 
