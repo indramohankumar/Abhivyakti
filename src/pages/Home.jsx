@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent, useInView } from 'framer-motion';
 import {
   Calendar, MapPin, Sparkles, ArrowRight, ExternalLink,
-  Music, Users, VenetianMask, Shirt, Palette, Utensils,
+  Music, Users, VenetianMask, Shirt, Palette, Utensils, BookOpen,
   Menu, X, Sun, Moon, Star, Trophy, Clock, ChevronUp
 } from 'lucide-react';
 import { Carousel360 } from '../components/ui/image-fan-carousel';
