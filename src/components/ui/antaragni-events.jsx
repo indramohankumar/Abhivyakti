@@ -36,14 +36,14 @@ export function AntaragniEventsGrid({ events }) {
         }
       `}</style>
 
-      <div className="w-full h-[550px] overflow-hidden relative z-10 py-2 sm:py-4">
+      <div className="w-full h-[380px] sm:h-[420px] overflow-hidden relative z-10 py-2 sm:py-4">
         {/* Fading Edges for depth */}
-        <div className="absolute top-0 bottom-0 left-0 w-16 sm:w-32 bg-gradient-to-r from-[#0a0505] to-transparent z-20 pointer-events-none" />
-        <div className="absolute top-0 bottom-0 right-0 w-16 sm:w-32 bg-gradient-to-l from-[#0a0505] to-transparent z-20 pointer-events-none" />
+        <div className="absolute top-0 bottom-0 left-0 w-12 sm:w-24 bg-gradient-to-r from-[#0a0505] to-transparent z-20 pointer-events-none" />
+        <div className="absolute top-0 bottom-0 right-0 w-12 sm:w-24 bg-gradient-to-l from-[#0a0505] to-transparent z-20 pointer-events-none" />
 
         {/* Scrolling Track */}
         <div 
-          className={`flex h-full gap-4 w-max animate-marquee ${isPaused ? 'paused' : ''}`}
+          className={`flex h-full gap-3 sm:gap-4 w-max animate-marquee ${isPaused ? 'paused' : ''}`}
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
@@ -53,7 +53,7 @@ export function AntaragniEventsGrid({ events }) {
             return (
               <motion.div
                 key={index}
-                className="relative overflow-hidden rounded-[2rem] w-[280px] sm:w-[400px] flex-shrink-0 cursor-pointer transition-all duration-500 flex flex-col justify-end group border-[2px] border-white/5 hover:border-[#ff6b35]/40 hover:shadow-[0_0_30px_rgba(255,107,53,0.15)]"
+                className="relative overflow-hidden rounded-3xl w-[260px] sm:w-[320px] flex-shrink-0 cursor-pointer transition-all duration-500 flex flex-col justify-end group border border-white/10 hover:border-[#ff6b35]/60 hover:shadow-[0_0_40px_rgba(255,107,53,0.25)]"
                 onClick={() => setSelectedEvent(event)}
                 layout
               >
@@ -64,38 +64,38 @@ export function AntaragniEventsGrid({ events }) {
                 />
                 
                 {/* Gradient Overlays */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/95 via-[#050505]/60 to-transparent transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/95 via-[#050505]/70 to-transparent transition-opacity duration-500" />
 
                 {/* Content */}
-                <div className="relative z-10 p-5 sm:p-8 flex flex-col h-full justify-end">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2.5 rounded-full backdrop-blur-md bg-[#ff6b35]/20 text-[#ff6b35] shadow-[0_0_15px_rgba(255,107,53,0.5)]">
-                      <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
+                <div className="relative z-10 p-4 sm:p-5 flex flex-col h-full justify-end">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="p-2 rounded-full backdrop-blur-md bg-[#ff6b35]/20 text-[#ff6b35] shadow-[0_0_15px_rgba(255,107,53,0.5)]">
+                      <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
                     </div>
                     
-                    <h3 className="font-serif font-bold tracking-widest text-2xl sm:text-3xl text-white whitespace-nowrap">
+                    <h3 className="font-serif font-bold tracking-widest text-lg sm:text-xl text-white whitespace-nowrap drop-shadow-md">
                       {event.name}
                     </h3>
                   </div>
 
-                  <p className="text-gray-300 text-xs sm:text-sm line-clamp-2 mb-4 font-light tracking-wide">
+                  <p className="text-gray-300 text-[10px] sm:text-xs line-clamp-2 mb-3 font-light tracking-wide">
                     {event.desc}
                   </p>
 
                   {/* Sub-Events Glowing Tags preview */}
                   {event.subEvents && (
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {event.subEvents.slice(0, 3).map((sub, i) => (
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      {event.subEvents.slice(0, 2).map((sub, i) => (
                         <span 
                           key={i}
-                          className="text-[9px] sm:text-[11px] px-3 py-1.5 rounded-full border border-[#ff6b35]/30 bg-[#ff6b35]/10 text-orange-200 backdrop-blur-md whitespace-nowrap shadow-[0_0_10px_rgba(255,107,53,0.1)] font-medium tracking-wide"
+                          className="text-[8px] sm:text-[9px] px-2.5 py-1 rounded-full border border-[#ff6b35]/40 bg-[#ff6b35]/15 text-orange-200 backdrop-blur-md whitespace-nowrap shadow-[0_0_10px_rgba(255,107,53,0.2)] font-semibold tracking-wider"
                         >
                           {sub}
                         </span>
                       ))}
-                      {event.subEvents.length > 3 && (
-                        <span className="text-[9px] sm:text-[11px] px-3 py-1.5 rounded-full border border-white/20 bg-white/5 text-white/70 backdrop-blur-md whitespace-nowrap font-medium">
-                          +{event.subEvents.length - 3}
+                      {event.subEvents.length > 2 && (
+                        <span className="text-[8px] sm:text-[9px] px-2.5 py-1 rounded-full border border-white/20 bg-white/10 text-white/80 backdrop-blur-md whitespace-nowrap font-semibold">
+                          +{event.subEvents.length - 2}
                         </span>
                       )}
                     </div>
@@ -106,9 +106,9 @@ export function AntaragniEventsGrid({ events }) {
                       e.stopPropagation();
                       setSelectedEvent(event);
                     }}
-                    className="inline-flex w-full items-center justify-center gap-2 bg-gradient-to-r from-[#ff6b35] to-[#f24236] text-white px-5 py-3 rounded-full text-xs font-semibold uppercase tracking-[0.2em] transition-all shadow-[0_0_20px_rgba(255,107,53,0.3)] group-hover:scale-105"
+                    className="inline-flex w-full items-center justify-center gap-2 bg-gradient-to-r from-[#ff6b35] to-[#f24236] text-white px-4 py-2.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] transition-all shadow-[0_0_20px_rgba(255,107,53,0.3)] group-hover:scale-[1.02]"
                   >
-                    Explore Events <ChevronRight className="w-4 h-4" />
+                    Explore Events <ChevronRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
               </motion.div>
