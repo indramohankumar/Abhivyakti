@@ -26,7 +26,9 @@ const eventPhotos = [
   '/photos/media_1790088249711.jpg',
   '/photos/media_1790088249718.jpg',
   '/photos/media_1790088249727.jpg',
-  '/photos/media_1790088249734.jpg'
+  '/photos/media_1790088249734.jpg',
+  '/photos/media_1790097857124.jpg',
+  '/photos/media_1790097869892.jpg'
 ];
 
 const PhotoCarousel = () => {
@@ -35,26 +37,34 @@ const PhotoCarousel = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setIndex((prev) => (prev + 1) % eventPhotos.length);
-    }, 3000);
+    }, 4000);
     return () => clearInterval(timer);
   }, []);
 
   return (
-    <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden mt-4 shadow-lg border border-gold/20">
-      <AnimatePresence mode="wait">
+    <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden mt-4 shadow-2xl border-4 border-white/80 group bg-maroon/5">
+      <AnimatePresence mode="sync">
         <motion.img
           key={index}
           src={eventPhotos[index]}
-          initial={{ opacity: 0, scale: 1.05 }}
+          initial={{ opacity: 0, scale: 1.1 }}
           animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.8 }}
+          exit={{ opacity: 0, scale: 0.95 }}
+          transition={{ duration: 1.2, ease: "easeInOut" }}
           className="absolute inset-0 w-full h-full object-cover"
         />
       </AnimatePresence>
-      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80 pointer-events-none" />
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10 p-2 bg-black/30 backdrop-blur-md rounded-full border border-white/20">
         {eventPhotos.map((_, i) => (
-          <div key={i} className={`h-1.5 rounded-full transition-all duration-300 ${i === index ? 'w-4 bg-gold' : 'w-1.5 bg-white/50'}`} />
+          <button
+            key={i}
+            onClick={() => setIndex(i)}
+            aria-label={`Go to slide ${i + 1}`}
+            className={`h-2 rounded-full transition-all duration-500 cursor-pointer ${
+              i === index ? 'w-6 bg-gold shadow-[0_0_8px_rgba(201,168,76,0.9)]' : 'w-2 bg-white/60 hover:bg-white'
+            }`}
+          />
         ))}
       </div>
     </div>
