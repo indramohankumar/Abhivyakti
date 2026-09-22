@@ -36,7 +36,7 @@ const THUMB_SIZE_CLASSES =
 
 // Size classes — active center image
 const CENTER_SIZE_CLASSES =
-  "w-36 h-36 sm:w-48 sm:h-48 md:w-64 md:h-64 lg:w-80 lg:h-80";
+  "w-48 h-64 sm:w-64 sm:h-80 md:w-80 md:h-96 lg:w-[22rem] lg:h-[30rem]";
 
 // Nav button size
 const BUTTON_SIZE_CLASSES = "w-9 h-9 sm:w-10 sm:h-10";
@@ -179,12 +179,12 @@ export const Carousel360 = ({ items }) => {
               />
               
               {/* Beautiful Dark Gradient Overlay & Text */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end p-4 sm:p-5 md:p-6 text-left">
-                 <div className="transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                   <h3 className="font-serif text-white text-lg sm:text-xl md:text-2xl font-bold mb-1 shadow-black drop-shadow-md">
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent flex flex-col justify-end p-5 sm:p-6 md:p-8 text-left transition-opacity duration-300">
+                 <div className="transform translate-y-3 group-hover:translate-y-0 transition-transform duration-500">
+                   <h3 className="font-serif text-gold-gradient text-xl sm:text-3xl md:text-4xl font-extrabold mb-1.5 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                      {activeItem.name}
                    </h3>
-                   <p className="text-white/80 text-xs sm:text-sm font-medium drop-shadow-sm line-clamp-2 mb-2 sm:mb-3">
+                   <p className="text-white/90 text-sm sm:text-base font-medium drop-shadow-md line-clamp-3 mb-4 leading-relaxed">
                      {activeItem.desc}
                    </p>
                    {activeItem.rulesLink && (
@@ -192,11 +192,11 @@ export const Carousel360 = ({ items }) => {
                        href={activeItem.rulesLink} 
                        target="_blank" 
                        rel="noopener noreferrer"
-                       className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/30 rounded-lg text-white text-[10px] sm:text-xs font-semibold uppercase tracking-wider transition-colors"
+                       className="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 bg-gold hover:bg-gold-light text-dark-bg border border-gold-light rounded-xl text-xs sm:text-sm font-bold uppercase tracking-widest transition-all shadow-[0_0_15px_rgba(201,168,76,0.4)] hover:shadow-[0_0_25px_rgba(201,168,76,0.6)] hover:scale-105"
                        onClick={(e) => e.stopPropagation()}
                      >
                        View Rules
-                       <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                      </a>
                    )}
                  </div>
