@@ -3,136 +3,118 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, X, ChevronRight, FileText } from 'lucide-react';
 
 export function AntaragniEventsGrid({ events }) {
-  const [active, setActive] = useState(0);
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const [isPaused, setIsPaused] = useState(false);
 
   // Lock body scroll when modal is open
   useEffect(() => {
     if (selectedEvent) {
       document.body.style.overflow = 'hidden';
+      setIsPaused(true);
     } else {
       document.body.style.overflow = 'unset';
+      setIsPaused(false);
     }
     return () => { document.body.style.overflow = 'unset'; };
   }, [selectedEvent]);
 
+  // Duplicate events multiple times to create a seamless infinite loop
+  const marqueeEvents = [...events, ...events, ...events];
+
   return (
     <>
-      <div className="flex flex-col lg:flex-row w-full h-[600px] gap-3 sm:gap-4 p-2 sm:p-4 font-sans relative z-10">
-        {events.map((event, index) => {
-          const isActive = active === index;
-          const Icon = event.icon;
-          
-          return (
-            <motion.div
-              key={index}
-              className={`relative overflow-hidden rounded-[2rem] cursor-pointer transition-all duration-500 flex flex-col justify-end group ${
-                isActive ? 'lg:flex-[4] flex-[3]' : 'lg:flex-[1] flex-[1]'
-              }`}
-              onClick={() => setActive(index)}
-              onMouseEnter={() => setActive(index)}
-              layout
-            >
-              {/* Background Image */}
-              <div 
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                style={{ backgroundImage: `url(${event.image})` }}
-              />
-              
-              {/* Gradient Overlays for immense depth */}
-              <div className={`absolute inset-0 bg-gradient-to-t transition-opacity duration-500 ${
-                isActive 
-                  ? 'from-[#050505]/95 via-[#050505]/50 to-transparent' 
-                  : 'from-black/90 via-black/60 to-transparent'
-              }`} />
+      <style>{`
+        @keyframes scrollMarquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-33.333333%); } /* Exact 1/3 of total width since we have 3 duplicate sets */
+        }
+        .animate-marquee {
+          animation: scrollMarquee 35s linear infinite;
+        }
+        .animate-marquee.paused {
+          animation-play-state: paused;
+        }
+      `}</style>
 
-              {/* Glowing Border effect on active */}
-              <div className={`absolute inset-0 border-[2px] rounded-[2rem] transition-colors duration-500 ${
-                isActive ? 'border-[#ff6b35]/40 shadow-[inset_0_0_40px_rgba(255,107,53,0.2)]' : 'border-white/5'
-              }`} />
+      <div className="w-full h-[550px] overflow-hidden relative z-10 py-2 sm:py-4">
+        {/* Fading Edges for depth */}
+        <div className="absolute top-0 bottom-0 left-0 w-16 sm:w-32 bg-gradient-to-r from-[#0a0505] to-transparent z-20 pointer-events-none" />
+        <div className="absolute top-0 bottom-0 right-0 w-16 sm:w-32 bg-gradient-to-l from-[#0a0505] to-transparent z-20 pointer-events-none" />
 
-              {/* Content */}
-              <div className="relative z-10 p-4 sm:p-6 lg:p-8 flex flex-col h-full justify-end">
+        {/* Scrolling Track */}
+        <div 
+          className={`flex h-full gap-4 w-max animate-marquee ${isPaused ? 'paused' : ''}`}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          {marqueeEvents.map((event, index) => {
+            const Icon = event.icon;
+            
+            return (
+              <motion.div
+                key={index}
+                className="relative overflow-hidden rounded-[2rem] w-[280px] sm:w-[400px] flex-shrink-0 cursor-pointer transition-all duration-500 flex flex-col justify-end group border-[2px] border-white/5 hover:border-[#ff6b35]/40 hover:shadow-[0_0_30px_rgba(255,107,53,0.15)]"
+                onClick={() => setSelectedEvent(event)}
+                layout
+              >
+                {/* Background Image */}
+                <div 
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                  style={{ backgroundImage: `url(${event.image})` }}
+                />
                 
-                {/* Desktop Vertical Title (when inactive) */}
-                <div className={`absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center pointer-events-none transition-opacity duration-300 ${isActive ? 'opacity-0' : 'opacity-100 hidden lg:flex'}`}>
-                  <h3 className="text-white/40 font-bold uppercase tracking-[0.3em] whitespace-nowrap -rotate-90 text-lg">
-                    {event.name.split('·')[0].trim()}
-                  </h3>
-                </div>
+                {/* Gradient Overlays */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/95 via-[#050505]/60 to-transparent transition-opacity duration-500" />
 
-                <div className="flex items-center gap-3 mb-2 sm:mb-4">
-                  <div className={`p-2.5 rounded-full backdrop-blur-md transition-all duration-300 ${
-                    isActive ? 'bg-[#ff6b35]/20 text-[#ff6b35] shadow-[0_0_15px_rgba(255,107,53,0.5)]' : 'bg-black/50 text-white/50'
-                  }`}>
-                    <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
+                {/* Content */}
+                <div className="relative z-10 p-5 sm:p-8 flex flex-col h-full justify-end">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="p-2.5 rounded-full backdrop-blur-md bg-[#ff6b35]/20 text-[#ff6b35] shadow-[0_0_15px_rgba(255,107,53,0.5)]">
+                      <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
+                    </div>
+                    
+                    <h3 className="font-serif font-bold tracking-widest text-2xl sm:text-3xl text-white whitespace-nowrap">
+                      {event.name}
+                    </h3>
                   </div>
-                  
-                  <motion.h3 
-                    layout
-                    className={`font-serif font-bold tracking-widest ${
-                      isActive ? 'text-2xl sm:text-3xl text-white' : 'text-sm sm:text-lg text-white/70 lg:hidden'
-                    } whitespace-nowrap`}
-                  >
-                    {event.name}
-                  </motion.h3>
-                </div>
 
-                <AnimatePresence mode="popLayout">
-                  {isActive && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 10 }}
-                      transition={{ duration: 0.3, delay: 0.1 }}
-                      className="overflow-hidden flex flex-col items-start"
-                    >
-                      <p className="text-gray-300 text-xs sm:text-sm md:text-base line-clamp-1 mb-3 font-light tracking-wide max-w-md">
-                        {event.desc}
-                      </p>
+                  <p className="text-gray-300 text-xs sm:text-sm line-clamp-2 mb-4 font-light tracking-wide">
+                    {event.desc}
+                  </p>
 
-                      {/* Sub-Events Glowing Tags preview */}
-                      {event.subEvents && (
-                        <div className="flex flex-wrap gap-2 mb-5 max-w-lg">
-                          {event.subEvents.slice(0, 3).map((sub, i) => (
-                            <motion.span 
-                              key={i}
-                              initial={{ opacity: 0, scale: 0.8 }}
-                              animate={{ opacity: 1, scale: 1 }}
-                              transition={{ delay: 0.15 + (i * 0.05) }}
-                              className="text-[9px] sm:text-[11px] px-3 py-1.5 rounded-full border border-[#ff6b35]/30 bg-[#ff6b35]/10 text-orange-200 backdrop-blur-md whitespace-nowrap shadow-[0_0_10px_rgba(255,107,53,0.1)] font-medium tracking-wide"
-                            >
-                              {sub}
-                            </motion.span>
-                          ))}
-                          {event.subEvents.length > 3 && (
-                            <motion.span 
-                              initial={{ opacity: 0, scale: 0.8 }}
-                              animate={{ opacity: 1, scale: 1 }}
-                              className="text-[9px] sm:text-[11px] px-3 py-1.5 rounded-full border border-white/20 bg-white/5 text-white/70 backdrop-blur-md whitespace-nowrap font-medium"
-                            >
-                              +{event.subEvents.length - 3} More
-                            </motion.span>
-                          )}
-                        </div>
+                  {/* Sub-Events Glowing Tags preview */}
+                  {event.subEvents && (
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {event.subEvents.slice(0, 3).map((sub, i) => (
+                        <span 
+                          key={i}
+                          className="text-[9px] sm:text-[11px] px-3 py-1.5 rounded-full border border-[#ff6b35]/30 bg-[#ff6b35]/10 text-orange-200 backdrop-blur-md whitespace-nowrap shadow-[0_0_10px_rgba(255,107,53,0.1)] font-medium tracking-wide"
+                        >
+                          {sub}
+                        </span>
+                      ))}
+                      {event.subEvents.length > 3 && (
+                        <span className="text-[9px] sm:text-[11px] px-3 py-1.5 rounded-full border border-white/20 bg-white/5 text-white/70 backdrop-blur-md whitespace-nowrap font-medium">
+                          +{event.subEvents.length - 3}
+                        </span>
                       )}
-
-                      <button 
-                        onClick={(e) => {
-                          e.stopPropagation(); // Prevent triggering setActive
-                          setSelectedEvent(event);
-                        }}
-                        className="inline-flex items-center gap-2 bg-gradient-to-r from-[#ff6b35] to-[#f24236] hover:from-[#f24236] hover:to-[#ff6b35] text-white px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-[0.2em] transition-all shadow-[0_0_20px_rgba(255,107,53,0.4)] hover:scale-105"
-                      >
-                        Explore Events <ChevronRight className="w-4 h-4" />
-                      </button>
-                    </motion.div>
+                    </div>
                   )}
-                </AnimatePresence>
-              </div>
-            </motion.div>
-          );
-        })}
+
+                  <button 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedEvent(event);
+                    }}
+                    className="inline-flex w-full items-center justify-center gap-2 bg-gradient-to-r from-[#ff6b35] to-[#f24236] text-white px-5 py-3 rounded-full text-xs font-semibold uppercase tracking-[0.2em] transition-all shadow-[0_0_20px_rgba(255,107,53,0.3)] group-hover:scale-105"
+                  >
+                    Explore Events <ChevronRight className="w-4 h-4" />
+                  </button>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
 
       {/* FULL SCREEN MODAL ("SEPARATE PAGE") */}
