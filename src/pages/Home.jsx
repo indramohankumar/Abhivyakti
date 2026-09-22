@@ -75,52 +75,52 @@ const PhotoCarousel = () => {
 
 const events = [
   { 
-    name: 'Music Events', 
-    desc: 'Synchronicity (Rock Band), Antaragni Idol, A cappella & Unplugged', 
+    name: 'Music', 
+    desc: 'Indian Classical, Semi-Classical, Sufi, Indian Folk, Devotional, Ghazal', 
     icon: Music, color: 'from-saffron to-amber-500', 
     image: 'https://media.gettyimages.com/id/1314574070/photo/indian-musician-zakir-hussain-plays-tabla-as-he-performs-at-a-benefit-concert-in-celebration.jpg?s=612x612&w=0&k=20&c=aSLEAXpLnf8pg2QThlp-PN67NqigErOp4HHBJPmpRwo=', 
     rulesLink: 'https://docs.google.com/document/d/1VBvLQH9djme__Lp4jUQhwt6ucDpfdZI9/edit?usp=drive_link&ouid=110613590784742549939&rtpof=true&sd=true',
-    subEvents: ['Synchronicity (Rock Band)', 'Antaragni Idol (Solo Singing)', 'A cappella (Group)', 'Unplugged (Acoustic)']
+    subEvents: ['Indian Classical', 'Semi-Classical', 'Sufi', 'Indian Folk', 'Devotional', 'Ghazal']
   },
   { 
-    name: 'Dance Events', 
-    desc: 'Jitterbug (Western Group), Tour de Force (Street Dance) & Estrellas', 
+    name: 'Dance', 
+    desc: 'Classical, Semi-Classical, Indian Folk', 
     icon: Users, color: 'from-quantum-pink to-rose-500', 
     image: 'https://images.unsplash.com/photo-1764014792668-bc484714744f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGNsYXNzaWNhbCUyMGRhbmNlfGVufDB8fDB8fHww', 
     rulesLink: 'https://docs.google.com/document/d/1kTYN4YAfi4wZLbi0jXVPfSnWy3AGj0bq/edit?usp=drive_link&ouid=110613590784742549939&rtpof=true&sd=true',
-    subEvents: ['Jitterbug (Western Group)', 'Tour de Force (Street Dance)', 'Estrellas (Solo Dance)', 'Classical Solo']
+    subEvents: ['Classical', 'Semi-Classical', 'Indian Folk']
   },
   { 
-    name: 'Drama & Theatre', 
-    desc: 'Nukkad (Street Play) & Stage Play Competitions', 
+    name: 'Theatre', 
+    desc: 'Indian Mythology-Based Drama', 
     icon: VenetianMask, color: 'from-deep-red to-red-700', 
     image: 'https://media.gettyimages.com/id/1198572409/photo/dancers-perform-classical-dance-at-khajuraho-dance-festival-india.jpg?s=2048x2048&w=gi&k=20&c=u2I1ceuU3KFBrfBWNNYQiO2hmZQxBSK075CS3umQUoQ=', 
     rulesLink: 'https://docs.google.com/document/d/1Up1NfeKEmbHRGvk1ebK3Y3b9DgSlfKCl/edit?usp=drive_link&ouid=110613590784742549939&rtpof=true&sd=true',
-    subEvents: ['Nukkad (Street Play)', 'Stage Play', 'Pair on Stage', 'Mono Act']
+    subEvents: ['Indian Mythology-Based Drama']
   },
   { 
-    name: 'Ritambhara', 
-    desc: 'The Premier Fashion Show Competition', 
+    name: 'Fashion', 
+    desc: 'Fashion Show – Indian Ethnic Wear', 
     icon: Shirt, color: 'from-quantum-purple to-fuchsia-600', 
     image: 'https://media.gettyimages.com/id/2287626362/photo/delhi-india-models-walk-the-runway-during-the-house-of-masaba-show-at-india-couture-week-2026.jpg?s=612x612&w=0&k=20&c=WxbMRhqopDZfljOvv5AAaR1O7KEZwvSboR-zXerDA7E=', 
     rulesLink: 'https://docs.google.com/document/d/1Up1NfeKEmbHRGvk1ebK3Y3b9DgSlfKCl/edit?usp=drive_link&ouid=110613590784742549939&rtpof=true&sd=true',
-    subEvents: ['Ritambhara Prelims', 'Ritambhara Finals (Fashion Show)', 'Mr. & Ms. Antaragni']
+    subEvents: ['Fashion Show – Indian Ethnic Wear']
   },
   { 
     name: 'Fine Arts', 
-    desc: 'Drishtikon, Battle of Art & Mandala Art', 
+    desc: 'Rangoli', 
     icon: Palette, color: 'from-emerald-600 to-green-500', 
     image: 'https://www.shutterstock.com/image-photo/intricate-traditional-handdrawn-kalamkari-peacock-600w-2460598057.jpg', 
     rulesLink: 'https://docs.google.com/document/d/1p7WUPCg8X38o5GBbRvRXxVpvxlfYU7x4/edit?usp=drive_link&ouid=110613590784742549939&rtpof=true&sd=true',
-    subEvents: ['Drishtikon', 'Battle of Art', 'Mandala Art', 'Live Sketching']
+    subEvents: ['Rangoli']
   },
   { 
-    name: 'Literary & Quizzes', 
-    desc: 'Parliamentary Debate, Kavi Sammelan & Mela Quiz', 
-    icon: BookOpen, color: 'from-gold to-burnt-orange', 
+    name: 'Indian Cuisine', 
+    desc: 'Lost Recipes – Inter-University Culinary Competition', 
+    icon: Utensils, color: 'from-gold to-burnt-orange', 
     image: 'https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&q=80&w=800', 
     rulesLink: 'https://docs.google.com/document/d/13uCjopZokuFAOhwk73wHC2EBSj2sjJiP/edit?usp=drive_link&ouid=110613590784742549939&rtpof=true&sd=true',
-    subEvents: ['Parliamentary Debate', 'Kavi Sammelan', 'Mela Quiz', 'Creative Writing', 'Poetry Slam']
+    subEvents: ['Inter-University Culinary Competition']
   },
 ];
 
