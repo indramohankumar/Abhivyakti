@@ -240,6 +240,12 @@ export default function Home() {
   const [showBottomCTA, setShowBottomCTA] = useState(false);
   const dark = false;
 
+  const journeyRef = useRef(null);
+  const { scrollYProgress: journeyScroll } = useScroll({
+    target: journeyRef,
+    offset: ["start center", "end center"]
+  });
+
   /* ─── Countdown Timer ─── */
   const EVENT_START = new Date('2026-10-22T09:00:00+05:30').getTime();
   const EVENT_END = new Date('2026-10-24T23:59:59+05:30').getTime();
@@ -572,27 +578,23 @@ export default function Home() {
             <GoldLine />
           </div>
 
-          <div className="relative max-w-4xl mx-auto">
+          <div ref={journeyRef} className="relative max-w-4xl mx-auto py-4 sm:py-10">
 
             {/* ── Flowing golden line (desktop) ── */}
-            <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 hidden sm:block pointer-events-none">
-              <div className="absolute inset-0 w-[3px] bg-gradient-to-b from-transparent via-gold/50 to-transparent rounded-full"></div>
+            <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 hidden sm:block pointer-events-none w-[4px]">
+              <div className="absolute inset-0 bg-gold/10 rounded-full"></div>
               <motion.div
-                className="absolute w-[3px] rounded-full"
-                style={{ left: 0, height: '80px', background: 'linear-gradient(to bottom, transparent, #E8D48B, transparent)' }}
-                animate={{ top: ['-10%', '110%'] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute inset-0 bg-gradient-to-b from-gold-light via-gold to-gold-dark rounded-full origin-top shadow-[0_0_20px_rgba(201,168,76,0.8)]"
+                style={{ scaleY: journeyScroll }}
               />
             </div>
 
             {/* ── Flowing golden line (mobile) ── */}
-            <div className="absolute left-5 top-0 bottom-0 sm:hidden pointer-events-none">
-              <div className="absolute inset-0 w-[2px] bg-gradient-to-b from-transparent via-gold/40 to-transparent"></div>
+            <div className="absolute left-[22px] top-0 bottom-0 sm:hidden pointer-events-none w-[3px]">
+              <div className="absolute inset-0 bg-gold/10 rounded-full"></div>
               <motion.div
-                className="absolute w-[2px] rounded-full"
-                style={{ left: 0, height: '50px', background: 'linear-gradient(to bottom, transparent, #E8D48B, transparent)' }}
-                animate={{ top: ['-5%', '105%'] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute inset-0 bg-gradient-to-b from-gold-light via-gold to-gold-dark rounded-full origin-top shadow-[0_0_15px_rgba(201,168,76,0.6)]"
+                style={{ scaleY: journeyScroll }}
               />
             </div>
 
@@ -600,14 +602,14 @@ export default function Home() {
 
               {/* ── DAY 1 · Inter-School ── */}
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.6 }}
+                initial={{ opacity: 0, scale: 0.95, y: 40 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: true, margin: "-200px" }}
+                transition={{ duration: 0.7, ease: "easeOut" }}
                 className="relative flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-12 pl-14 sm:pl-0"
               >
                 <div className="sm:w-[46%] sm:text-right">
-                  <span className="inline-block px-3 py-1 bg-gold/10 text-gold text-[11px] font-bold uppercase tracking-widest rounded-full mb-3 border border-gold/20">Day 1 · Oct 22nd</span>
+                  <span className="inline-block px-3 py-1 bg-gold/10 text-gold text-[11px] font-bold uppercase tracking-widest rounded-full mb-3 border border-gold/20 shadow-sm shadow-gold/5">Day 1 · Oct 22nd</span>
                   <h3 className={`font-serif text-2xl sm:text-3xl font-black mb-2 ${dark ? 'text-white' : 'text-deep-red'}`}>Inter-School Events</h3>
                   <p className={`text-sm leading-relaxed max-w-xs sm:ml-auto mb-4 ${dark ? 'text-gray-400' : 'text-gray-700'}`}>
                     Young minds compete in Declamation, Fine Arts, Story Telling & Skit.
@@ -623,28 +625,29 @@ export default function Home() {
                 </div>
 
                 {/* Node */}
-                <div className="absolute left-5 sm:left-1/2 -translate-x-1/2 top-1 sm:top-1/2 sm:-translate-y-1/2 z-20">
-                  <div className="w-8 h-8 rounded-full bg-dark-bg border-[3px] border-gold flex items-center justify-center shadow-[0_0_20px_rgba(201,168,76,0.5)]">
-                    <div className="w-2.5 h-2.5 bg-gold rounded-full animate-pulse"></div>
+                <div className="absolute left-5 sm:left-1/2 -translate-x-1/2 top-2 sm:top-1/2 sm:-translate-y-1/2 z-20">
+                  <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-dark-bg border-[3px] border-gold flex items-center justify-center shadow-[0_0_20px_rgba(201,168,76,0.8)] backdrop-blur-md">
+                    <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gold rounded-full animate-ping absolute"></div>
+                    <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gold rounded-full"></div>
                   </div>
                 </div>
 
                 {/* Poster Image */}
-                <div className="w-[85%] max-w-[240px] sm:max-w-none sm:w-[46%] mt-2 sm:mt-0">
-                  <TiltPoster src="/poster-school.png" alt="Inter-School Events Poster" glowColor="rgba(201,168,76,0.25)" borderColor="border-gold/15" />
+                <div className="w-[85%] max-w-[240px] sm:max-w-none sm:w-[46%] mt-2 sm:mt-0 transition-transform duration-500 hover:scale-[1.02]">
+                  <TiltPoster src="/poster-school.png" alt="Inter-School Events Poster" glowColor="rgba(201,168,76,0.3)" borderColor="border-gold/30" />
                 </div>
               </motion.div>
 
               {/* ── DAY 2 & 3 · Inter-University ── */}
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.6 }}
+                initial={{ opacity: 0, scale: 0.95, y: 40 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: true, margin: "-200px" }}
+                transition={{ duration: 0.7, ease: "easeOut" }}
                 className="relative flex flex-col sm:flex-row-reverse items-start sm:items-center gap-6 sm:gap-12 pl-14 sm:pl-0"
               >
                 <div className="sm:w-[46%]">
-                  <span className="inline-block px-3 py-1 bg-quantum-pink/10 text-quantum-pink text-[11px] font-bold uppercase tracking-widest rounded-full mb-3 border border-quantum-pink/20">Day 2 & 3 · Oct 23rd-24th</span>
+                  <span className="inline-block px-3 py-1 bg-quantum-pink/10 text-quantum-pink text-[11px] font-bold uppercase tracking-widest rounded-full mb-3 border border-quantum-pink/20 shadow-sm shadow-quantum-pink/5">Day 2 & 3 · Oct 23rd-24th</span>
                   <h3 className={`font-serif text-2xl sm:text-3xl font-black mb-2 ${dark ? 'text-white' : 'text-deep-red'}`}>Inter-University Events</h3>
                   <p className={`text-sm leading-relaxed max-w-xs mb-4 ${dark ? 'text-gray-400' : 'text-gray-700'}`}>
                     The grand stage — universities from across India, six mega categories.
@@ -660,17 +663,19 @@ export default function Home() {
                 </div>
 
                 {/* Node */}
-                <div className="absolute left-5 sm:left-1/2 -translate-x-1/2 top-1 sm:top-1/2 sm:-translate-y-1/2 z-20">
-                  <div className="w-8 h-8 rounded-full bg-dark-bg border-[3px] border-quantum-pink flex items-center justify-center shadow-[0_0_20px_rgba(234,21,136,0.5)]">
-                    <div className="w-2.5 h-2.5 bg-quantum-pink rounded-full animate-pulse"></div>
+                <div className="absolute left-5 sm:left-1/2 -translate-x-1/2 top-2 sm:top-1/2 sm:-translate-y-1/2 z-20">
+                  <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-dark-bg border-[3px] border-quantum-pink flex items-center justify-center shadow-[0_0_20px_rgba(234,21,136,0.8)] backdrop-blur-md">
+                    <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-quantum-pink rounded-full animate-ping absolute"></div>
+                    <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-quantum-pink rounded-full"></div>
                   </div>
                 </div>
 
                 {/* Poster Image */}
-                <div className="w-[85%] max-w-[240px] sm:max-w-none sm:w-[46%] mt-2 sm:mt-0">
-                  <TiltPoster src="/poster-university.png" alt="Inter-University Events Poster" glowColor="rgba(234,21,136,0.2)" borderColor="border-quantum-pink/15" />
+                <div className="w-[85%] max-w-[240px] sm:max-w-none sm:w-[46%] mt-2 sm:mt-0 transition-transform duration-500 hover:scale-[1.02]">
+                  <TiltPoster src="/poster-university.png" alt="Inter-University Events Poster" glowColor="rgba(234,21,136,0.3)" borderColor="border-quantum-pink/30" />
                 </div>
               </motion.div>
+
 
             </div>
           </div>
