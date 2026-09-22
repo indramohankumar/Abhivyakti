@@ -416,7 +416,9 @@ export default function InterSchool() {
             <div className="relative group">
               <div className="absolute -inset-1.5 bg-gradient-to-r from-gold via-gold-light to-gold-dark rounded-full blur-md opacity-40 group-hover:opacity-70 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
               <a 
-                href="#" 
+                href="https://docs.google.com/forms/d/e/1FAIpQLSemUbsPQUTjTPb3UQSwWWj2zvrEq70acv8z_iunsS3cIF2qbA/viewform?usp=header"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="relative inline-flex items-center gap-3 px-12 py-5 bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-bg rounded-full font-extrabold text-xl md:text-2xl uppercase tracking-widest hover:scale-105 transition-all duration-300 shadow-xl overflow-hidden"
               >
                 <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/30 to-transparent"></div>
