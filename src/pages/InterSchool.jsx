@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
-import { Sparkles, MapPin, Calendar, Users, Mic, ArrowLeft, Palette, BookOpen, Drama, X, ChevronRight, Magnet } from 'lucide-react';
+import { Sparkles, MapPin, Calendar, Users, Mic, ArrowLeft, Palette, BookOpen, Drama, X, ChevronRight, Magnet, Music } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import ConstellationField from '../components/ui/constellation-field';
+import CulturalDust from '../components/ui/cultural-dust';
 
 /* ─── Animations ─── */
 const fadeUp = {
@@ -241,9 +241,15 @@ export default function InterSchool() {
   const yParallaxElements = useTransform(scrollYProgress, [0, 1], [0, -300]); // Moves up faster
   const yParallaxSlow = useTransform(scrollYProgress, [0, 1], [0, 200]); // Inverse drift
 
+  const dark = false;
+
   useEffect(() => {
-    document.documentElement.classList.add('dark');
-  }, []);
+    if (dark) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [dark]);
 
   useEffect(() => {
     const handleEsc = (e) => { if (e.key === 'Escape') setActiveModal(null); };
@@ -256,40 +262,48 @@ export default function InterSchool() {
   }, [activeModal]);
 
   return (
-    <div className="min-h-screen font-sans overflow-x-hidden transition-colors duration-500 bg-cultural-dark text-gray-200">
+    <div className={`min-h-screen font-sans overflow-x-hidden transition-colors duration-500 ${dark ? 'bg-cultural-dark text-gray-200' : 'bg-cultural text-gray-800'}`}>
       
       {/* ZeroG Background Effect */}
       <motion.div 
-        animate={{ opacity: zeroG ? 0.3 : 0.85 }} 
+        animate={{ opacity: zeroG ? 0.3 : 1 }} 
         transition={{ duration: 1 }}
         className="fixed inset-0 z-0 pointer-events-none"
       >
-        <ConstellationField mode="dark" speed={zeroG ? 3 : 1} opacity={1} />
+        <CulturalDust mode={dark ? "dark" : "light"} speed={zeroG ? 2.5 : 0.8} />
       </motion.div>
 
       {/* Navigation */}
       <nav className="relative z-50 pt-5 sm:pt-6 px-4 md:px-8 max-w-7xl mx-auto flex justify-between items-center">
         <div className="flex items-center gap-2 sm:gap-4">
-          <Link to="/" className="flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-0 sm:py-0 sm:bg-transparent bg-white/5 border border-white/10 sm:border-none rounded-lg text-gold hover:text-gold-light transition-colors">
+          <Link to="/" className={`flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-0 sm:py-0 sm:bg-transparent border sm:border-none rounded-lg transition-colors ${dark ? 'bg-white/5 border-white/10 text-gold hover:text-gold-light' : 'bg-maroon/5 border-maroon/10 text-maroon hover:text-deep-red'}`}>
             <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
             <span className="font-semibold tracking-wide uppercase text-[10px] sm:text-sm hidden sm:inline">Back to Home</span>
             <span className="font-semibold tracking-wide uppercase text-[10px] sm:hidden">Home</span>
           </Link>
           
-          <div className="w-px h-6 bg-white/20 hidden sm:block"></div>
+          <div className={`w-px h-6 hidden sm:block ${dark ? 'bg-white/20' : 'bg-gray-300'}`}></div>
           
           {/* ── Zero-G Toggle ── */}
           <button 
             onClick={() => setZeroG(!zeroG)}
             title="Toggle Anti-Gravity"
-            className={`flex items-center justify-center w-8 h-8 rounded-full transition-all duration-300 ${zeroG ? 'bg-quantum-purple text-white shadow-[0_0_15px_rgba(168,85,247,0.8)] border border-quantum-purple' : 'bg-white/5 text-gray-400 border border-white/10 hover:text-white hover:bg-white/10'}`}
+            className={`flex items-center justify-center w-8 h-8 rounded-full transition-all duration-300 ${
+              zeroG 
+                ? 'bg-quantum-purple text-white shadow-[0_0_15px_rgba(168,85,247,0.8)] border border-quantum-purple' 
+                : dark 
+                  ? 'bg-white/5 text-gray-400 border border-white/10 hover:text-white hover:bg-white/10'
+                  : 'bg-maroon/5 text-maroon border border-maroon/20 hover:bg-maroon/10'
+            }`}
           >
             <Magnet className={`w-4 h-4 ${zeroG ? 'animate-pulse' : ''}`} />
           </button>
         </div>
         
         <div className="flex items-center gap-2 sm:gap-2.5">
-          <img src="/logo.png" alt="Quantum University" className="h-7 sm:h-8 md:h-9 object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] brightness-110" />
+          <img src="/logo.png" alt="Quantum University" className={`h-7 sm:h-8 md:h-9 object-contain ${dark ? 'drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] brightness-110' : 'mix-blend-multiply'}`} />
+          <div className={`w-px h-6 sm:h-8 mx-1 ${dark ? 'bg-white/20' : 'bg-gray-300'}`}></div>
+          <img src="/iks-logo.png" alt="IKS Logo" className={`h-7 sm:h-8 md:h-9 object-contain mix-blend-multiply`} />
         </div>
       </nav>
 
@@ -316,7 +330,7 @@ export default function InterSchool() {
             variants={stagger} 
             className="text-center space-y-4 pt-10 relative z-20"
           >
-            <motion.div variants={fadeUp} className="inline-block px-4 py-1.5 rounded-full bg-gold/10 border border-gold/20 text-gold text-xs font-bold tracking-widest uppercase mb-4">
+            <motion.div variants={fadeUp} className={`inline-block px-4 py-1.5 rounded-full border text-xs font-bold tracking-widest uppercase mb-4 ${dark ? 'bg-gold/10 border-gold/20 text-gold' : 'bg-maroon/10 border-maroon/20 text-maroon'}`}>
               Oct, 22nd 2026
             </motion.div>
             
@@ -325,16 +339,19 @@ export default function InterSchool() {
               variants={fadeUp} 
               animate={zeroG ? { y: [0, -10, 5, 0], rotateZ: [0, 1, -1, 0] } : {}}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="font-serif text-4xl md:text-6xl font-extrabold text-gold-gradient drop-shadow-[0_10px_20px_rgba(201,168,76,0.3)] py-3 leading-normal md:leading-normal"
+              className={`font-hindi text-4xl md:text-6xl lg:text-7xl font-extrabold py-3 leading-normal md:leading-normal ${dark ? 'text-gold-gradient drop-shadow-[0_10px_20px_rgba(201,168,76,0.3)]' : 'text-maroon drop-shadow-sm'}`}
             >
-              Expressions of Bharat
+              अभिव्यक्ति
             </motion.h1>
             
-            <motion.h2 variants={fadeUp} className="font-serif text-xl md:text-2xl font-bold text-white tracking-wide">
-              Parampara, Sanskriti & Srijan
+            <motion.h2 variants={fadeUp} className={`font-serif text-xl md:text-3xl font-black tracking-wide ${dark ? 'text-white' : 'text-deep-red'}`}>
+              Expressions of Bharat
             </motion.h2>
+            <motion.h3 variants={fadeUp} className={`text-base md:text-xl font-bold tracking-wide mt-2 ${dark ? 'text-gray-300' : 'text-gray-700'}`}>
+              Parampara, Sanskriti & Srijan
+            </motion.h3>
             <GoldLine />
-            <motion.p variants={fadeUp} className="max-w-2xl mx-auto text-gray-400 text-sm md:text-base leading-relaxed">
+            <motion.p variants={fadeUp} className={`max-w-2xl mx-auto text-sm md:text-base leading-relaxed ${dark ? 'text-gray-400' : 'text-gray-600'}`}>
               Quantum University invites your participation in The Inter-School Events. Join us for a celebration of our heritage, culture, and creativity.
             </motion.p>
           </motion.div>
@@ -351,17 +368,17 @@ export default function InterSchool() {
                 const Icon = event.icon;
                 return (
                   <MagneticCard key={event.id} zeroG={zeroG}>
-                    <div className={`relative h-full p-8 rounded-3xl border border-dark-border bg-dark-card/60 backdrop-blur-md overflow-hidden group flex flex-col shadow-lg transition-colors duration-500 hover:border-gold/30`}>
+                    <div className={`relative h-full p-8 rounded-3xl border backdrop-blur-md overflow-hidden group flex flex-col shadow-lg transition-colors duration-500 hover:border-gold/30 ${dark ? 'bg-dark-card/60 border-dark-border' : 'bg-white/70 border-maroon/20 hover:border-maroon/50 shadow-maroon/5'}`}>
                       <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent ${event.gradientVia} to-transparent opacity-30 group-hover:opacity-100 transition-opacity`}></div>
                       
                       <div className="flex-1 pointer-events-none">
                         <Icon className={`w-10 h-10 mb-6 ${event.textColor} group-hover:scale-110 transition-transform duration-300`} />
-                        <h3 className="font-serif text-2xl font-bold text-white mb-2">{event.title}</h3>
-                        <p className="text-gray-400 text-sm leading-relaxed mb-6 font-medium">
+                        <h3 className={`font-serif text-2xl font-bold mb-2 ${dark ? 'text-white' : 'text-maroon'}`}>{event.title}</h3>
+                        <p className={`text-sm leading-relaxed mb-6 font-medium ${dark ? 'text-gray-400' : 'text-gray-600'}`}>
                           Theme: "{event.theme}"
                         </p>
                         
-                        <ul className="space-y-2 text-sm text-gray-300 mb-8">
+                        <ul className={`space-y-2 text-sm mb-8 ${dark ? 'text-gray-300' : 'text-gray-700'}`}>
                           {event.shortDetails.map((detail, idx) => (
                             <li key={idx} className="flex items-start gap-2">
                               <div className={`w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 ${event.colorClass}`}></div>
@@ -373,7 +390,11 @@ export default function InterSchool() {
 
                       <button 
                         onClick={() => setActiveModal(event)}
-                        className={`mt-auto inline-flex items-center justify-between w-full px-5 py-3 rounded-xl border border-white/5 bg-white/5 hover:bg-white/10 transition-colors ${event.textColor} text-sm font-bold tracking-wide pointer-events-auto`}
+                        className={`mt-auto inline-flex items-center justify-between w-full px-5 py-3 rounded-xl border transition-colors text-sm font-bold tracking-wide pointer-events-auto ${
+                          dark 
+                            ? `border-white/5 bg-white/5 hover:bg-white/10 ${event.textColor}` 
+                            : `border-maroon/10 bg-maroon/5 hover:bg-maroon/10 text-maroon`
+                        }`}
                       >
                         <span>View Rules & Topics</span>
                         <ChevronRight className="w-4 h-4" />
@@ -425,22 +446,22 @@ export default function InterSchool() {
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className={`relative w-full max-w-2xl max-h-[85vh] overflow-hidden flex flex-col bg-dark-card border border-dark-border rounded-2xl shadow-2xl`}
+              className={`relative w-full max-w-2xl max-h-[85vh] overflow-hidden flex flex-col rounded-2xl shadow-2xl ${dark ? 'bg-dark-card border border-dark-border' : 'bg-cream border border-maroon/20'}`}
             >
               <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent ${activeModal.gradientVia} to-transparent`}></div>
               
               {/* Modal Header */}
-              <div className="flex items-center justify-between p-6 border-b border-white/10 shrink-0">
+              <div className={`flex items-center justify-between p-6 border-b shrink-0 ${dark ? 'border-white/10' : 'border-maroon/10'}`}>
                 <div className="flex items-center gap-3">
-                  <activeModal.icon className={`w-6 h-6 ${activeModal.textColor}`} />
+                  <activeModal.icon className={`w-6 h-6 ${dark ? activeModal.textColor : 'text-maroon'}`} />
                   <div>
-                    <h2 className="font-serif text-xl font-bold text-white leading-tight">{activeModal.title}</h2>
-                    <p className={`text-xs mt-1 ${activeModal.textColor} font-medium`}>{activeModal.theme}</p>
+                    <h2 className={`font-serif text-xl font-bold leading-tight ${dark ? 'text-white' : 'text-deep-red'}`}>{activeModal.title}</h2>
+                    <p className={`text-xs mt-1 font-medium ${dark ? activeModal.textColor : 'text-maroon'}`}>{activeModal.theme}</p>
                   </div>
                 </div>
                 <button 
                   onClick={() => setActiveModal(null)}
-                  className="p-2 rounded-full hover:bg-white/10 text-gray-400 hover:text-white transition-colors"
+                  className={`p-2 rounded-full transition-colors ${dark ? 'hover:bg-white/10 text-gray-400 hover:text-white' : 'hover:bg-maroon/10 text-gray-500 hover:text-maroon'}`}
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -451,14 +472,14 @@ export default function InterSchool() {
                 <div className="space-y-8">
                   {/* Topics Section */}
                   <div>
-                    <h4 className="text-white font-bold text-lg mb-4 flex items-center gap-2">
-                      <div className={`w-1 h-5 rounded-full ${activeModal.colorClass}`}></div>
+                    <h4 className={`font-bold text-lg mb-4 flex items-center gap-2 ${dark ? 'text-white' : 'text-maroon'}`}>
+                      <div className={`w-1 h-5 rounded-full ${dark ? activeModal.colorClass : 'bg-maroon'}`}></div>
                       Topics & Inspiration
                     </h4>
                     <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {activeModal.topics.map((topic, i) => (
-                        <li key={i} className="flex items-start gap-2.5 text-gray-300 text-sm bg-white/[0.02] p-3 rounded-lg border border-white/5">
-                          <div className={`w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 ${activeModal.colorClass} opacity-70`}></div>
+                        <li key={i} className={`flex items-start gap-2.5 text-sm p-3 rounded-lg border ${dark ? 'text-gray-300 bg-white/[0.02] border-white/5' : 'text-gray-700 bg-maroon/5 border-maroon/10'}`}>
+                          <div className={`w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 ${dark ? activeModal.colorClass : 'bg-maroon'} opacity-70`}></div>
                           <span className="leading-snug">{topic}</span>
                         </li>
                       ))}
@@ -467,14 +488,14 @@ export default function InterSchool() {
 
                   {/* Rules Section */}
                   <div>
-                    <h4 className="text-white font-bold text-lg mb-4 flex items-center gap-2">
-                      <div className={`w-1 h-5 rounded-full ${activeModal.colorClass}`}></div>
+                    <h4 className={`font-bold text-lg mb-4 flex items-center gap-2 ${dark ? 'text-white' : 'text-maroon'}`}>
+                      <div className={`w-1 h-5 rounded-full ${dark ? activeModal.colorClass : 'bg-maroon'}`}></div>
                       Event Rules
                     </h4>
                     <ul className="space-y-3">
                       {activeModal.rules.map((rule, i) => (
-                        <li key={i} className="flex items-start gap-3 text-gray-300 text-sm">
-                          <span className={`font-mono text-xs mt-0.5 px-1.5 py-0.5 rounded bg-white/10 ${activeModal.textColor}`}>
+                        <li key={i} className={`flex items-start gap-3 text-sm ${dark ? 'text-gray-300' : 'text-gray-700'}`}>
+                          <span className={`font-mono text-xs mt-0.5 px-1.5 py-0.5 rounded ${dark ? `bg-white/10 ${activeModal.textColor}` : 'bg-maroon/10 text-maroon'}`}>
                             {String(i + 1).padStart(2, '0')}
                           </span>
                           <span className="leading-relaxed pt-0.5">{rule}</span>
@@ -491,62 +512,104 @@ export default function InterSchool() {
       </AnimatePresence>
 
       {/* ════════ FOOTER ════════ */}
-      <footer id="contact" className="relative z-10 pt-10 sm:pt-16 pb-6 bg-dark-card/90 border-t border-dark-border backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-8 border-b border-white/10">
+      <footer id="contact" className={`pt-12 sm:pt-20 pb-6 px-4 border-t ${dark ? 'bg-black/40 border-dark-border text-white' : 'bg-gradient-to-b from-[#3d0014] to-[#1f000a] text-cream border-[#5c001e]'} relative z-10 shadow-[0_-10px_30px_rgba(61,0,20,0.3)]`}>
+        {/* Subtle top glow */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
+        
+        <div className="max-w-7xl mx-auto">
+          {/* Top row */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-14 pb-10 border-b border-white/10">
+
             {/* Brand */}
-            <div className="col-span-1 sm:col-span-2 lg:col-span-2 space-y-4">
-              <div className="flex items-center gap-3">
-                <img src="/logo.png" alt="Quantum University" className="h-8 object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] brightness-110" />
-                <div className="flex flex-col leading-none">
-                  <span className="text-gold-gradient font-extrabold text-base pt-1 pb-1">अभिव्यक्ति</span>
-                  <span className="text-[9px] text-gray-500 tracking-[0.15em] uppercase">Inter-School Events 2026</span>
-                </div>
+            <div className="space-y-4">
+              <div className="flex items-center gap-4 bg-white p-3 rounded-xl inline-flex shadow-lg shadow-black/20">
+                <img src="/logo.png" alt="Quantum University" className="h-8 object-contain" />
+                <div className="w-px h-8 bg-gray-300"></div>
+                <img src="/iks-logo.png" alt="IKS Logo" className="h-8 object-contain mix-blend-multiply" />
               </div>
-              <p className="text-gray-500 text-sm leading-relaxed max-w-sm">
+              <div>
+                <span className="font-hindi text-gold-gradient font-black text-2xl tracking-wide pt-1 pb-1 block">अभिव्यक्ति</span>
+                <span className="text-[10px] text-gray-400 tracking-[0.25em] uppercase font-semibold">Inter-School Events 2026</span>
+              </div>
+              <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
                 Join us for a celebration of our heritage, culture, and creativity. "Expressions of Bharat – Parampara, Sanskriti & Srijan".
               </p>
             </div>
 
+            {/* Quick Links */}
+            <div>
+              <h4 className="font-serif text-white font-bold text-lg tracking-wide mb-5 flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-gold" /> Quick Links
+              </h4>
+              <ul className="space-y-3">
+                {['Events', 'Register'].map(item => (
+                  <li key={item}>
+                    <a href={`#${item.toLowerCase()}`} className="text-gray-400 text-sm hover:text-gold hover:pl-2 transition-all duration-300 flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-gold/50"></span>
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
             {/* Contact Details */}
-            <div className="col-span-1 sm:col-span-2 lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-8">
-              <div>
-                <h4 className="text-gold font-semibold text-xs sm:text-sm uppercase tracking-wider mb-4">Contact Us</h4>
-                <div className="space-y-4 text-xs sm:text-sm text-gray-400">
-                  <div>
-                    <p className="text-white font-medium mb-1">Convener</p>
-                    <p>Dr. Pushpender Singh: 98991 42233</p>
-                  </div>
-                  <div>
-                    <p className="text-white font-medium mb-1">Co-Conveners</p>
-                    <p>Dr. Nirmesh Sharma: 97600 87704</p>
-                    <p>Dr. Varsha Gupta: 70156 60812</p>
-                    <p>Dr. Mousmi Agarwal: 98971 93757</p>
-                  </div>
-                  <div>
-                    <p className="text-white font-medium mb-1">Student Coordinators</p>
-                    <p>Dhruv Bhati: 79062 16206</p>
-                    <p>Nilbrata Das: 89748 94143</p>
-                  </div>
+            <div>
+              <h4 className="font-serif text-white font-bold text-lg tracking-wide mb-5 flex items-center gap-2">
+                <Music className="w-4 h-4 text-gold" /> Contact Us
+              </h4>
+              <div className="space-y-5 text-sm text-gray-400">
+                <div>
+                  <p className="text-gold font-semibold mb-1 uppercase text-[10px] tracking-wider">Convener</p>
+                  <p className="text-gray-200">Dr. Pushpender Singh <span className="text-gray-500 ml-1">98991 42233</span></p>
+                </div>
+                <div>
+                  <p className="text-gold font-semibold mb-1 uppercase text-[10px] tracking-wider">Co-Conveners</p>
+                  <p className="text-gray-200">Dr Nirmesh Sharma <span className="text-gray-500 ml-1">97600 87704</span></p>
+                  <p className="text-gray-200">Dr Varsha Gupta <span className="text-gray-500 ml-1">70156 60812</span></p>
+                  <p className="text-gray-200">Dr Mousmi Agarwal <span className="text-gray-500 ml-1">98971 93757</span></p>
+                </div>
+                <div>
+                  <p className="text-gold font-semibold mb-1 uppercase text-[10px] tracking-wider">Student Coordinators</p>
+                  <p className="text-gray-200">Dhruv Bhati <span className="text-gray-500 ml-1">79062 16206</span></p>
+                  <p className="text-gray-200">Nilbrata Das <span className="text-gray-500 ml-1">89748 94143</span></p>
                 </div>
               </div>
+            </div>
 
-              {/* Connect Us */}
-              <div className="flex flex-col">
-                <h4 className="text-gold font-semibold text-xs sm:text-sm uppercase tracking-wider mb-4">Connect Us</h4>
-                <ul className="space-y-2.5 text-xs sm:text-sm text-gray-400 mb-4">
-                  <li className="flex items-start gap-2">
-                    <MapPin className="w-4 h-4 text-gold/60 mt-0.5 shrink-0" />
-                    <span className="leading-tight">Quantum University, Roorkee, Uttarakhand 247167</span>
-                  </li>
-                </ul>
+            {/* Connect Us */}
+            <div className="flex flex-col">
+              <h4 className="font-serif text-white font-bold text-lg tracking-wide mb-5 flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-gold" /> Find Us
+              </h4>
+              <p className="text-gray-400 text-sm leading-relaxed mb-4">
+                Quantum University,<br />
+                Mandawar (22 Km Milestone), Roorkee - Dehradun Highway (NH 73),<br />
+                Roorkee, Uttarakhand 247167
+              </p>
+              {/* Small Map */}
+              <div className="w-full h-32 rounded-xl overflow-hidden border border-white/10 relative shadow-lg group">
+                <iframe 
+                  title="Quantum University Roorkee Map"
+                  src="https://maps.google.com/maps?q=Quantum%20University,%20Roorkee,%20Uttarakhand&t=&z=12&ie=UTF8&iwloc=&output=embed" 
+                  className="w-full h-full grayscale group-hover:grayscale-0 transition-all duration-500"
+                  style={{ border: 0 }}
+                  allowFullScreen="" 
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+                <div className="absolute inset-0 bg-maroon/20 pointer-events-none mix-blend-overlay group-hover:opacity-0 transition-opacity"></div>
               </div>
             </div>
           </div>
-          
+
           {/* Bottom row */}
-          <div className="pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
-            <p className="text-gray-600 text-[10px] sm:text-xs">© 2026 Quantum University, Roorkee. All rights reserved.</p>
+          <div className="pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p className="text-gray-500 text-xs">© 2026 Quantum University, Roorkee. All rights reserved.</p>
+            <div className="flex items-center gap-4 text-gray-500 text-xs">
+              <a href="#" className="hover:text-gold transition-colors">Privacy Policy</a>
+              <a href="#" className="hover:text-gold transition-colors">Terms of Service</a>
+            </div>
           </div>
         </div>
       </footer>

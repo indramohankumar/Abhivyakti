@@ -16,7 +16,9 @@
   --color-dark-bg: #0C0A09;
   --color-dark-card: #1C1917;
   --color-dark-border: #292524;
-  --font-sans: 'Poppins', sans-serif;
+  --font-sans: 'Outfit', 'Poppins', sans-serif;
+  --font-serif: 'Playfair Display', serif;
+  --font-hindi: 'Rozha One', 'Yatra One', serif;
 }
 
 @layer utilities {

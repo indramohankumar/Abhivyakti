@@ -7,7 +7,7 @@ import {
   Menu, X, Sun, Moon, Star, Trophy, Clock, ChevronUp
 } from 'lucide-react';
 import { Carousel360 } from '../components/ui/image-fan-carousel';
-import ConstellationField from '../components/ui/constellation-field';
+import CulturalDust from '../components/ui/cultural-dust';
 
 
 /* ─── Animations ─── */
@@ -19,6 +19,46 @@ const fadeUp = {
 const stagger = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
+};
+
+const eventPhotos = [
+  '/photos/media_1790088249710.jpg',
+  '/photos/media_1790088249711.jpg',
+  '/photos/media_1790088249718.jpg',
+  '/photos/media_1790088249727.jpg',
+  '/photos/media_1790088249734.jpg'
+];
+
+const PhotoCarousel = () => {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % eventPhotos.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden mt-4 shadow-lg border border-gold/20">
+      <AnimatePresence mode="wait">
+        <motion.img
+          key={index}
+          src={eventPhotos[index]}
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.8 }}
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      </AnimatePresence>
+      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+        {eventPhotos.map((_, i) => (
+          <div key={i} className={`h-1.5 rounded-full transition-all duration-300 ${i === index ? 'w-4 bg-gold' : 'w-1.5 bg-white/50'}`} />
+        ))}
+      </div>
+    </div>
+  );
 };
 
 const events = [
@@ -188,7 +228,7 @@ export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [showBottomCTA, setShowBottomCTA] = useState(false);
-  const dark = true;
+  const dark = false;
 
   /* ─── Countdown Timer ─── */
   const EVENT_START = new Date('2026-10-22T09:00:00+05:30').getTime();
@@ -216,8 +256,12 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    document.documentElement.classList.add('dark');
-  }, []);
+    if (dark) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [dark]);
 
   useEffect(() => {
     const fn = () => {
@@ -264,7 +308,7 @@ export default function Home() {
         className="fixed inset-0 z-0 pointer-events-none opacity-100"
         style={{ transform: `translateY(${bgShift}px)` }}
       >
-        <ConstellationField mode={dark ? "dark" : "light"} speed={1} opacity={1.0} />
+        <CulturalDust mode={dark ? "dark" : "light"} opacity={1.0} speed={0.8} />
       </div>
 
       {/* ════════ NAVBAR ════════ */}
@@ -282,9 +326,11 @@ export default function Home() {
             <a href="#" className="flex items-center gap-2.5">
               <div className="flex items-center gap-2.5 transition-all duration-300">
                 <img src="/logo.png" alt="Quantum University" className={`h-6 sm:h-8 md:h-9 object-contain ${dark ? 'drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] brightness-110' : 'mix-blend-multiply'}`} />
+                <div className="w-px h-6 sm:h-8 bg-gray-300 mx-1"></div>
+                <img src="/iks-logo.png" alt="IKS Logo" className={`h-6 sm:h-8 md:h-9 object-contain mix-blend-multiply`} />
               </div>
               <div className="flex flex-col leading-none">
-                <span className="text-gold-gradient text-base sm:text-lg md:text-xl font-extrabold tracking-tight pt-1 pb-1">अभिव्यक्ति</span>
+                <span className="font-hindi text-maroon text-base sm:text-lg md:text-xl font-black tracking-tight pt-1 pb-1">अभिव्यक्ति</span>
                 <span className={`text-[9px] sm:text-[10px] tracking-[0.2em] uppercase font-medium ${dark ? 'text-gray-500' : 'text-gray-400'}`}>Abhivyakti</span>
               </div>
             </a>
@@ -365,15 +411,15 @@ export default function Home() {
             <motion.div variants={fadeUp} className="space-y-3">
               <TypeWriter
                 text="अभिव्यक्ति"
-                className="text-gold-gradient text-[2.2rem] xs:text-[2.6rem] sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight block pt-2 drop-shadow-[0_10px_20px_rgba(201,168,76,0.4)]"
+                className={`font-hindi text-[3rem] xs:text-[3.5rem] sm:text-7xl md:text-8xl lg:text-[9rem] font-extrabold leading-tight tracking-normal block pt-2 ${dark ? 'text-gold-gradient drop-shadow-[0_10px_20px_rgba(201,168,76,0.4)]' : 'text-maroon drop-shadow-sm'}`}
                 speed={120}
               />
               <TypeWriter
                 text="Abhivyakti 2026"
                 delay={1500}
                 speed={80}
-                className={`text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight block ${dark ? 'text-white' : 'text-gray-900'}`}
-                cursorColor={dark ? '#C9A84C' : '#8B7332'}
+                className={`font-serif text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight block ${dark ? 'text-white' : 'text-maroon drop-shadow-md'}`}
+                cursorColor={dark ? '#C9A84C' : '#800020'}
               />
               <GoldLine />
               <p className={`text-[10px] sm:text-sm tracking-[0.2em] uppercase font-semibold ${dark ? 'text-gray-500' : 'text-gray-400'}`}>
@@ -433,7 +479,7 @@ export default function Home() {
                           initial={{ y: -8, opacity: 0 }}
                           animate={{ y: 0, opacity: 1 }}
                           transition={{ duration: 0.25 }}
-                          className={`text-xl sm:text-3xl font-extrabold tabular-nums ${dark ? 'text-white' : 'text-gray-900'}`}
+                          className={`font-serif text-xl sm:text-3xl font-black tabular-nums ${dark ? 'text-white' : 'text-maroon'}`}
                         >
                           {String(unit.val).padStart(2, '0')}
                         </motion.p>
@@ -468,14 +514,11 @@ export default function Home() {
                 </div>
                 <div>
                   <h3 className="text-gold-gradient text-2xl sm:text-4xl font-extrabold pb-1 pt-2 leading-normal">चित्रशाला</h3>
-                  <p className={`text-base sm:text-xl font-semibold mt-0.5 sm:mt-1 ${dark ? 'text-white' : 'text-gray-900'}`}>Photos</p>
+                  <p className={`font-serif text-base sm:text-2xl font-black mt-0.5 sm:mt-1 ${dark ? 'text-white' : 'text-maroon'}`}>Photos</p>
                 </div>
                 <p className={`text-[10px] sm:text-xs tracking-[0.15em] uppercase font-medium ${dark ? 'text-gold/60' : 'text-gold-dark/70'}`}>Glimpses of Abhivyakti</p>
                 <GoldLine />
-                <p className={`text-xs sm:text-sm leading-relaxed ${dark ? 'text-gray-400' : 'text-gray-600'}`}>
-                  {/* ADD YOUR PHOTO DETAILS OR COMPONENTS HERE */}
-                  Capturing the moments of literary excellence, cultural richness, and intellectual engagement.
-                </p>
+                <PhotoCarousel />
               </div>
             </div>
           </motion.div>
@@ -504,7 +547,7 @@ export default function Home() {
         <div className="max-w-5xl mx-auto px-4 relative z-10">
           <div className="text-center mb-14 sm:mb-20">
             <p className="text-gold font-semibold tracking-[0.2em] uppercase text-xs mb-2">3 Days of Glory</p>
-            <h2 className={`text-3xl sm:text-4xl md:text-5xl font-extrabold mb-3 ${dark ? 'text-white' : 'text-gray-900'}`}>
+            <h2 className={`font-serif text-3xl sm:text-4xl md:text-5xl font-black mb-3 ${dark ? 'text-white' : 'text-maroon'}`}>
               The <span className="text-gold-gradient">Festival Journey</span>
             </h2>
             <GoldLine />
@@ -546,8 +589,8 @@ export default function Home() {
               >
                 <div className="sm:w-[46%] sm:text-right">
                   <span className="inline-block px-3 py-1 bg-gold/10 text-gold text-[11px] font-bold uppercase tracking-widest rounded-full mb-3 border border-gold/20">Day 1 · Oct 22nd</span>
-                  <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">Inter-School Events</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed max-w-xs sm:ml-auto mb-4">
+                  <h3 className={`font-serif text-2xl sm:text-3xl font-black mb-2 ${dark ? 'text-white' : 'text-deep-red'}`}>Inter-School Events</h3>
+                  <p className={`text-sm leading-relaxed max-w-xs sm:ml-auto mb-4 ${dark ? 'text-gray-400' : 'text-gray-700'}`}>
                     Young minds compete in Declamation, Fine Arts, Story Telling & Skit.
                   </p>
                   <div className="flex flex-wrap gap-1.5 sm:justify-end mb-4">
@@ -583,8 +626,8 @@ export default function Home() {
               >
                 <div className="sm:w-[46%]">
                   <span className="inline-block px-3 py-1 bg-quantum-pink/10 text-quantum-pink text-[11px] font-bold uppercase tracking-widest rounded-full mb-3 border border-quantum-pink/20">Day 2 & 3 · Oct 23rd-24th</span>
-                  <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">Inter-University Events</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed max-w-xs mb-4">
+                  <h3 className={`font-serif text-2xl sm:text-3xl font-black mb-2 ${dark ? 'text-white' : 'text-deep-red'}`}>Inter-University Events</h3>
+                  <p className={`text-sm leading-relaxed max-w-xs mb-4 ${dark ? 'text-gray-400' : 'text-gray-700'}`}>
                     The grand stage — universities from across India, six mega categories.
                   </p>
                   <div className="flex flex-wrap gap-1.5 mb-4">
@@ -623,11 +666,11 @@ export default function Home() {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-5 sm:mb-10">
             <p className="text-gold font-semibold tracking-[0.2em] uppercase text-[10px] sm:text-sm mb-1 sm:mb-2">प्रतियोगिताएं · Competitions</p>
-            <h2 className={`text-2xl sm:text-4xl md:text-5xl font-extrabold mb-2 sm:mb-3 ${dark ? 'text-white' : 'text-gray-900'}`}>
+            <h2 className={`font-serif text-2xl sm:text-4xl md:text-5xl font-black mb-2 sm:mb-3 ${dark ? 'text-white' : 'text-deep-red'}`}>
               Events & <span className="text-gold-gradient">Categories</span>
             </h2>
             <GoldLine />
-            <p className={`max-w-lg mx-auto text-xs sm:text-base mt-2 sm:mt-3 ${dark ? 'text-gray-500' : 'text-gray-500'}`}>
+            <p className={`max-w-lg mx-auto text-xs sm:text-base mt-2 sm:mt-3 ${dark ? 'text-gray-500' : 'text-gray-600'}`}>
               Six grand arenas celebrating the soul of Indian artistic tradition.
             </p>
           </div>
@@ -652,7 +695,7 @@ export default function Home() {
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gold-dark via-gold to-gold-light"></div>
 
             <p className="text-gold-gradient text-2xl sm:text-4xl font-extrabold mb-1 pt-2 pb-1">समारोह में शामिल हों</p>
-            <h2 className={`text-lg sm:text-2xl md:text-3xl font-bold mb-1.5 sm:mb-2 ${dark ? 'text-white' : 'text-gray-900'}`}>Join the Celebration</h2>
+            <h2 className={`font-serif text-lg sm:text-2xl md:text-3xl font-black mb-1.5 sm:mb-2 ${dark ? 'text-white' : 'text-maroon'}`}>Join the Celebration</h2>
             <GoldLine />
             <p className={`text-xs sm:text-base mb-5 sm:mb-8 max-w-md mx-auto mt-2 sm:mt-3 ${dark ? 'text-gray-500' : 'text-gray-500'}`}>
               Register through our official Google Form and represent your university at Abhivyakti 2026. Open to all universities across India.
@@ -666,95 +709,103 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ════════ FOOTER ════════ */}
-      <footer id="contact" className={`pt-10 sm:pt-16 pb-6 px-4 border-t ${dark ? 'bg-black/40 border-dark-border' : 'bg-gray-950 border-gray-800'} text-white relative z-10`}>
+      <footer id="contact" className={`pt-12 sm:pt-20 pb-6 px-4 border-t ${dark ? 'bg-black/40 border-dark-border text-white' : 'bg-gradient-to-b from-[#3d0014] to-[#1f000a] text-cream border-[#5c001e]'} relative z-10 shadow-[0_-10px_30px_rgba(61,0,20,0.3)]`}>
+        {/* Subtle top glow */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
+        
         <div className="max-w-7xl mx-auto">
           {/* Top row */}
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 pb-8 sm:pb-10 border-b border-white/10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-14 pb-10 border-b border-white/10">
 
             {/* Brand */}
-            <div className="col-span-2 sm:col-span-2 lg:col-span-1 space-y-3 sm:space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="flex items-center transition-all duration-300">
-                  <img src="/logo.png" alt="Quantum University" className="h-6 sm:h-8 object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] brightness-110" />
-                </div>
-                <div className="flex flex-col leading-none">
-                  <span className="text-gold-gradient font-extrabold text-sm sm:text-base pt-1 pb-1">अभिव्यक्ति</span>
-                  <span className="text-[8px] sm:text-[9px] text-gray-500 tracking-[0.15em] uppercase">Abhivyakti 2026</span>
-                </div>
+            <div className="space-y-4">
+              <div className="flex items-center gap-4 bg-white p-3 rounded-xl inline-flex shadow-lg shadow-black/20">
+                <img src="/logo.png" alt="Quantum University" className="h-8 object-contain" />
+                <div className="w-px h-8 bg-gray-300"></div>
+                <img src="/iks-logo.png" alt="IKS Logo" className="h-8 object-contain mix-blend-multiply" />
               </div>
-              <p className="text-gray-500 text-xs sm:text-sm leading-relaxed max-w-xs">
-                Quantum University's annual inter-university cultural festival celebrating Indian art, literature, and heritage.
+              <div>
+                <span className="font-hindi text-gold-gradient font-black text-2xl tracking-wide pt-1 pb-1 block">अभिव्यक्ति</span>
+                <span className="text-[10px] text-gray-400 tracking-[0.25em] uppercase font-semibold">Abhivyakti 2026</span>
+              </div>
+              <p className="text-gray-400 text-sm leading-relaxed mt-4 max-w-xs">
+                Quantum University's grand annual cultural festival celebrating the vibrant essence of Indian art, literature, and heritage.
               </p>
             </div>
 
             {/* Quick Links */}
-            <div className="col-span-2 sm:col-span-1 lg:col-span-1">
-              <h4 className="text-gold font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3 sm:mb-4">Quick Links</h4>
-              <ul className="space-y-2 sm:space-y-2.5">
-                {['Events', 'Photos', 'Register'].map(item => (
+            <div>
+              <h4 className="font-serif text-white font-bold text-lg tracking-wide mb-5 flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-gold" /> Quick Links
+              </h4>
+              <ul className="space-y-3">
+                {['Journey', 'Events', 'Photos', 'Register'].map(item => (
                   <li key={item}>
-                    <a href={`#${item.toLowerCase()}`} className="text-gray-400 text-xs sm:text-sm hover:text-gold transition-colors">{item}</a>
+                    <a href={`#${item.toLowerCase()}`} className="text-gray-400 text-sm hover:text-gold hover:pl-2 transition-all duration-300 flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-gold/50"></span>
+                      {item}
+                    </a>
                   </li>
                 ))}
               </ul>
             </div>
 
             {/* Contact Details */}
-            <div className="col-span-1 sm:col-span-1 lg:col-span-1">
-              <h4 className="text-gold font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3 sm:mb-4">Contact Us</h4>
-              <div className="space-y-4 text-[10px] sm:text-sm text-gray-400">
+            <div>
+              <h4 className="font-serif text-white font-bold text-lg tracking-wide mb-5 flex items-center gap-2">
+                <Music className="w-4 h-4 text-gold" /> Contact Us
+              </h4>
+              <div className="space-y-5 text-sm text-gray-400">
                 <div>
-                  <p className="text-white font-medium mb-1">Student Coordinators</p>
-                  <p>Shivam Prakash: 74829 42186</p>
-                  <p>Archii: 93028 42951</p>
+                  <p className="text-gold font-semibold mb-1 uppercase text-[10px] tracking-wider">Conveners</p>
+                  <p className="text-gray-200">Mr Abhishek Kumar <span className="text-gray-500 ml-1">89794 61479</span></p>
                 </div>
                 <div>
-                  <p className="text-white font-medium mb-1">Convener</p>
-                  <p>Mr Abhishek Kumar: 89794 61479</p>
+                  <p className="text-gold font-semibold mb-1 uppercase text-[10px] tracking-wider">Co-Conveners</p>
+                  <p className="text-gray-200">Dr Poulami <span className="text-gray-500 ml-1">7431 869 712</span></p>
+                  <p className="text-gray-200">Ms Tapsi Rana <span className="text-gray-500 ml-1">70880 43974</span></p>
+                  <p className="text-gray-200">Mr Vibhanshu <span className="text-gray-500 ml-1">81717 09548</span></p>
                 </div>
                 <div>
-                  <p className="text-white font-medium mb-1">Co-Conveners</p>
-                  <p>Dr Poulami: 74318 69712</p>
-                  <p>Ms Tapsi Rana: 70880 43974</p>
-                  <p>Mr Vibhanshu: 81717 09548</p>
+                  <p className="text-gold font-semibold mb-1 uppercase text-[10px] tracking-wider">Student Coordinators</p>
+                  <p className="text-gray-200">Shivam Prakash <span className="text-gray-500 ml-1">74829 42186</span></p>
+                  <p className="text-gray-200">Archii <span className="text-gray-500 ml-1">93028 42951</span></p>
                 </div>
               </div>
             </div>
 
             {/* Connect Us */}
-            <div className="col-span-1 sm:col-span-1 lg:col-span-1 flex flex-col">
-              <h4 className="text-gold font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3 sm:mb-4">Connect Us</h4>
-              <ul className="space-y-2 sm:space-y-2.5 text-[10px] sm:text-sm text-gray-400 mb-4">
-                <li className="flex items-start gap-2">
-                  <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gold/60 mt-0.5 shrink-0" />
-                  <span className="leading-tight">Quantum University, Roorkee, Uttarakhand 247167</span>
-                </li>
-              </ul>
+            <div className="flex flex-col">
+              <h4 className="font-serif text-white font-bold text-lg tracking-wide mb-5 flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-gold" /> Find Us
+              </h4>
+              <p className="text-gray-400 text-sm leading-relaxed mb-4">
+                Quantum University,<br />
+                Mandawar (22 Km Milestone), Roorkee - Dehradun Highway (NH 73),<br />
+                Roorkee, Uttarakhand 247167
+              </p>
               {/* Small Map */}
-              <div className={`w-full h-24 sm:h-40 mt-auto rounded-xl overflow-hidden border ${dark ? 'border-white/10' : 'border-gray-800'} relative shadow-md opacity-80 hover:opacity-100 transition-opacity`}>
+              <div className="w-full h-32 rounded-xl overflow-hidden border border-white/10 relative shadow-lg group">
                 <iframe 
                   title="Quantum University Roorkee Map"
-                  src="https://maps.google.com/maps?q=Quantum%20University,%20Roorkee,%20Uttarakhand&t=&z=13&ie=UTF8&iwloc=&output=embed" 
-                  className="w-full h-full"
-                  style={{ 
-                    border: 0, 
-                    filter: dark ? 'invert(90%) hue-rotate(180deg) contrast(90%) brightness(85%)' : 'none' 
-                  }}
+                  src="https://maps.google.com/maps?q=Quantum%20University,%20Roorkee,%20Uttarakhand&t=&z=12&ie=UTF8&iwloc=&output=embed" 
+                  className="w-full h-full grayscale group-hover:grayscale-0 transition-all duration-500"
+                  style={{ border: 0 }}
                   allowFullScreen="" 
                   loading="lazy" 
                   referrerPolicy="no-referrer-when-downgrade"
                 />
-                <div className="absolute inset-0 bg-gold/5 pointer-events-none mix-blend-overlay"></div>
+                <div className="absolute inset-0 bg-maroon/20 pointer-events-none mix-blend-overlay group-hover:opacity-0 transition-opacity"></div>
               </div>
             </div>
           </div>
 
           {/* Bottom row */}
-          <div className="pt-4 sm:pt-6 flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-3">
-            <p className="text-gray-600 text-[10px] sm:text-xs">© 2026 Quantum University, Roorkee. All rights reserved.</p>
-            <div className="flex items-center gap-1 text-gray-600 text-[10px] sm:text-xs">
-             
+          <div className="pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p className="text-gray-500 text-xs">© 2026 Quantum University, Roorkee. All rights reserved.</p>
+            <div className="flex items-center gap-4 text-gray-500 text-xs">
+              <a href="#" className="hover:text-gold transition-colors">Privacy Policy</a>
+              <a href="#" className="hover:text-gold transition-colors">Terms of Service</a>
             </div>
           </div>
         </div>
