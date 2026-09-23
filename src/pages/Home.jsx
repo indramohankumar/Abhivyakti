@@ -391,10 +391,7 @@ export default function Home() {
           <div className="flex justify-between items-center h-14 sm:h-16 md:h-[72px]">
             <a href="#" className="flex items-center gap-2.5">
               <div className="flex items-center gap-2.5 transition-all duration-300">
-                <div className="relative flex items-center justify-center">
-                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.9)_10%,rgba(255,255,255,0)_70%)] pointer-events-none scale-150"></div>
-                  <img src="/logo.png" alt="Quantum University" className="h-6 sm:h-8 md:h-9 object-contain mix-blend-multiply relative z-10" />
-                </div>
+                <img src="/logo.png" alt="Quantum University" className="h-6 sm:h-8 md:h-9 object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] brightness-110" />
                 
               </div>
               <div className="flex flex-col leading-none">
