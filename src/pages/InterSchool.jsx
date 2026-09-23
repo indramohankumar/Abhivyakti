@@ -304,8 +304,7 @@ export default function InterSchool() {
         
         <div className="flex items-center gap-2 sm:gap-2.5">
           <img src="/logo.png" alt="Quantum University" className={`h-7 sm:h-8 md:h-9 object-contain ${dark ? 'drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] brightness-110' : 'mix-blend-multiply'}`} />
-          <div className={`w-px h-6 sm:h-8 mx-1 ${dark ? 'bg-white/20' : 'bg-gray-300'}`}></div>
-          <img src="/iks-logo.png" alt="IKS Logo" className={`h-7 sm:h-8 md:h-9 object-contain mix-blend-multiply`} />
+          
         </div>
       </nav>
 
@@ -528,8 +527,7 @@ export default function InterSchool() {
             <div className="space-y-4">
               <div className="flex items-center gap-4 bg-white p-3 rounded-xl inline-flex shadow-lg shadow-black/20">
                 <img src="/logo.png" alt="Quantum University" className="h-8 object-contain" />
-                <div className="w-px h-8 bg-gray-300"></div>
-                <img src="/iks-logo.png" alt="IKS Logo" className="h-8 object-contain mix-blend-multiply" />
+                
               </div>
               <div>
                 <span className="font-hindi text-gold-gradient font-black text-2xl tracking-wide pt-1 pb-1 block">अभिव्यक्ति</span>
@@ -620,3 +618,4 @@ export default function InterSchool() {
     </div>
   );
 }
+
