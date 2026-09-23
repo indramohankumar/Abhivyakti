@@ -7,6 +7,7 @@ import {
   Menu, X, Sun, Moon, Star, Trophy, Clock, ChevronUp
 } from 'lucide-react';
 import { Carousel360 } from '../components/ui/image-fan-carousel';
+import MegaEventCard from '../components/ui/MegaEventCard';
 import { AntaragniEventsGrid } from '../components/ui/antaragni-events';
 import CulturalDust from '../components/ui/cultural-dust';
 import PhotoMarquee from '../components/ui/PhotoMarquee';
@@ -629,6 +630,8 @@ export default function Home() {
       </section>
 
       {/* ════════ FESTIVAL JOURNEY ════════ */}
+      <MegaEventCard events={events} />
+
       <section id="journey" className="py-16 sm:py-24 relative overflow-hidden">
 
         <div className="max-w-5xl mx-auto px-4 relative z-10">
@@ -763,29 +766,7 @@ export default function Home() {
       </section>
 
       {/* ════════ EVENTS ════════ */}
-      <section id="events" className="py-10 sm:py-20 md:py-28 px-4 relative overflow-hidden">
-        <GoldenWheel className={`absolute top-0 right-0 w-[180px] sm:w-[380px] h-[180px] sm:h-[380px] -translate-y-1/3 translate-x-1/4 animate-[spin_70s_linear_infinite] ${dark ? 'text-gold/15' : 'text-gold/20'}`} />
-        <SparkleParticle className="top-[20%] right-[15%] w-1.5 h-1.5 sm:w-2 sm:h-2" delay={1.8} />
-
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-5 sm:mb-10">
-            <p className="text-gold font-semibold tracking-[0.2em] uppercase text-[10px] sm:text-sm mb-1 sm:mb-2">प्रतियोगिताएं · Competitions</p>
-            <h2 className={`font-serif text-2xl sm:text-4xl md:text-5xl font-black mb-2 sm:mb-3 ${dark ? 'text-white' : 'text-deep-red'}`}>
-              Events & <span className="text-gold-gradient">Categories</span>
-            </h2>
-            <GoldLine />
-            <p className={`max-w-lg mx-auto text-xs sm:text-base mt-2 sm:mt-3 ${dark ? 'text-gray-500' : 'text-gray-600'}`}>
-              Six grand arenas celebrating the soul of Indian artistic tradition.
-            </p>
-          </div>
-
-          <div className="w-full mt-4 sm:mt-10 lg:mt-16">
-            <AntaragniEventsGrid events={events} />
-          </div>
-        </div>
-      </section>
-
-      {/* ════════ REGISTER ════════ */}
+      {/* ?? REGISTER ?? */}
       <section id="register" className="py-10 sm:py-20 md:py-28 px-4 relative overflow-hidden">
         <GoldenWheel className={`absolute bottom-0 left-0 w-[180px] sm:w-80 h-[180px] sm:h-80 translate-y-1/3 -translate-x-1/4 animate-[spin_65s_linear_infinite] ${dark ? 'text-quantum-purple/15' : 'text-quantum-purple/20'}`} />
         <SparkleParticle className="top-1/4 left-1/4 w-2 h-2 sm:w-3 sm:h-3" delay={0.5} />
@@ -957,6 +938,7 @@ export default function Home() {
     </div>
   );
 }
+
 
 
 
