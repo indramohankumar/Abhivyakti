@@ -48,70 +48,71 @@ export function AntaragniEventsGrid({ events }) {
           onMouseLeave={() => setIsPaused(false)}
         >
           {marqueeEvents.map((event, index) => {
-            const Icon = event.icon;
+            // Colors from the uploaded image (Orange, Red, Yellow, Magenta)
+            const colors = ['bg-[#ff9d4a]', 'bg-[#ff5f3c]', 'bg-[#ffd147]', 'bg-[#e92a67]'];
+            const blockColor = colors[index % colors.length];
+            const originalIndex = (index % events.length) + 1;
             
             return (
-              <motion.div
-                key={index}
-                className="relative overflow-hidden rounded-3xl w-[260px] sm:w-[320px] flex-shrink-0 cursor-pointer transition-all duration-500 flex flex-col justify-end group border border-white/10 hover:border-[#ff6b35]/60 hover:shadow-[0_0_40px_rgba(255,107,53,0.25)]"
-                onClick={() => setSelectedEvent(event)}
-                layout
-              >
-                {/* Background Image */}
-                <div 
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                  style={{ backgroundImage: `url(${event.image})` }}
-                />
-                
-                {/* Gradient Overlays */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/95 via-[#050505]/70 to-transparent transition-opacity duration-500" />
+              <div key={index} className="flex flex-col items-center gap-3 w-[260px] sm:w-[300px] flex-shrink-0 cursor-pointer group" onClick={() => setSelectedEvent(event)}>
+                <motion.div
+                  className="relative overflow-hidden w-full aspect-[3/4] flex flex-col justify-end border border-white/10 group-hover:border-[#ff6b35]/50 transition-colors shadow-2xl rounded-[2px]"
+                  layout
+                >
+                  {/* Background Image */}
+                  <div 
+                    className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105"
+                    style={{ backgroundImage: `url(${event.image})` }}
+                  />
+                  
+                  {/* Dark overlay for contrast */}
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500" />
+                  
+                  {/* Corner Brackets (White) */}
+                  <div className="absolute top-2 left-2 w-3 h-3 border-t-2 border-l-2 border-white/70"></div>
+                  <div className="absolute top-2 right-2 w-3 h-3 border-t-2 border-r-2 border-white/70"></div>
+                  
+                  {/* Corner Brackets inside bottom block (Black) */}
+                  <div className="absolute bottom-2 left-2 w-3 h-3 border-b-2 border-l-2 border-black/70 z-20"></div>
+                  <div className="absolute bottom-2 right-2 w-3 h-3 border-b-2 border-r-2 border-black/70 z-20"></div>
 
-                {/* Content */}
-                <div className="relative z-10 p-4 sm:p-5 flex flex-col h-full justify-end">
-                  <div className="flex items-center gap-2 mb-3">
-                    <div className="p-2 rounded-full backdrop-blur-md bg-[#ff6b35]/20 text-[#ff6b35] shadow-[0_0_15px_rgba(255,107,53,0.5)]">
-                      <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
-                    </div>
-                    
-                    <h3 className="font-serif font-bold tracking-widest text-lg sm:text-xl text-white whitespace-nowrap drop-shadow-md">
-                      {event.name}
-                    </h3>
+                  {/* Top Texts */}
+                  <div className="absolute top-3 left-6 text-[9px] text-white/90 font-mono tracking-widest font-bold z-10">
+                    № {String(originalIndex).padStart(2, '0')}/26
+                  </div>
+                  <div className="absolute top-3 right-6 text-[9px] text-red-500 font-mono tracking-widest font-black uppercase z-10 drop-shadow-md">
+                    ANTARAGNI '26
                   </div>
 
-                  <p className="text-gray-300 text-[10px] sm:text-xs line-clamp-2 mb-3 font-light tracking-wide">
-                    {event.desc}
-                  </p>
-
-                  {/* Sub-Events Glowing Tags preview */}
-                  {event.subEvents && (
-                    <div className="flex flex-wrap gap-1.5 mb-4">
-                      {event.subEvents.slice(0, 2).map((sub, i) => (
-                        <span 
-                          key={i}
-                          className="text-[8px] sm:text-[9px] px-2.5 py-1 rounded-full border border-[#ff6b35]/40 bg-[#ff6b35]/15 text-orange-200 backdrop-blur-md whitespace-nowrap shadow-[0_0_10px_rgba(255,107,53,0.2)] font-semibold tracking-wider"
-                        >
-                          {sub}
-                        </span>
-                      ))}
-                      {event.subEvents.length > 2 && (
-                        <span className="text-[8px] sm:text-[9px] px-2.5 py-1 rounded-full border border-white/20 bg-white/10 text-white/80 backdrop-blur-md whitespace-nowrap font-semibold">
-                          +{event.subEvents.length - 2}
-                        </span>
-                      )}
+                  {/* Bottom Solid Title Block */}
+                  <div className={`relative z-10 w-full ${blockColor} px-6 pt-4 pb-3 flex flex-col justify-between group-hover:brightness-110 transition-all`}>
+                    <h3 className="font-sans font-black tracking-tighter text-[1.3rem] sm:text-2xl text-black uppercase leading-none truncate mb-2">
+                      {event.name}
+                    </h3>
+                    <div className="w-full flex justify-end items-end h-4">
+                      {/* Fake Barcode */}
+                      <div className="flex gap-[2px] h-full items-end opacity-90 pr-2">
+                        <div className="w-1 h-full bg-black"></div>
+                        <div className="w-[1.5px] h-full bg-black"></div>
+                        <div className="w-[2px] h-[80%] bg-black"></div>
+                        <div className="w-[1px] h-full bg-black"></div>
+                        <div className="w-1 h-[90%] bg-black"></div>
+                        <div className="w-[1px] h-full bg-black"></div>
+                        <div className="w-[3px] h-[70%] bg-black"></div>
+                        <div className="w-[1px] h-full bg-black"></div>
+                        <div className="w-[1.5px] h-[90%] bg-black"></div>
+                        <div className="w-[2px] h-full bg-black"></div>
+                        <div className="w-1 h-[80%] bg-black"></div>
+                      </div>
                     </div>
-                  )}
-
-                  <button 
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setSelectedEvent(event);
-                    }}
-                    className="inline-flex w-full items-center justify-center gap-2 bg-gradient-to-r from-[#ff6b35] to-[#f24236] text-white px-4 py-2.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] transition-all shadow-[0_0_20px_rgba(255,107,53,0.3)] group-hover:scale-[1.02]"
-                  >
-                    Explore Events <ChevronRight className="w-3.5 h-3.5" />
-                  </button>
+                  </div>
+                </motion.div>
+                
+                {/* Stage Text Under Card */}
+                <div className="text-[10px] text-white/40 font-bold uppercase tracking-[0.3em] mt-1">
+                  {event.name === 'Fine Arts' || event.name === 'Fashion' ? 'VISUAL DISTRICT' : 'PERFORMING ARTS STAGE'}
                 </div>
-              </motion.div>
+              </div>
             );
           })}
         </div>
