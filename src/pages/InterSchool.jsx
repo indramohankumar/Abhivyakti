@@ -521,7 +521,7 @@ export default function InterSchool() {
         { name: "Dhruv Bhati", role: "STUDENT COORDINATOR", phone: "79062 16206" },
         { name: "Nilbrata Das", role: "STUDENT COORDINATOR", phone: "89748 94143" }
       ]} />
-      <footer id="contact" className={pt-16 sm:pt-24 pb-8 px-4 border-t  relative z-10 shadow-[0_-10px_30px_rgba(61,0,20,0.3)]}>
+      <footer id="contact" className={`pt-16 sm:pt-24 pb-8 px-4 border-t ${dark ? 'bg-[#0a0505] border-white/10 text-white/80' : 'bg-gradient-to-b from-[#3d0014] to-[#1f000a] text-cream border-[#5c001e]'} relative z-10 shadow-[0_-10px_30px_rgba(61,0,20,0.3)]`}>
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[1px] bg-gradient-to-r from-transparent via-[#ff6b35]/50 to-transparent"></div>
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 pb-12 border-b border-white/10">

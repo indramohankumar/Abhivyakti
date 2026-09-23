@@ -684,7 +684,7 @@ export default function Home() {
         { name: "Archii", role: "STUDENT COORDINATOR", phone: "93028 42951" },
         { name: "Indra Mohan Kumar", role: "TECH", phone: "6204318317" }
       ]} />
-      <footer id="contact" className={`pt-16 sm:pt-24 pb-8 px-4 border-t ${dark ? \'bg-[#0a0505] border-white/10 text-white/80\' : \'bg-gradient-to-b from-[#3d0014] to-[#1f000a] text-cream border-[#5c001e]\'} relative z-10 shadow-[0_-10px_30px_rgba(61,0,20,0.3)]`}>
+      <footer id="contact" className={`pt-16 sm:pt-24 pb-8 px-4 border-t ${dark ? 'bg-[#0a0505] border-white/10 text-white/80' : 'bg-gradient-to-b from-[#3d0014] to-[#1f000a] text-cream border-[#5c001e]'} relative z-10 shadow-[0_-10px_30px_rgba(61,0,20,0.3)]`}>
           {/* Subtle top glow */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[1px] bg-gradient-to-r from-transparent via-[#ff6b35]/50 to-transparent"></div>
           
