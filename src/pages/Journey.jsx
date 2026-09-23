@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
 import { useRef } from 'react';
-import { MapPin, Calendar, ArrowLeft } from 'lucide-react';
+import { MapPin, Calendar, ArrowLeft, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { EmberParticles } from '../components/ui/EmberParticles';
 
@@ -16,6 +16,41 @@ const GoldLine = () => (
     <div className="h-px flex-1 bg-gradient-to-l from-transparent via-gold/40 to-transparent"></div>
   </div>
 );
+
+const TiltPoster = ({ src, alt, glowColor = 'rgba(201,168,76,0.3)', borderColor = 'border-gold/15' }) => {
+  const cardRef = useRef(null);
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    setTilt({ x: y * -15, y: x * 15 });
+  };
+
+  const handleMouseLeave = () => setTilt({ x: 0, y: 0 });
+
+  return (
+    <div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="relative"
+      style={{ perspective: 800 }}
+    >
+      <motion.div
+        animate={{ rotateX: tilt.x, rotateY: tilt.y }}
+        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+        className={`relative rounded-xl sm:rounded-2xl overflow-hidden border ${borderColor} group`}
+        style={{ boxShadow: `0 10px 40px ${glowColor}, 0 0 80px ${glowColor}` }}
+      >
+        <img src={src} alt={alt} className="w-full object-cover group-hover:scale-[1.03] transition-transform duration-700" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
+      </motion.div>
+    </div>
+  );
+};
 
 export default function Journey() {
   const journeyRef = useRef(null);
