@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronRight } from 'lucide-react';
 import { AntaragniEventsGrid } from './antaragni-events';
@@ -18,12 +19,12 @@ const MegaEventCard = ({ events }) => {
 
   return (
     <>
-      <div className="w-full max-w-5xl mx-auto px-4 py-8 sm:py-16 flex flex-col items-center justify-center z-20 relative">
+      <div className="w-full max-w-6xl mx-auto px-4 py-8 sm:py-16 flex flex-col md:flex-row items-center md:items-stretch justify-center gap-8 md:gap-10 z-20 relative">
         
         {/* BIG CARD 1: EVENTS */}
         <div 
           onClick={() => setIsOpen(true)}
-          className="relative w-full max-w-[500px] aspect-square group cursor-pointer border border-[#ff6b35]/20 bg-[#12091f] shadow-2xl transition-all duration-500 hover:shadow-[0_0_50px_rgba(255,107,53,0.3)]"
+          className="relative w-full md:flex-1 max-w-[500px] aspect-square group cursor-pointer border border-[#ff6b35]/20 bg-[#12091f] shadow-2xl transition-all duration-500 hover:shadow-[0_0_50px_rgba(255,107,53,0.3)] block"
         >
           {/* Background Image */}
           <div className="absolute inset-2 bg-[url('/photos/media_1790131158983.jpg')] bg-cover bg-center brightness-75 group-hover:scale-[1.02] transition-transform duration-700" />

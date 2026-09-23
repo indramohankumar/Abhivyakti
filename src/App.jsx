@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Home from './pages/Home';
 import InterSchool from './pages/InterSchool';
+import Journey from './pages/Journey';
 import Preloader from './components/ui/preloader';
 import SecurityGuard from './components/SecurityGuard';
 
@@ -26,6 +27,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/inter-school" element={<InterSchool />} />
+          <Route path="/journey" element={<Journey />} />
         </Routes>
       </div>
     </BrowserRouter>
