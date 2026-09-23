@@ -1,4 +1,6 @@
 ﻿import React, { useState, useEffect, useRef } from 'react';
+import { EmberParticles } from '../components/ui/EmberParticles';
+import { ContactCrewGrid } from '../components/ui/CrewCard';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent, useInView } from 'framer-motion';
 import {

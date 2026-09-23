@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { EmberParticles } from '../components/ui/EmberParticles';
+import { ContactCrewGrid } from '../components/ui/CrewCard';
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import { Sparkles, MapPin, Calendar, Users, Mic, ArrowLeft, Palette, BookOpen, Drama, X, ChevronRight, Magnet, Music } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { EmberParticles } from '../components/ui/EmberParticles';
-import { ContactCrewGrid } from '../components/ui/CrewCard';
 import CulturalDust from '../components/ui/cultural-dust';
 import { ParallaxMandalaBackground } from '../components/ui/parallax-mandala';
 

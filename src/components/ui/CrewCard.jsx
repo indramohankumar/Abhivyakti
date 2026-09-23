@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, PhoneCall } from 'lucide-react';
+import { Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export const CrewCard = ({ name, role, phone, image }) => {
