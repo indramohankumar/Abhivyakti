@@ -9,6 +9,7 @@ import {
 import { Carousel360 } from '../components/ui/image-fan-carousel';
 import { AntaragniEventsGrid } from '../components/ui/antaragni-events';
 import CulturalDust from '../components/ui/cultural-dust';
+import FloralMandala from '../components/ui/FloralMandala';
 import { ParallaxMandalaBackground } from '../components/ui/parallax-mandala';
 
 
@@ -929,5 +930,6 @@ export default function Home() {
     </div>
   );
 }
+
 
 

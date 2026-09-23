@@ -11,10 +11,10 @@ const FloralMandala = ({ className = "w-full h-full", color = "currentColor", op
       {/* Outer intricate scallops */}
       {[...Array(24)].map((_, i) => (
         <path 
-          key={\outer-\\}
+          key={`outer-${i}`}
           d="M 0,-360 C 30,-380 50,-340 0,-320 C -50,-340 -30,-380 0,-360"
-          transform={\otate(\)\}
-          fill={\\10\}
+          transform={`rotate(${i * 15})`}
+          fill={`${color}10`}
           strokeWidth="1.5"
         />
       ))}
@@ -22,9 +22,9 @@ const FloralMandala = ({ className = "w-full h-full", color = "currentColor", op
       {/* Outer large lotus petals */}
       {[...Array(12)].map((_, i) => (
         <path 
-          key={\petal1-\\}
+          key={`petal1-${i}`}
           d="M 0,-320 Q 50,-260 0,-180 Q -50,-260 0,-320"
-          transform={\otate(\)\}
+          transform={`rotate(${i * 30})`}
           strokeWidth="2"
         />
       ))}
@@ -32,10 +32,10 @@ const FloralMandala = ({ className = "w-full h-full", color = "currentColor", op
       {/* Inner offset medium petals */}
       {[...Array(12)].map((_, i) => (
         <path 
-          key={\petal2-\\}
+          key={`petal2-${i}`}
           d="M 0,-260 Q 40,-200 0,-120 Q -40,-200 0,-260"
-          transform={\otate(\)\}
-          fill={\\08\}
+          transform={`rotate(${i * 30 + 15})`}
+          fill={`${color}08`}
           strokeWidth="2"
         />
       ))}
@@ -43,9 +43,9 @@ const FloralMandala = ({ className = "w-full h-full", color = "currentColor", op
       {/* Inner sharp petals */}
       {[...Array(16)].map((_, i) => (
         <path 
-          key={\petal3-\\}
+          key={`petal3-${i}`}
           d="M 0,-160 L 20,-100 L 0,-60 L -20,-100 Z"
-          transform={\otate(\)\}
+          transform={`rotate(${i * 22.5})`}
           strokeWidth="1.5"
         />
       ))}
@@ -58,10 +58,10 @@ const FloralMandala = ({ className = "w-full h-full", color = "currentColor", op
       {/* Core flower */}
       {[...Array(8)].map((_, i) => (
         <path 
-          key={\core-\\}
+          key={`core-${i}`}
           d="M 0,-80 Q 25,-40 0,0 Q -25,-40 0,-80"
-          transform={\otate(\)\}
-          fill={\\20\}
+          transform={`rotate(${i * 45})`}
+          fill={`${color}20`}
           strokeWidth="2"
         />
       ))}
