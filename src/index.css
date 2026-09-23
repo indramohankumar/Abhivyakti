@@ -81,3 +81,8 @@ body { -webkit-font-smoothing: antialiased; }
     padding-bottom: 4.5rem !important;
   }
 }
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-33.333333%); }
+  }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+﻿import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent, useInView } from 'framer-motion';
 import {
@@ -9,6 +9,7 @@ import {
 import { Carousel360 } from '../components/ui/image-fan-carousel';
 import { AntaragniEventsGrid } from '../components/ui/antaragni-events';
 import CulturalDust from '../components/ui/cultural-dust';
+import PhotoMarquee from '../components/ui/PhotoMarquee';
 import FloralMandala from '../components/ui/FloralMandala';
 import { ParallaxMandalaBackground } from '../components/ui/parallax-mandala';
 
@@ -743,6 +744,24 @@ export default function Home() {
         </div>
       </section>
 
+
+      {/* ?? NEW PHOTOS MARQUEE ?? */}
+      <section className="relative z-20 py-8 sm:py-12 overflow-hidden bg-[#12091f]">
+        <div className="text-center mb-6 sm:mb-10 px-4">
+          <p className="text-[#ff6b35] font-semibold tracking-[0.2em] uppercase text-xs mb-2">Memories</p>
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-black text-white">
+            Photo <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff6b35] to-[#ff5f3c]">Gallery</span>
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-transparent via-[#ff6b35] to-transparent mx-auto mt-4 opacity-70"></div>
+        </div>
+        <PhotoMarquee images={[
+          '/photos/media_1790128762747.jpg',
+          '/photos/media_1790128762753.jpg',
+          '/photos/media_1790128762760.jpg',
+          '/photos/media_1790128762799.jpg'
+        ]} speed={35} />
+      </section>
+
       {/* ════════ EVENTS ════════ */}
       <section id="events" className="py-10 sm:py-20 md:py-28 px-4 relative overflow-hidden">
         <GoldenWheel className={`absolute top-0 right-0 w-[180px] sm:w-[380px] h-[180px] sm:h-[380px] -translate-y-1/3 translate-x-1/4 animate-[spin_70s_linear_infinite] ${dark ? 'text-gold/15' : 'text-gold/20'}`} />
@@ -938,6 +957,7 @@ export default function Home() {
     </div>
   );
 }
+
 
 
 
