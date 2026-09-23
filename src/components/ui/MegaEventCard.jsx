@@ -39,7 +39,7 @@ const MegaEventCard = ({ events }) => {
           
           {/* Top Info */}
           <div className="absolute top-5 left-6 text-[10px] sm:text-xs text-white/80 font-mono tracking-widest font-bold z-10">
-            № 01/26
+            Nº 01/26
           </div>
           <div className="absolute top-5 right-6 text-[10px] sm:text-xs text-[#ff6b35] font-mono tracking-widest font-black uppercase z-10 drop-shadow-lg">
             ABHIVYAKTI '26
@@ -64,6 +64,50 @@ const MegaEventCard = ({ events }) => {
             </div>
           </div>
         </div>
+        
+        {/* BIG CARD 2: ROADTRIPS */}
+        <Link 
+          to="/journey"
+          className="relative w-full md:flex-1 max-w-[500px] aspect-square group cursor-pointer border border-[#ff6b35]/20 bg-[#12091f] shadow-2xl transition-all duration-500 hover:shadow-[0_0_50px_rgba(255,107,53,0.3)] block"
+        >
+          {/* Background Image (Reusing the poster image but with a different hue/brightness for variation) */}
+          <div className="absolute inset-2 bg-[url('/photos/media_1790131158983.jpg')] bg-cover bg-center brightness-75 group-hover:scale-[1.02] transition-transform duration-700" style={{ filter: 'hue-rotate(320deg) brightness(0.65)' }} />
+          
+          {/* Gradients */}
+          <div className="absolute inset-2 bg-gradient-to-t from-[#12091f] via-[#12091f]/40 to-transparent opacity-90" />
+          <div className="absolute inset-2 bg-gradient-to-t from-[#9b1c31] via-transparent to-transparent opacity-40 group-hover:opacity-70 transition-opacity duration-500" />
+          
+          {/* Border Accents */}
+          <div className="absolute top-4 left-4 w-6 h-6 border-t-2 border-l-2 border-white/40"></div>
+          <div className="absolute bottom-4 right-4 w-6 h-6 border-b-2 border-r-2 border-white/40"></div>
+          
+          {/* Top Info */}
+          <div className="absolute top-5 left-6 text-[10px] sm:text-xs text-white/80 font-mono tracking-widest font-bold z-10">
+            Nº 08/26
+          </div>
+          <div className="absolute top-5 right-6 text-[10px] sm:text-xs text-[#ff6b35] font-mono tracking-widest font-black uppercase z-10 drop-shadow-lg">
+            ABHIVYAKTI '26
+          </div>
+
+          {/* Sticky Tape: ACROSS INDIA */}
+          <div className="absolute -top-4 right-6 sm:right-10 bg-[#ff9d4a] text-black font-black text-sm sm:text-base px-5 py-2 transform rotate-3 shadow-lg z-20 uppercase tracking-widest group-hover:rotate-6 transition-transform">
+            ACROSS INDIA
+          </div>
+
+          {/* Content */}
+          <div className="absolute inset-x-6 sm:inset-x-8 bottom-6 sm:bottom-8 flex flex-col items-start z-10">
+            <h2 className="font-sans font-black text-6xl sm:text-[5.5rem] leading-none text-white tracking-tighter mb-2 group-hover:text-[#ff6b35] transition-colors drop-shadow-xl">
+              ROADTRIPS
+            </h2>
+            <p className="text-white/80 text-xs sm:text-sm font-light max-w-[90%] leading-relaxed mb-4">
+              Rock, rap, beatboxing, comedy and DJ battles hit your city before the grand finale at Quantum University.
+            </p>
+            <div className="w-full h-[1px] bg-white/20 mb-4"></div>
+            <div className="flex items-center gap-2 text-[#ff6b35] text-xs sm:text-sm font-black uppercase tracking-[0.2em] group-hover:text-white transition-colors">
+              HIT THE ROAD <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </div>
+        </Link>
       </div>
 
       {/* MODAL / OVERLAY FOR EVENTS */}
@@ -101,9 +145,9 @@ const MegaEventCard = ({ events }) => {
                 }
               `}} />
               <div className="flex items-center gap-6 text-[#12091f] font-black uppercase text-xl sm:text-2xl tracking-widest animate-fast-marquee w-max">
-                <span>READY TO COMPETE? ♦ THE FIRE SHALL RISE AGAIN ♦ REGISTER NOW ♦</span>
-                <span>READY TO COMPETE? ♦ THE FIRE SHALL RISE AGAIN ♦ REGISTER NOW ♦</span>
-                <span>READY TO COMPETE? ♦ THE FIRE SHALL RISE AGAIN ♦ REGISTER NOW ♦</span>
+                <span>READY TO COMPETE? • THE FIRE SHALL RISE AGAIN • REGISTER NOW •</span>
+                <span>READY TO COMPETE? • THE FIRE SHALL RISE AGAIN • REGISTER NOW •</span>
+                <span>READY TO COMPETE? • THE FIRE SHALL RISE AGAIN • REGISTER NOW •</span>
               </div>
             </div>
 
