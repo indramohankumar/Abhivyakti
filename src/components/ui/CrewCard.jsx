@@ -7,19 +7,19 @@ export const CrewCard = ({ name, role, phone, image }) => {
     <motion.div 
       whileHover={{ y: -10, scale: 1.02 }}
       whileTap={{ scale: 0.95 }}
-      className="relative w-full sm:w-[280px] bg-[#1a0f2e] rounded-xl border border-white/5 overflow-hidden shadow-xl flex flex-col group transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,107,53,0.3)] hover:border-[#ff6b35]/30 cursor-pointer"
+      className="relative w-[260px] sm:w-[280px] shrink-0 bg-[#1a0f2e] rounded-xl border border-white/5 overflow-hidden shadow-xl flex flex-col group transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,107,53,0.3)] hover:border-[#ff6b35]/30 cursor-pointer mx-auto"
     >
       {/* Top subtle gradient */}
       <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-black/60 to-transparent pointer-events-none" />
       
-      <div className="p-6 flex flex-col items-center z-10">
+      <div className="p-5 sm:p-6 flex flex-col items-center z-10">
         {/* Top Header */}
         <div className="text-[#ff9d4a] text-[9px] font-black tracking-[0.3em] uppercase mb-6 opacity-90">
-          CREW • ABHIVYAKTI '26
+          CREW • ABHIVYAKTI \'26
         </div>
 
         {/* Profile Image with Glowing Gradient Border */}
-        <div className="relative w-28 h-28 mb-5 rounded-full p-[3px] bg-gradient-to-tr from-[#ff6b35] via-[#ff5f3c] to-[#9b1c31] group-hover:shadow-[0_0_20px_rgba(255,107,53,0.6)] transition-all duration-500">
+        <div className="relative w-24 h-24 sm:w-28 sm:h-28 mb-4 sm:mb-5 rounded-full p-[3px] bg-gradient-to-tr from-[#ff6b35] via-[#ff5f3c] to-[#9b1c31] group-hover:shadow-[0_0_20px_rgba(255,107,53,0.6)] transition-all duration-500">
           <div className="w-full h-full rounded-full overflow-hidden bg-[#0a0505] border-2 border-[#1a0f2e]">
             {image ? (
               <img src={image} alt={name} className="w-full h-full object-cover" />
@@ -32,7 +32,7 @@ export const CrewCard = ({ name, role, phone, image }) => {
         </div>
 
         {/* Name */}
-        <h3 className="text-white font-sans font-black text-2xl tracking-wide mb-3 drop-shadow-md group-hover:text-[#ff6b35] transition-colors">
+        <h3 className="text-white font-sans font-black text-xl sm:text-2xl tracking-wide mb-2 sm:mb-3 drop-shadow-md group-hover:text-[#ff6b35] transition-colors text-center">
           {name}
         </h3>
 
@@ -102,7 +102,7 @@ export const ContactCrewGrid = ({ coordinators }) => {
           <div className="w-24 h-1 mx-auto bg-gradient-to-r from-transparent via-[#ff6b35] to-transparent opacity-50 mt-4"></div>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-6 sm:gap-10">
+        <div className="flex flex-wrap justify-center gap-4 sm:gap-8 md:gap-10">
           {coordinators.map((coord, i) => (
             <CrewCard key={i} {...coord} />
           ))}
