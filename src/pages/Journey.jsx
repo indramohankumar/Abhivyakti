@@ -1,17 +1,28 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
+import { useRef } from 'react';
 import { MapPin, Calendar, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { EmberParticles } from '../components/ui/EmberParticles';
 
-const cities = [
-  { city: "Delhi", date: "12 Oct 2026", venue: "TBA", desc: "The capital kick-off. Rap & Beatboxing battles.", color: "from-[#ff6b35]" },
-  { city: "Lucknow", date: "15 Oct 2026", venue: "TBA", desc: "Nawabi vibes. Comedy and DJ Wars.", color: "from-[#ff5f3c]" },
-  { city: "Jaipur", date: "18 Oct 2026", venue: "TBA", desc: "The pink city showdown. Rock band clashes.", color: "from-[#9b1c31]" },
-  { city: "Roorkee", date: "24-26 Oct 2026", venue: "Quantum University", desc: "The Grand Finale. The Fire Within.", color: "from-[#ff9d4a]" }
-];
+
+
+const dark = true;
+
+const GoldLine = () => (
+  <div className="flex items-center gap-4 max-w-sm mx-auto my-5">
+    <div className="h-px flex-1 bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
+    <div className="w-2 h-2 rounded-full bg-gold shadow-[0_0_10px_rgba(201,168,76,0.8)]"></div>
+    <div className="h-px flex-1 bg-gradient-to-l from-transparent via-gold/40 to-transparent"></div>
+  </div>
+);
 
 export default function Journey() {
+  const journeyRef = useRef(null);
+  const { scrollYProgress: journeyScroll } = useScroll({
+    target: journeyRef,
+    offset: ["start center", "end center"]
+  });
   return (
     <div className="min-h-screen bg-[#0a0505] text-white font-sans overflow-x-hidden">
       <EmberParticles />
@@ -51,43 +62,117 @@ export default function Journey() {
       </header>
 
       {/* Timeline */}
-      <section className="relative z-10 py-16 px-4 max-w-5xl mx-auto">
-        <div className="relative">
-          {/* Vertical line */}
-          <div className="absolute left-[24px] sm:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-[#ff6b35]/10 via-[#ff6b35]/50 to-[#ff6b35]/10 sm:-translate-x-1/2"></div>
-          
-          <div className="space-y-12 sm:space-y-24">
-            {cities.map((city, idx) => (
-              <motion.div 
-                key={idx}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
-                className={`relative flex flex-col sm:flex-row items-start sm:items-center gap-8 ${idx % 2 === 0 ? 'sm:flex-row-reverse' : ''}`}
+      <section id="journey" className="py-16 sm:py-24 relative overflow-hidden">
+
+        <div className="max-w-5xl mx-auto px-4 relative z-10">
+          <div className="text-center mb-14 sm:mb-20">
+            <p className="text-gold font-semibold tracking-[0.2em] uppercase text-xs mb-2">3 Days of Glory</p>
+            <h2 className={`font-serif text-3xl sm:text-4xl md:text-5xl font-black mb-3 ${dark ? 'text-white' : 'text-maroon'}`}>
+              The <span className="text-gold-gradient">Festival Journey</span>
+            </h2>
+            <GoldLine />
+          </div>
+
+          <div ref={journeyRef} className="relative max-w-4xl mx-auto py-4 sm:py-10">
+
+            {/* ── Flowing golden line (desktop) ── */}
+            <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 hidden sm:block pointer-events-none w-[4px]">
+              <div className="absolute inset-0 bg-gold/10 rounded-full"></div>
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-b from-gold-light via-gold to-gold-dark rounded-full origin-top shadow-[0_0_20px_rgba(201,168,76,0.8)]"
+                style={{ scaleY: journeyScroll }}
+              />
+            </div>
+
+            {/* ── Flowing golden line (mobile) ── */}
+            <div className="absolute left-[22px] top-0 bottom-0 sm:hidden pointer-events-none w-[3px]">
+              <div className="absolute inset-0 bg-gold/10 rounded-full"></div>
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-b from-gold-light via-gold to-gold-dark rounded-full origin-top shadow-[0_0_15px_rgba(201,168,76,0.6)]"
+                style={{ scaleY: journeyScroll }}
+              />
+            </div>
+
+            <div className="space-y-20 sm:space-y-28 relative z-10">
+
+              {/* ── DAY 1 · Inter-School ── */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 40 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: true, margin: "-200px" }}
+                transition={{ duration: 0.7, ease: "easeOut" }}
+                className="relative flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-12 pl-14 sm:pl-0"
               >
+                <div className="sm:w-[46%] sm:text-right">
+                  <span className="inline-block px-3 py-1 bg-gold/10 text-gold text-[11px] font-bold uppercase tracking-widest rounded-full mb-3 border border-gold/20 shadow-sm shadow-gold/5">Day 1 · Oct 22nd</span>
+                  <h3 className={`font-serif text-2xl sm:text-3xl font-black mb-2 ${dark ? 'text-white' : 'text-deep-red'}`}>Inter-School Events</h3>
+                  <p className={`text-sm leading-relaxed max-w-xs sm:ml-auto mb-4 ${dark ? 'text-gray-400' : 'text-gray-700'}`}>
+                    Young minds compete in Declamation, Fine Arts, Story Telling & Skit.
+                  </p>
+                  <div className="flex flex-wrap gap-1.5 sm:justify-end mb-4">
+                    {['Declamation', 'Fine Arts', 'Story Telling', 'Skit'].map(tag => (
+                      <span key={tag} className="px-2 py-0.5 text-[10px] font-semibold bg-gold/8 text-gold/80 border border-gold/15 rounded-full">{tag}</span>
+                    ))}
+                  </div>
+                  <Link to="/inter-school" className="inline-flex items-center gap-1.5 text-sm font-bold text-gold hover:text-white transition-colors group">
+                    Explore <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
+
                 {/* Node */}
-                <div className="absolute left-[25px] sm:left-1/2 w-4 h-4 bg-[#12091f] border-2 border-[#ff6b35] rounded-full sm:-translate-x-1/2 shadow-[0_0_15px_#ff6b35] z-10 top-6 sm:top-1/2 sm:-translate-y-1/2"></div>
-                
-                {/* Content */}
-                <div className={`ml-[60px] sm:ml-0 w-full sm:w-1/2 flex ${idx % 2 === 0 ? 'sm:justify-start sm:pl-16' : 'sm:justify-end sm:pr-16'}`}>
-                  <div className="bg-[#12091f]/80 backdrop-blur-md border border-white/10 p-6 sm:p-8 rounded-2xl w-full max-w-sm hover:border-[#ff6b35]/40 transition-colors group">
-                    <div className="flex items-center gap-3 text-[#ff6b35] text-sm font-bold uppercase tracking-widest mb-3">
-                      <Calendar className="w-4 h-4" />
-                      {city.date}
-                    </div>
-                    <h3 className="text-3xl font-black mb-2 text-white group-hover:text-[#ff9d4a] transition-colors">{city.city}</h3>
-                    <div className="flex items-center gap-2 text-white/50 text-xs uppercase tracking-widest mb-4">
-                      <MapPin className="w-3 h-3" />
-                      {city.venue}
-                    </div>
-                    <p className="text-white/70 font-light text-sm leading-relaxed">
-                      {city.desc}
-                    </p>
+                <div className="absolute left-5 sm:left-1/2 -translate-x-1/2 top-2 sm:top-1/2 sm:-translate-y-1/2 z-20">
+                  <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-dark-bg border-[3px] border-gold flex items-center justify-center shadow-[0_0_20px_rgba(201,168,76,0.8)] backdrop-blur-md">
+                    <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gold rounded-full animate-ping absolute"></div>
+                    <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gold rounded-full"></div>
                   </div>
                 </div>
+
+                {/* Poster Image */}
+                <div className="w-[85%] max-w-[240px] sm:max-w-none sm:w-[46%] mt-2 sm:mt-0 transition-transform duration-500 hover:scale-[1.02]">
+                  <TiltPoster src="/poster-school.png" alt="Inter-School Events Poster" glowColor="rgba(201,168,76,0.3)" borderColor="border-gold/30" />
+                </div>
               </motion.div>
-            ))}
+
+              {/* ── DAY 2 & 3 · Inter-University ── */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 40 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: true, margin: "-200px" }}
+                transition={{ duration: 0.7, ease: "easeOut" }}
+                className="relative flex flex-col sm:flex-row-reverse items-start sm:items-center gap-6 sm:gap-12 pl-14 sm:pl-0"
+              >
+                <div className="sm:w-[46%]">
+                  <span className="inline-block px-3 py-1 bg-quantum-pink/10 text-quantum-pink text-[11px] font-bold uppercase tracking-widest rounded-full mb-3 border border-quantum-pink/20 shadow-sm shadow-quantum-pink/5">Day 2 & 3 · Oct 23rd-24th</span>
+                  <h3 className={`font-serif text-2xl sm:text-3xl font-black mb-2 ${dark ? 'text-white' : 'text-deep-red'}`}>Inter-University Events</h3>
+                  <p className={`text-sm leading-relaxed max-w-xs mb-4 ${dark ? 'text-gray-400' : 'text-gray-700'}`}>
+                    The grand stage — universities from across India, six mega categories.
+                  </p>
+                  <div className="flex flex-wrap gap-1.5 mb-4">
+                    {['Music', 'Dance', 'Theatre', 'Fashion', 'Fine Arts', 'Cuisine'].map(tag => (
+                      <span key={tag} className="px-2 py-0.5 text-[10px] font-semibold bg-quantum-pink/8 text-quantum-pink/80 border border-quantum-pink/15 rounded-full">{tag}</span>
+                    ))}
+                  </div>
+                  <a href="#events" className="inline-flex items-center gap-1.5 text-sm font-bold text-quantum-pink hover:text-white transition-colors group">
+                    Explore <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  </a>
+                </div>
+
+                {/* Node */}
+                <div className="absolute left-5 sm:left-1/2 -translate-x-1/2 top-2 sm:top-1/2 sm:-translate-y-1/2 z-20">
+                  <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-dark-bg border-[3px] border-quantum-pink flex items-center justify-center shadow-[0_0_20px_rgba(234,21,136,0.8)] backdrop-blur-md">
+                    <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-quantum-pink rounded-full animate-ping absolute"></div>
+                    <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-quantum-pink rounded-full"></div>
+                  </div>
+                </div>
+
+                {/* Poster Image */}
+                <div className="w-[85%] max-w-[240px] sm:max-w-none sm:w-[46%] mt-2 sm:mt-0 transition-transform duration-500 hover:scale-[1.02]">
+                  <TiltPoster src="/poster-university.png" alt="Inter-University Events Poster" glowColor="rgba(234,21,136,0.3)" borderColor="border-quantum-pink/30" />
+                </div>
+              </motion.div>
+
+
+            </div>
           </div>
         </div>
       </section>
