@@ -2,12 +2,16 @@ import React from 'react';
 import { Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-export const CrewCard = ({ name, role, phone, image }) => {
+export const CrewCard = ({ name, role, phone, image, index = 0 }) => {
   return (
     <motion.div 
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-20px" }}
+      transition={{ duration: 0.5, delay: index * 0.15, type: "spring", stiffness: 120, damping: 20 }}
       whileHover={{ y: -10, scale: 1.02 }}
       whileTap={{ scale: 0.95 }}
-      className="relative w-[260px] sm:w-[280px] shrink-0 bg-[#1a0f2e] rounded-xl border border-white/5 overflow-hidden shadow-xl flex flex-col group transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,107,53,0.3)] hover:border-[#ff6b35]/30 cursor-pointer mx-auto"
+      className="relative w-[260px] sm:w-[280px] shrink-0 bg-[#1a0f2e] rounded-xl border border-white/5 overflow-hidden shadow-xl flex flex-col group transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,107,53,0.3)] active:shadow-[0_0_30px_rgba(255,107,53,0.4)] hover:border-[#ff6b35]/30 active:border-[#ff6b35]/40 cursor-pointer mx-auto"
     >
       {/* Top subtle gradient */}
       <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-black/60 to-transparent pointer-events-none" />
@@ -19,7 +23,7 @@ export const CrewCard = ({ name, role, phone, image }) => {
         </div>
 
         {/* Profile Image with Glowing Gradient Border */}
-        <div className="relative w-24 h-24 sm:w-28 sm:h-28 mb-4 sm:mb-5 rounded-full p-[3px] bg-gradient-to-tr from-[#ff6b35] via-[#ff5f3c] to-[#9b1c31] group-hover:shadow-[0_0_20px_rgba(255,107,53,0.6)] transition-all duration-500">
+        <div className="relative w-24 h-24 sm:w-28 sm:h-28 mb-4 sm:mb-5 rounded-full p-[3px] bg-gradient-to-tr from-[#ff6b35] via-[#ff5f3c] to-[#9b1c31] group-hover:shadow-[0_0_20px_rgba(255,107,53,0.6)] group-active:shadow-[0_0_25px_rgba(255,107,53,0.8)] transition-all duration-500">
           <div className="w-full h-full rounded-full overflow-hidden bg-[#0a0505] border-2 border-[#1a0f2e]">
             {image ? (
               <img src={image} alt={name} className="w-full h-full object-cover" />
@@ -32,7 +36,7 @@ export const CrewCard = ({ name, role, phone, image }) => {
         </div>
 
         {/* Name */}
-        <h3 className="text-white font-sans font-black text-xl sm:text-2xl tracking-wide mb-2 sm:mb-3 drop-shadow-md group-hover:text-[#ff6b35] transition-colors text-center">
+        <h3 className="text-white font-sans font-black text-xl sm:text-2xl tracking-wide mb-2 sm:mb-3 drop-shadow-md group-hover:text-[#ff6b35] group-active:text-[#ff5f3c] transition-colors text-center">
           {name}
         </h3>
 
@@ -104,7 +108,7 @@ export const ContactCrewGrid = ({ coordinators }) => {
 
         <div className="flex flex-wrap justify-center gap-4 sm:gap-8 md:gap-10">
           {coordinators.map((coord, i) => (
-            <CrewCard key={i} {...coord} />
+            <CrewCard key={i} index={i} {...coord} />
           ))}
         </div>
       </div>
