@@ -417,7 +417,7 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-500 ease-in-out"></div>
               </Link>
               
-              <a href="#register" onClick={(e) => handleNavClick(e, 'register')} className="ml-2 bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-bg px-5 py-2 rounded-lg font-semibold text-sm hover:brightness-110 transition-all">Register Now</a>
+              <a href="#register" onClick={(e) => handleNavClick(e, 'register')} className="ml-2 bg-gradient-to-r from-yellow-400 to-[#ff5f3c] text-white px-6 py-2 rounded-lg font-extrabold text-sm shadow-[0_0_20px_rgba(255,165,0,0.4)] hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(255,165,0,0.8)] transition-all duration-300 tracking-wide uppercase">Register Now</a>
             </div>
 
             <div className="flex items-center gap-1 md:hidden">
@@ -449,7 +449,7 @@ export default function Home() {
                   Contact Us
                 </a>
                 
-                <a href="#register" onClick={(e) => handleNavClick(e, 'register')} className="block mt-3 text-center bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-bg px-5 py-3 rounded-lg font-bold text-sm">Register Now</a>
+                <a href="#register" onClick={(e) => handleNavClick(e, 'register')} className="block mt-3 text-center bg-gradient-to-r from-yellow-400 to-[#ff5f3c] text-white px-5 py-3 rounded-lg font-black text-sm shadow-[0_0_20px_rgba(255,165,0,0.4)] hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(255,165,0,0.8)] transition-all duration-300 uppercase tracking-widest">Register Now</a>
               </div>
             </motion.div>
           )}
@@ -529,7 +529,7 @@ export default function Home() {
 
             <motion.div variants={fadeUp} className="w-full max-w-md mx-auto mt-6">
               {countdown.isLive ? (
-                <div className="flex items-center justify-center gap-3 px-5 py-3.5 rounded-2xl border border-red-500/50 bg-red-500/[0.1] backdrop-blur-md shadow-[0_0_30px_rgba(255,0,0,0.3)]">
+                <div className="flex items-center justify-center gap-3 px-5 py-3.5 rounded-2xl border border-red-500/30 bg-white/5 backdrop-blur-xl shadow-[0_0_30px_rgba(255,0,0,0.2)]">
                   <div className="relative flex items-center justify-center">
                     <span className="absolute w-4 h-4 rounded-full bg-red-500 animate-ping opacity-60"></span>
                     <span className="relative w-3 h-3 rounded-full bg-red-500 shadow-[0_0_10px_red]"></span>
@@ -540,7 +540,7 @@ export default function Home() {
                   </div>
                 </div>
               ) : countdown.isPast ? (
-                <div className="flex items-center justify-center gap-3 px-5 py-3.5 rounded-2xl border border-[#ff6b35]/30 bg-[#ff6b35]/[0.05] backdrop-blur-md">
+                <div className="flex items-center justify-center gap-3 px-5 py-3.5 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.1)]">
                   <Sparkles className="w-5 h-5 text-[#ff6b35]" />
                   <div className="text-left">
                     <p className="text-[#ff6b35] font-bold text-sm">Abhivyakti 2026 has concluded</p>
