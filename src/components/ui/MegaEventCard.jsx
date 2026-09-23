@@ -26,7 +26,7 @@ const MegaEventCard = ({ events }) => {
           className="relative w-full max-w-[500px] aspect-square group cursor-pointer border border-[#ff6b35]/20 bg-[#12091f] shadow-2xl transition-all duration-500 hover:shadow-[0_0_50px_rgba(255,107,53,0.3)]"
         >
           {/* Background Image */}
-          <div className="absolute inset-2 bg-[url('/photos/media_1790088249718.jpg')] bg-cover bg-center brightness-75 group-hover:scale-[1.02] transition-transform duration-700" />
+          <div className="absolute inset-2 bg-[url('/photos/media_1790131158983.jpg')] bg-cover bg-center brightness-75 group-hover:scale-[1.02] transition-transform duration-700" />
           
           {/* Gradients */}
           <div className="absolute inset-2 bg-gradient-to-t from-[#12091f] via-[#12091f]/40 to-transparent opacity-90" />
