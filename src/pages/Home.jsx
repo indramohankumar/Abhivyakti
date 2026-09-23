@@ -794,6 +794,10 @@ export default function Home() {
         </div>
       </section>
 
+      <ContactCrewGrid coordinators={[
+        { name: "Shivam Prakash", role: "STUDENT COORDINATOR", phone: "74829 42186" },
+        { name: "Archii", role: "STUDENT COORDINATOR", phone: "93028 42951" }
+      ]} />
       <footer id="contact" className={`pt-12 sm:pt-20 pb-6 px-4 border-t ${dark ? 'bg-black/40 border-dark-border text-white' : 'bg-gradient-to-b from-[#3d0014] to-[#1f000a] text-cream border-[#5c001e]'} relative z-10 shadow-[0_-10px_30px_rgba(61,0,20,0.3)]`}>
         {/* Subtle top glow */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
