@@ -305,7 +305,7 @@ export default function InterSchool() {
         </div>
         
         <div className="flex items-center gap-2 sm:gap-2.5">
-          <img src="/logo.png" alt="Quantum University" className="h-6 sm:h-8 md:h-9 object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] brightness-110" />
+          <img src="/logo.png" alt="Quantum University" className="h-10 sm:h-12 md:h-14 object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.5)] brightness-110" />
           
         </div>
       </nav>
