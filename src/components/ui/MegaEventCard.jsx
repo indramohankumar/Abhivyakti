@@ -65,7 +65,7 @@ const MegaEventCard = ({ events }) => {
           </div>
         </div>
         
-        {/* BIG CARD 2: ROADTRIPS */}
+        {/* BIG CARD 2: THE JOURNEY */}
         <Link 
           to="/journey"
           className="relative w-full md:flex-1 max-w-[500px] aspect-square group cursor-pointer border border-[#ff6b35]/20 bg-[#12091f] shadow-2xl transition-all duration-500 hover:shadow-[0_0_50px_rgba(255,107,53,0.3)] block"
@@ -89,22 +89,19 @@ const MegaEventCard = ({ events }) => {
             ABHIVYAKTI '26
           </div>
 
-          {/* Sticky Tape: ACROSS INDIA */}
-          <div className="absolute -top-4 right-6 sm:right-10 bg-[#ff9d4a] text-black font-black text-sm sm:text-base px-5 py-2 transform rotate-3 shadow-lg z-20 uppercase tracking-widest group-hover:rotate-6 transition-transform">
-            ACROSS INDIA
-          </div>
+          
 
           {/* Content */}
           <div className="absolute inset-x-6 sm:inset-x-8 bottom-6 sm:bottom-8 flex flex-col items-start z-10">
             <h2 className="font-sans font-black text-6xl sm:text-[5.5rem] leading-none text-white tracking-tighter mb-2 group-hover:text-[#ff6b35] transition-colors drop-shadow-xl">
-              ROADTRIPS
+              THE JOURNEY
             </h2>
             <p className="text-white/80 text-xs sm:text-sm font-light max-w-[90%] leading-relaxed mb-4">
-              Rock, rap, beatboxing, comedy and DJ battles hit your city before the grand finale at Quantum University.
+              A magnificent three-day cultural and academic extravaganza. Experience breathtaking performances, fierce inter-university competitions, and unforgettable moments at Quantum University.
             </p>
             <div className="w-full h-[1px] bg-white/20 mb-4"></div>
             <div className="flex items-center gap-2 text-[#ff6b35] text-xs sm:text-sm font-black uppercase tracking-[0.2em] group-hover:text-white transition-colors">
-              HIT THE ROAD <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
+              EXPLORE JOURNEY <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
             </div>
           </div>
         </Link>
