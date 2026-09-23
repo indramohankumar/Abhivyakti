@@ -6,7 +6,7 @@ import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent, 
 import {
   Calendar, MapPin, Sparkles, ArrowRight, ExternalLink,
   Music, Users, VenetianMask, Shirt, Palette, Utensils, BookOpen,
-  Menu, X, Sun, Moon, Star, Trophy, Clock, ChevronUp
+  Menu, X, Sun, Moon, Star, Trophy, Clock, ChevronUp, Mail, Phone
 } from 'lucide-react';
 import { Carousel360 } from '../components/ui/image-fan-carousel';
 import MegaEventCard from '../components/ui/MegaEventCard';
@@ -401,9 +401,7 @@ export default function Home() {
             </a>
 
             <div className="hidden md:flex items-center gap-1">
-              <a href="#journey" onClick={(e) => handleNavClick(e, 'journey')} className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${dark ? 'text-gray-400 hover:text-gold hover:bg-gold/5' : 'text-gray-600 hover:text-maroon hover:bg-gold/5'}`}>
-                Journey
-              </a>
+              <Link to="/journey" className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${dark ? 'text-gray-400 hover:text-gold hover:bg-gold/5' : 'text-gray-600 hover:text-maroon hover:bg-gold/5'}`}>Journey</Link>
               <a href="#events" onClick={(e) => handleNavClick(e, 'events')} className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${dark ? 'text-gray-400 hover:text-gold hover:bg-gold/5' : 'text-gray-600 hover:text-maroon hover:bg-gold/5'}`}>
                 Inter-University
               </a>
@@ -438,9 +436,7 @@ export default function Home() {
                 <Link to="/inter-school" onClick={() => setMenuOpen(false)} className={`mb-2 block px-4 py-3 font-bold rounded-lg transition-colors flex items-center gap-2 ${dark ? 'text-quantum-purple bg-quantum-purple/10 border border-quantum-purple/20' : 'text-quantum-purple bg-quantum-purple/10 border border-quantum-purple/20'}`}>
                   <Sparkles className="w-4 h-4" /> Inter-School Events
                 </Link>
-                <a href="#journey" onClick={(e) => handleNavClick(e, 'journey')} className={`block px-4 py-3 font-medium rounded-lg transition-colors ${dark ? 'text-gray-300 active:bg-gold/10' : 'text-gray-700 active:bg-gold/10'}`}>
-                  Festival Journey
-                </a>
+                <Link to="/journey" onClick={() => setMenuOpen(false)} className={`block px-4 py-3 font-medium rounded-lg transition-colors ${dark ? 'text-gray-300 active:bg-gold/10' : 'text-gray-700 active:bg-gold/10'}`}>Festival Journey</Link>
                 <a href="#events" onClick={(e) => handleNavClick(e, 'events')} className={`block px-4 py-3 font-medium rounded-lg transition-colors ${dark ? 'text-gray-300 active:bg-gold/10' : 'text-gray-700 active:bg-gold/10'}`}>
                   Inter-University Events
                 </a>
