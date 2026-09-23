@@ -85,13 +85,13 @@ export default function Journey() {
           className="max-w-4xl mx-auto"
         >
           <div className="inline-block px-4 py-1 border border-[#ff6b35]/30 rounded-full text-[#ff6b35] text-[10px] font-black uppercase tracking-[0.3em] mb-6 shadow-[0_0_20px_rgba(255,107,53,0.2)]">
-            Across India
+            3 DAYS OF GLORY
           </div>
           <h1 className="text-5xl sm:text-7xl md:text-8xl font-black mb-6 uppercase tracking-tighter">
             The <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff6b35] via-[#ff5f3c] to-[#9b1c31] drop-shadow-[0_0_30px_rgba(255,107,53,0.5)]">Journey</span>
           </h1>
           <p className="text-white/60 text-lg sm:text-xl font-light max-w-2xl mx-auto leading-relaxed">
-            Rock, rap, beatboxing, comedy and DJ battles hit your city before the grand finale at Quantum University. Hit the road with us.
+            A magnificent three-day cultural and academic extravaganza. Experience breathtaking performances, fierce inter-university competitions, and unforgettable moments at Quantum University.
           </p>
         </motion.div>
       </header>
