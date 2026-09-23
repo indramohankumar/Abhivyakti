@@ -9,8 +9,8 @@ export const CrewCard = ({ name, role, phone, image, index = 0 }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-20px" }}
       transition={{ duration: 0.5, delay: index * 0.15, type: "spring", stiffness: 120, damping: 20 }}
-      whileHover={{ y: -10, scale: 1.02 }}
-      whileTap={{ scale: 0.95 }}
+      whileHover={{ y: -12, scale: 1.02, rotate: index % 2 === 0 ? 2 : -2 }}
+      whileTap={{ y: -15, scale: 0.98, rotate: index % 2 === 0 ? 4 : -4 }}
       className="relative w-[260px] sm:w-[280px] shrink-0 bg-[#1a0f2e] rounded-xl border border-white/5 overflow-hidden shadow-xl flex flex-col group transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,107,53,0.3)] active:shadow-[0_0_30px_rgba(255,107,53,0.4)] hover:border-[#ff6b35]/30 active:border-[#ff6b35]/40 cursor-pointer mx-auto"
     >
       {/* Top subtle gradient */}
