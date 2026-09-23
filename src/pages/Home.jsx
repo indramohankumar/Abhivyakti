@@ -504,16 +504,17 @@ export default function Home() {
 
             {/* Crisp Typography in Fiery Orange/Red Gradient */}
             <motion.div variants={fadeUp} className="space-y-2 flex flex-col items-center">
-              <h1 className="font-hindi text-[4rem] xs:text-[5rem] sm:text-[7.5rem] md:text-[9.5rem] lg:text-[11.5rem] font-extrabold leading-[1.1] tracking-wide text-transparent bg-clip-text bg-gradient-to-br from-[#ff6b35] via-[#ff5f3c] to-[#9b1c31] drop-shadow-[0_0_50px_rgba(255,107,53,0.4)]">
-                अभिव्यक्ति
+              <h1 className="font-hindi text-[4rem] xs:text-[5rem] sm:text-[7.5rem] md:text-[9.5rem] lg:text-[11.5rem] font-extrabold leading-[1.1] tracking-wide text-transparent bg-clip-text bg-gradient-to-br from-[#ff6b35] via-[#ff5f3c] to-[#9b1c31] drop-shadow-[0_0_50px_rgba(255,107,53,0.4)] min-h-[1.2em]">
+                <TypeWriter
+                  text="अभिव्यक्ति"
+                  delay={100}
+                  speed={200}
+                  cursorColor="#ff6b35"
+                />
               </h1>
-              <TypeWriter
-                text="Abhivyakti 2026"
-                delay={500}
-                speed={80}
-                className="font-serif text-xl sm:text-3xl md:text-4xl font-black tracking-[0.25em] uppercase block text-white drop-shadow-[0_0_20px_rgba(255,107,53,0.5)]"
-                cursorColor="#ff6b35"
-              />
+              <div className="font-serif text-xl sm:text-3xl md:text-4xl font-black tracking-[0.25em] uppercase block text-white drop-shadow-[0_0_20px_rgba(255,107,53,0.5)] mt-2">
+                Abhivyakti 2026
+              </div>
               <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-transparent via-[#ff6b35] to-transparent mt-4 opacity-70"></div>
               <p className="text-[10px] sm:text-sm tracking-[0.2em] uppercase font-bold text-gray-400 mt-3">
                 The Fire Within • Expression of Culture
