@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import { Sparkles, MapPin, Calendar, Users, Mic, ArrowLeft, Palette, BookOpen, Drama, X, ChevronRight, Magnet, Music } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { EmberParticles } from '../components/ui/EmberParticles';
 import CulturalDust from '../components/ui/cultural-dust';
 import { ParallaxMandalaBackground } from '../components/ui/parallax-mandala';
 
@@ -242,7 +243,7 @@ export default function InterSchool() {
   const yParallaxElements = useTransform(scrollYProgress, [0, 1], [0, -300]); // Moves up faster
   const yParallaxSlow = useTransform(scrollYProgress, [0, 1], [0, 200]); // Inverse drift
 
-  const dark = false;
+  const dark = true;
 
   useEffect(() => {
     if (dark) {

@@ -1,4 +1,6 @@
-import React from 'react';
+import codecs
+
+content = '''import React from 'react';
 
 export const EmberParticles = () => {
   // Generate 40 random embers
@@ -13,7 +15,7 @@ export const EmberParticles = () => {
 
   return (
     <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden h-[120vh]">
-      <style dangerouslySetInnerHTML={{__html: `
+      <style dangerouslySetInnerHTML={{__html: 
         @keyframes floatUp {
           0% { 
             transform: translateY(100vh) translateX(0px) scale(0.5); 
@@ -33,7 +35,7 @@ export const EmberParticles = () => {
           border-radius: 50%;
           animation: floatUp linear infinite;
         }
-      `}} />
+      }} />
       {embers.map((e) => (
         <div
           key={e.id}
@@ -52,3 +54,7 @@ export const EmberParticles = () => {
     </div>
   );
 };
+'''
+
+with codecs.open('src/components/ui/EmberParticles.jsx', 'w', encoding='utf-8') as f:
+    f.write(content)
