@@ -81,7 +81,7 @@ export function AntaragniEventsGrid({ events }) {
                     № {String(originalIndex).padStart(2, '0')}/26
                   </div>
                   <div className="absolute top-3 right-6 text-[9px] text-red-500 font-mono tracking-widest font-black uppercase z-10 drop-shadow-md">
-                    ANTARAGNI '26
+                    ABHIVYAKTI '26
                   </div>
 
                   {/* Bottom Solid Title Block */}

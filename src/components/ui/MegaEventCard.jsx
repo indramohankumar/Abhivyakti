@@ -41,7 +41,7 @@ const MegaEventCard = ({ events }) => {
             № 01/26
           </div>
           <div className="absolute top-5 right-6 text-[10px] sm:text-xs text-[#ff6b35] font-mono tracking-widest font-black uppercase z-10 drop-shadow-lg">
-            ANTARAGNI '26
+            ABHIVYAKTI '26
           </div>
 
           {/* Sticky Tape: ON CAMPUS */}
