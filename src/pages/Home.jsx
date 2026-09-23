@@ -630,7 +630,7 @@ export default function Home() {
       </section>
 
       {/* ════════ FESTIVAL JOURNEY ════════ */}
-      <MegaEventCard events={events} />
+      <section id="events"><MegaEventCard events={events} /></section>
 
       <section id="journey" className="py-16 sm:py-24 relative overflow-hidden">
 
@@ -749,7 +749,7 @@ export default function Home() {
 
 
       {/* ?? NEW PHOTOS MARQUEE ?? */}
-      <section className="relative z-20 py-8 sm:py-12 overflow-hidden bg-[#12091f]">
+      <section id="photos" className="relative z-20 py-8 sm:py-12 overflow-hidden bg-[#12091f]">
         <div className="text-center mb-6 sm:mb-10 px-4">
           <p className="text-[#ff6b35] font-semibold tracking-[0.2em] uppercase text-xs mb-2">Memories</p>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-black text-white">
