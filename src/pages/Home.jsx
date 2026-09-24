@@ -760,7 +760,7 @@ export default function Home() {
       <ContactCrewGrid coordinators={[
         { name: "Shivam Prakash", role: "STUDENT COORDINATOR", phone: "74829 42186" },
         { name: "Archii", role: "STUDENT COORDINATOR", phone: "93028 42951" },
-        { name: "Indra Mohan Kumar", role: "TECH", phone: "6204318317" }
+        { name: "Indra Mohan Kumar", role: "TECH", phone: "6204318317", image: "/crew/indra.jpg" }
       ]} />
       <footer id="contact" className={`pt-12 sm:pt-20 pb-6 px-4 border-t ${dark ? 'bg-black/40 border-dark-border text-white' : 'bg-gradient-to-b from-[#3d0014] to-[#1f000a] text-cream border-[#5c001e]'} relative z-10 shadow-[0_-10px_30px_rgba(61,0,20,0.3)]`}>
           {/* Subtle top glow */}
