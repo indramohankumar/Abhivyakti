@@ -19,6 +19,9 @@
   --font-sans: 'Outfit', 'Poppins', sans-serif;
   --font-serif: 'Playfair Display', serif;
   --font-hindi: 'Rozha One', 'Yatra One', serif;
+  --animate-marquee: marquee 30s linear infinite;
+  --animate-marquee-reverse: marquee-reverse 35s linear infinite;
+
 }
 
 @layer utilities {
@@ -86,3 +89,13 @@ body { -webkit-font-smoothing: antialiased; }
     0% { transform: translateX(0); }
     100% { transform: translateX(-33.333333%); }
   }
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
