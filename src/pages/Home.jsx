@@ -391,7 +391,7 @@ export default function Home() {
           <div className="flex justify-between items-center h-14 sm:h-16 md:h-[72px]">
             <a href="#" className="flex items-center gap-2.5">
               <div className="flex items-center gap-2.5 transition-all duration-300">
-                <img src="/logo.png" alt="Quantum University" className="h-10 sm:h-12 md:h-14 object-contain drop-shadow-md brightness-110" />
+                <img src="/logo.png" alt="Quantum University" className="h-12 sm:h-14 md:h-16 object-contain drop-shadow-sm" />
                 
               </div>
               <div className="flex flex-col leading-none">
@@ -695,7 +695,7 @@ export default function Home() {
               {/* Brand */}
               <div className="space-y-4">
                 <div className="flex items-center gap-4 inline-flex">
-                  <img src="/logo.png" alt="Quantum University" className="h-10 sm:h-12 md:h-14 object-contain" />
+                  <img src="/logo.png" alt="Quantum University" className="h-12 sm:h-14 md:h-16 object-contain drop-shadow-sm" />
                 </div>
                 <p className="text-gray-400 text-sm leading-relaxed mt-4 max-w-xs">
                   Quantum University's grand annual cultural festival celebrating the vibrant essence of Indian art, literature, and heritage.
