@@ -305,9 +305,7 @@ export default function InterSchool() {
         </div>
         
         <div className="flex items-center gap-2 sm:gap-2.5">
-          <div className="relative h-10 sm:h-12 md:h-14 flex items-center bg-white/10 px-3 py-1.5 rounded-full backdrop-blur-md shadow-lg border border-white/10 transition-all hover:bg-white/20">
-                  <img src="/logo.png" alt="Quantum University" className="h-full object-contain" />
-                </div>
+          <img src="/logo.png" alt="Quantum University" className="h-10 sm:h-12 md:h-14 object-contain drop-shadow-md brightness-110" />
           
         </div>
       </nav>
@@ -534,9 +532,7 @@ export default function InterSchool() {
               {/* Brand */}
               <div className="space-y-4">
                 <div className="flex items-center gap-4 inline-flex">
-                  <div className="relative h-10 sm:h-12 md:h-14 flex items-center bg-white/10 p-2 rounded-xl backdrop-blur-sm">
-                    <img src="/logo.png" alt="Quantum University" className="h-full object-contain" />
-                  </div>
+                  <img src="/logo.png" alt="Quantum University" className="h-10 sm:h-12 md:h-14 object-contain" />
                 </div>
                 <p className="text-gray-400 text-sm leading-relaxed mt-4 max-w-xs">
                   Quantum University's grand annual cultural festival celebrating the vibrant essence of Indian art, literature, and heritage.
