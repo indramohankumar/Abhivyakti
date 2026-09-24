@@ -602,15 +602,13 @@ export default function InterSchool() {
                       Event Rules
                     </h4>
                     <ul className="space-y-3">
-                  {['Journey', 'Events', 'Photos', 'Register'].map(item => (
-                    <li key={item}>
-                      <Link to={`/${item.toLowerCase() === 'journey' ? 'journey' : ''}`} className="text-gray-400 text-sm hover:text-gold hover:pl-2 transition-all duration-300 flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-gold/50"></span>
-                        {item}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+                      {activeModal.rules.map((rule, i) => (
+                        <li key={i} className={`flex items-start gap-3 text-sm leading-relaxed ${dark ? 'text-gray-300' : 'text-gray-700'}`}>
+                          <span className={`font-bold mt-0.5 ${dark ? activeModal.textColor : 'text-maroon'}`}>{i + 1}.</span>
+                          <span>{rule}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                   
                 </div>
