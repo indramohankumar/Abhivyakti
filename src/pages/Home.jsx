@@ -391,7 +391,9 @@ export default function Home() {
           <div className="flex justify-between items-center h-14 sm:h-16 md:h-[72px]">
             <a href="#" className="flex items-center gap-2.5">
               <div className="flex items-center gap-2.5 transition-all duration-300">
-                <img src="/logo.png" alt="Quantum University" className="h-10 sm:h-12 md:h-14 object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.5)] brightness-110" />
+                <div className="relative h-10 sm:h-12 md:h-14 flex items-center bg-white/10 px-3 py-1.5 rounded-full backdrop-blur-md shadow-lg border border-white/10 transition-all hover:bg-white/20">
+                  <img src="/logo.png" alt="Quantum University" className="h-full object-contain" />
+                </div>
                 
               </div>
               <div className="flex flex-col leading-none">

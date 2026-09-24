@@ -305,7 +305,9 @@ export default function InterSchool() {
         </div>
         
         <div className="flex items-center gap-2 sm:gap-2.5">
-          <img src="/logo.png" alt="Quantum University" className="h-10 sm:h-12 md:h-14 object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.5)] brightness-110" />
+          <div className="relative h-10 sm:h-12 md:h-14 flex items-center bg-white/10 px-3 py-1.5 rounded-full backdrop-blur-md shadow-lg border border-white/10 transition-all hover:bg-white/20">
+                  <img src="/logo.png" alt="Quantum University" className="h-full object-contain" />
+                </div>
           
         </div>
       </nav>

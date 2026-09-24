@@ -1,17 +1,17 @@
 import codecs
+import re
 
 def fix_logo(filename):
     with codecs.open(filename, 'r', encoding='utf-8') as f:
         content = f.read()
 
-    # Find the <img src="/logo.png" tag
-    start_idx = content.find('<img src="/logo.png"')
-    if start_idx != -1:
-        end_idx = content.find('/>', start_idx)
-        if end_idx != -1:
-            old_tag = content[start_idx:end_idx+2]
-            new_tag = '<img src="/logo.png" alt="Quantum University" className="h-6 sm:h-8 md:h-9 object-contain mix-blend-screen" style={{ filter: "grayscale(1) invert(1) brightness(2)" }} />'
-            content = content.replace(old_tag, new_tag)
+    # The current logo tag is inside a div
+    old_div_regex = r'<div className="relative h-10 sm:h-12 md:h-14 flex items-center">\s*<img src="/logo\.png" alt="Quantum University" className="h-full object-contain" style=\{\{ mixBlendMode: "multiply" \}\} />\s*</div>'
+    
+    # New beautiful tag
+    new_tag = '<img src="/logo.png" alt="Quantum University" className="h-10 sm:h-12 md:h-14 object-contain drop-shadow-[0_0_12px_rgba(255,255,255,0.6)] brightness-110" />'
+    
+    content = re.sub(old_div_regex, new_tag, content)
 
     with codecs.open(filename, 'w', encoding='utf-8') as f:
         f.write(content)
