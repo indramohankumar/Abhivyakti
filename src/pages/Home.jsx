@@ -734,7 +734,7 @@ export default function Home() {
           <GoldenWheel className={`absolute top-10 left-10 w-40 h-40 opacity-20 animate-[spin_65s_linear_infinite] text-gold`} />
           <SparkleParticle className="top-1/4 left-1/4 w-2 h-2 sm:w-3 sm:h-3" delay={0.5} />
   
-          {/* GIANT "SEE YOU IN OCTOBER" GRAPHIC (Now visible at the top) */}
+          {/* GIANT "SEE YOU IN OCTOBER" GRAPHIC (Top) */}
           <div className="relative w-full flex flex-col items-center justify-center z-10 pt-10">
             <h1 className="font-black tracking-tighter leading-[0.85] flex flex-col items-center text-center w-full">
                <span className="text-[70px] sm:text-[100px] md:text-[150px] lg:text-[180px] bg-clip-text text-transparent bg-gradient-to-b from-[#ffb703] via-[#ff6b35] to-[#9b1c31] drop-shadow-2xl z-20">SEE YOU</span>
@@ -742,17 +742,8 @@ export default function Home() {
             </h1>
           </div>
 
-          {/* FAST MOVING TILTED TAPE */}
-          <div className="relative w-[110%] h-12 md:h-16 bg-[#ffb703] -rotate-3 shadow-[0_0_50px_rgba(255,183,3,0.4)] z-30 flex items-center overflow-hidden border-y-2 border-white/40 mt-8 mb-16 mix-blend-screen">
-             <div className="animate-marquee flex gap-10 items-center whitespace-nowrap text-black font-black text-2xl md:text-3xl uppercase tracking-tighter" style={{ animationDuration: '6s' }}>
-                 <span>Quantum University</span> <Sparkles className="w-6 h-6 text-black" /> <span>Abhivyakti &apos;26</span> <Sparkles className="w-6 h-6 text-black" /> <span>Join Now</span> <Sparkles className="w-6 h-6 text-black" />
-                 <span>Quantum University</span> <Sparkles className="w-6 h-6 text-black" /> <span>Abhivyakti &apos;26</span> <Sparkles className="w-6 h-6 text-black" /> <span>Join Now</span> <Sparkles className="w-6 h-6 text-black" />
-                 <span>Quantum University</span> <Sparkles className="w-6 h-6 text-black" /> <span>Abhivyakti &apos;26</span> <Sparkles className="w-6 h-6 text-black" /> <span>Join Now</span> <Sparkles className="w-6 h-6 text-black" />
-                 <span>Quantum University</span> <Sparkles className="w-6 h-6 text-black" /> <span>Abhivyakti &apos;26</span> <Sparkles className="w-6 h-6 text-black" /> <span>Join Now</span> <Sparkles className="w-6 h-6 text-black" />
-             </div>
-          </div>
-
-          <div className="max-w-2xl mx-auto w-full relative z-40">
+          {/* THE CARD (Middle) */}
+          <div className="max-w-2xl mx-auto w-full relative z-40 mt-16 mb-24">
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
               className={`text-center p-8 sm:p-12 md:p-14 rounded-3xl border relative overflow-hidden backdrop-blur-xl bg-black/60 border-white/10 shadow-[0_30px_80px_rgba(0,0,0,0.8)]`}
             >
@@ -772,6 +763,16 @@ target="_blank" rel="noopener noreferrer"
                 Register Now <ExternalLink className="w-5 h-5" />
               </a>
             </motion.div>
+          </div>
+
+          {/* FAST MOVING TILTED TAPE (Bottom) */}
+          <div className="relative w-[110%] h-12 md:h-16 bg-[#ffb703] -rotate-3 shadow-[0_0_50px_rgba(255,183,3,0.4)] z-30 flex items-center overflow-hidden border-y-2 border-white/40 mt-8 mb-4 mix-blend-screen">
+             <div className="animate-marquee flex gap-10 items-center whitespace-nowrap text-black font-black text-2xl md:text-3xl uppercase tracking-tighter" style={{ animationDuration: '6s' }}>
+                 <span>Quantum University</span> <Sparkles className="w-6 h-6 text-black" /> <span>Abhivyakti &apos;26</span> <Sparkles className="w-6 h-6 text-black" /> <span>Join Now</span> <Sparkles className="w-6 h-6 text-black" />
+                 <span>Quantum University</span> <Sparkles className="w-6 h-6 text-black" /> <span>Abhivyakti &apos;26</span> <Sparkles className="w-6 h-6 text-black" /> <span>Join Now</span> <Sparkles className="w-6 h-6 text-black" />
+                 <span>Quantum University</span> <Sparkles className="w-6 h-6 text-black" /> <span>Abhivyakti &apos;26</span> <Sparkles className="w-6 h-6 text-black" /> <span>Join Now</span> <Sparkles className="w-6 h-6 text-black" />
+                 <span>Quantum University</span> <Sparkles className="w-6 h-6 text-black" /> <span>Abhivyakti &apos;26</span> <Sparkles className="w-6 h-6 text-black" /> <span>Join Now</span> <Sparkles className="w-6 h-6 text-black" />
+             </div>
           </div>
         </section>
 
