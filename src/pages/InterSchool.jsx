@@ -518,8 +518,8 @@ export default function InterSchool() {
 
       {/* ════════ FOOTER ════════ */}
       <ContactCrewGrid coordinators={[
-        { name: "Dhruv Bhati", role: "STUDENT COORDINATOR", phone: "79062 16206" },
-        { name: "Nilbrata Das", role: "STUDENT COORDINATOR", phone: "89748 94143" }
+        { name: "Dhruv Bhati", role: "STUDENT COORDINATOR", phone: "79062 16206", image: "/crew/dhruv.jpg" },
+        { name: "Nilbrata Das", role: "STUDENT COORDINATOR", phone: "89748 94143", image: "/crew/nilbrata.jpg" }
       ]} />
       <footer id="contact" className={`pt-12 sm:pt-20 pb-6 px-4 border-t ${dark ? 'bg-black/40 border-dark-border text-white' : 'bg-gradient-to-b from-[#3d0014] to-[#1f000a] text-cream border-[#5c001e]'} relative z-10 shadow-[0_-10px_30px_rgba(61,0,20,0.3)]`}>
           {/* Subtle top glow */}
