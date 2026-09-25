@@ -620,10 +620,6 @@ export default function InterSchool() {
 
       {/* ════════ FOOTER ════════ */}
       <ContactCrewGrid coordinators={[
-          { name: "Dr. Pushpender Singh", role: "CONVENER", phone: "98991 42233" },
-          { name: "Dr. Nirmesh Sharma", role: "CO-CONVENER", phone: "97600 87704" },
-          { name: "Dr. Varsha Gupta", role: "CO-CONVENER", phone: "70156 60812" },
-          { name: "Dr. Mousmi Agarwal", role: "CO-CONVENER", phone: "98971 93757" },
           { name: "Dhruv Bhati", role: "STUDENT COORDINATOR", phone: "79062 16206", image: "/crew/dhruv.jpg" },
           { name: "Nilbrata Das", role: "STUDENT COORDINATOR", phone: "89748 94143", image: "/crew/nilbrata.jpg" }
         ]} />
