@@ -11,6 +11,9 @@ const PhotoMarquee = ({ images, speed = 35 }) => {
       className="relative w-full h-[240px] sm:h-[320px] overflow-hidden bg-transparent py-4 my-8"
       style={{ WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)', maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)' }}
     >
+      {/* Dusky Texture Overlay */}
+      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-40 pointer-events-none mix-blend-overlay z-20" style={{ filter: 'contrast(1.5)' }}></div>
+      
       <style dangerouslySetInnerHTML={{__html: `
         @keyframes scrollPhotos {
           0% { transform: translateX(0); }
