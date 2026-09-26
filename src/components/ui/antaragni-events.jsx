@@ -34,6 +34,11 @@ export function AntaragniEventsGrid({ events }) {
         .animate-marquee.paused {
           animation-play-state: paused;
         }
+        @media (hover: hover) and (pointer: fine) {
+          .animate-marquee:hover {
+            animation-play-state: paused;
+          }
+        }
       `}</style>
 
       <div className="w-full h-[380px] sm:h-[420px] overflow-hidden relative z-10 py-2 sm:py-4">
@@ -44,8 +49,6 @@ export function AntaragniEventsGrid({ events }) {
         {/* Scrolling Track */}
         <div 
           className={`flex h-full gap-3 sm:gap-4 w-max animate-marquee ${isPaused ? 'paused' : ''}`}
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
         >
           {marqueeEvents.map((event, index) => {
             // Colors from the uploaded image (Orange, Red, Yellow, Magenta)

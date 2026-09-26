@@ -647,7 +647,7 @@ export default function Home() {
                   <h.icon className={`w-6 h-6 sm:w-8 sm:h-8 ${dark ? 'text-gold' : 'text-maroon'}`} />
                 </div>
                 
-                <p className="text-gold-gradient text-4xl sm:text-5xl md:text-6xl font-extrabold leading-none drop-shadow-sm mb-2">
+                <p className="text-gold-gradient text-3xl sm:text-5xl md:text-6xl font-extrabold leading-none drop-shadow-sm mb-2">
                   <CountUp end={h.label} suffix={h.suffix} duration={1800 + i * 400} />
                 </p>
                 
@@ -693,7 +693,7 @@ export default function Home() {
 
         {/* Text Marquee (Event Names) */}
         <div className="relative w-full flex overflow-x-hidden border-b border-white/5 bg-gradient-to-r from-[#0a0505] via-[#1a0a1a] to-[#0a0505] py-5">
-          <div className="animate-marquee flex gap-12 items-center whitespace-nowrap pl-12 text-transparent bg-clip-text bg-gradient-to-r from-white/40 to-white/60 font-black text-4xl sm:text-5xl uppercase tracking-widest drop-shadow-lg">
+          <div className="animate-marquee flex gap-12 items-center whitespace-nowrap pl-12 text-transparent bg-clip-text bg-gradient-to-r from-white/40 to-white/60 font-black text-3xl sm:text-5xl uppercase tracking-widest drop-shadow-lg">
             <span>Dance</span>
             <Sparkles className="w-10 h-10 text-[#ff6b35] shrink-0 opacity-80" />
             <span>Music</span>
@@ -749,8 +749,8 @@ export default function Home() {
           {/* GIANT "SEE YOU IN OCTOBER" GRAPHIC (Top) */}
           <div className="relative w-full flex flex-col items-center justify-center z-10 pt-10">
             <h1 className="font-black tracking-tighter leading-[0.85] flex flex-col items-center text-center w-full">
-               <span className="text-[70px] sm:text-[100px] md:text-[150px] lg:text-[180px] bg-clip-text text-transparent bg-gradient-to-b from-[#ffb703] via-[#ff6b35] to-[#9b1c31] drop-shadow-2xl z-20">SEE YOU</span>
-               <span className="text-[70px] sm:text-[100px] md:text-[150px] lg:text-[180px] text-transparent z-10 tracking-widest font-sans -mt-4 sm:-mt-8 md:-mt-12" style={{ WebkitTextStroke: '2px rgba(255,255,255,0.6)' }}>IN OCTOBER</span>
+               <span className="text-[55px] sm:text-[100px] md:text-[150px] lg:text-[180px] bg-clip-text text-transparent bg-gradient-to-b from-[#ffb703] via-[#ff6b35] to-[#9b1c31] drop-shadow-2xl z-20">SEE YOU</span>
+               <span className="text-[55px] sm:text-[100px] md:text-[150px] lg:text-[180px] text-transparent z-10 tracking-widest font-sans -mt-4 sm:-mt-8 md:-mt-12" style={{ WebkitTextStroke: '2px rgba(255,255,255,0.6)' }}>IN OCTOBER</span>
             </h1>
           </div>
 

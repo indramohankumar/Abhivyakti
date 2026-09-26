@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const PhotoMarquee = ({ images, speed = 35 }) => {
-  const [isPaused, setIsPaused] = useState(false);
-  
   // Duplicate 3 times for a seamless loop
   const marqueeImages = [...images, ...images, ...images];
 
   return (
     <div 
-      className="relative w-full h-[240px] sm:h-[320px] overflow-hidden bg-transparent py-4 my-8"
-      style={{ WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)', maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)' }}
+      className="relative w-full h-[220px] sm:h-[320px] overflow-hidden bg-transparent py-4 my-6 sm:my-8"
+      style={{ WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)', maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)' }}
     >
       {/* Dusky Texture Overlay */}
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-40 pointer-events-none mix-blend-overlay z-20" style={{ filter: 'contrast(1.5)' }}></div>
@@ -22,22 +20,18 @@ const PhotoMarquee = ({ images, speed = 35 }) => {
         .animate-photo-marquee {
           animation: scrollPhotos ${speed}s linear infinite;
         }
-        .animate-photo-marquee.paused {
-          animation-play-state: paused;
+        @media (hover: hover) and (pointer: fine) {
+          .animate-photo-marquee:hover {
+            animation-play-state: paused;
+          }
         }
       `}} />
       
-
-
-      <div 
-        className={`flex h-full gap-4 sm:gap-6 w-max animate-photo-marquee ${isPaused ? 'paused' : ''}`}
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
-      >
+      <div className="flex h-full gap-3 sm:gap-6 w-max animate-photo-marquee">
         {marqueeImages.map((src, idx) => (
           <div 
             key={idx} 
-            className="w-[320px] sm:w-[450px] h-full rounded-2xl overflow-hidden border border-white/5 shadow-[0_10px_30px_rgba(0,0,0,0.5)] flex-shrink-0 relative group hover:border-[#ff6b35]/40 hover:shadow-[0_0_30px_rgba(255,107,53,0.2)] transition-all duration-500 cursor-pointer"
+            className="w-[280px] sm:w-[450px] h-full rounded-2xl overflow-hidden border border-white/5 shadow-[0_10px_30px_rgba(0,0,0,0.5)] flex-shrink-0 relative group hover:border-[#ff6b35]/40 hover:shadow-[0_0_30px_rgba(255,107,53,0.2)] transition-all duration-500 cursor-pointer"
           >
             <img 
               src={src} 
