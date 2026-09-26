@@ -666,7 +666,7 @@ export default function Home() {
 
       
       {/* ?? EVENT POLAROIDS MARQUEE ?? */}
-      <section className="relative z-20 pt-16 pb-12 overflow-hidden bg-[#12091f]">
+      <section className="relative z-20 pt-16 pb-12 overflow-hidden bg-transparent">
         
         {/* Left-to-Right Polaroid Marquee */}
         <div className="relative w-full flex overflow-x-hidden border-y border-white/5 bg-black/40 py-12 shadow-[inset_0_0_50px_rgba(0,0,0,0.8)]">
@@ -724,7 +724,7 @@ export default function Home() {
         </div>
       </section>
       {/* ?? NEW PHOTOS MARQUEE ?? */}
-      <section id="photos" className="relative z-20 py-8 sm:py-12 overflow-hidden bg-[#12091f]">
+      <section id="photos" className="relative z-20 py-8 sm:py-12 overflow-hidden bg-transparent">
         <div className="text-center mb-6 sm:mb-10 px-4">
           <p className="text-[#ff6b35] font-semibold tracking-[0.2em] uppercase text-xs mb-2">Memories</p>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-black text-white">
@@ -742,7 +742,7 @@ export default function Home() {
 
       {/* ════════ EVENTS ════════ */}
       {/* ?? REGISTER ?? */}
-        <section id="register" className="py-20 md:py-32 px-4 relative overflow-hidden bg-[#12091f] flex flex-col items-center justify-center">
+        <section id="register" className="py-20 md:py-32 px-4 relative overflow-hidden bg-transparent flex flex-col items-center justify-center">
           <GoldenWheel className={`absolute top-10 left-10 w-40 h-40 opacity-20 animate-[spin_65s_linear_infinite] text-gold`} />
           <SparkleParticle className="top-1/4 left-1/4 w-2 h-2 sm:w-3 sm:h-3" delay={0.5} />
   

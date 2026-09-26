@@ -39,10 +39,10 @@ const PhotoMarquee = ({ images, speed = 35 }) => {
             <img 
               src={src} 
               alt="Gallery" 
-              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 mix-blend-luminosity hover:mix-blend-normal"
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
             />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_40%,#12091f_120%)] pointer-events-none"></div>
-            <div className="absolute inset-0 bg-gradient-to-t from-[#12091f] via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none"></div>
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_40%,rgba(0,0,0,0.8)_120%)] pointer-events-none"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none"></div>
           </div>
         ))}
       </div>
