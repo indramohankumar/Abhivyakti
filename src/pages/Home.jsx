@@ -123,13 +123,25 @@ const events = [
     subEvents: ['Indian Mythology-Based Drama']
   },
   { 
-    name: 'Fashion', 
-    desc: 'Fashion Show – Indian Ethnic Wear', 
-    icon: Shirt, color: 'from-quantum-purple to-fuchsia-600', 
-    image: 'https://media.gettyimages.com/id/2287626362/photo/delhi-india-models-walk-the-runway-during-the-house-of-masaba-show-at-india-couture-week-2026.jpg?s=612x612&w=0&k=20&c=WxbMRhqopDZfljOvv5AAaR1O7KEZwvSboR-zXerDA7E=', 
-    rulesLink: 'https://docs.google.com/document/d/1Up1NfeKEmbHRGvk1ebK3Y3b9DgSlfKCl/edit?usp=drive_link&ouid=110613590784742549939&rtpof=true&sd=true',
-    subEvents: ['Fashion Show – Indian Ethnic Wear']
-  },
+      name: 'Fashion', 
+      desc: 'Fashion Show - Indian Ethnic Wear', 
+      icon: Shirt, color: 'from-quantum-purple to-fuchsia-600', 
+      image: 'https://media.gettyimages.com/id/2287626362/photo/delhi-india-models-walk-the-runway-during-the-house-of-masaba-show-at-india-couture-week-2026.jpg?s=612x612&w=0&k=20&c=WxbMRhqopDZfljOvv5AAaR1O7KEZwvSboR-zXerDA7E=', 
+      rulesLink: 'https://docs.google.com/document/d/1Up1NfeKEmbHRGvk1ebK3Y3b9DgSlfKCl/edit?usp=drive_link&ouid=110613590784742549939&rtpof=true&sd=true',
+      subEvents: ['Fashion Show - Indian Ethnic Wear'],
+      rules: [
+        "The competition is strictly an Individual Inter-University Indian Ethnic Fashion Show.",
+        "Each participant must officially represent their respective University/Institution/College (Multiple participants from the same university can participate, but a participant cannot represent more than one institution).",
+        "Participants must carry a valid University/Institution ID Card for verification.",
+        "Theme: Indian Ethnic Wear. The presentation must prominently showcase Indian Ethnic Wear.",
+        "Registration Fee: ₹100 per participant.",
+        "The maximum performance time will be 2 minutes, including entry, presentation, and exit. Exceeding the prescribed time may result in deduction of marks.",
+        "Costumes must be decent, dignified, culturally appropriate, and suitable for a University-level event.",
+        "Vulgar, obscene, offensive, or inappropriate costumes, gestures, choreography, or lyrics are strictly prohibited.",
+        "Fire, explosives, weapons, sharp objects, hazardous substances, and dangerous stage effects are strictly prohibited.",
+        "All participants must report to the University by 9:00 AM sharp. No delay will be permitted.",
+        "The decision of the judging panel shall be final and binding."
+      ]},
   { 
     name: 'Fine Arts', 
     desc: 'Rangoli', 
