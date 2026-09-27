@@ -2,7 +2,7 @@
 import { EmberParticles } from '../components/ui/EmberParticles';
 import { ContactCrewGrid } from '../components/ui/CrewCard';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent, useInView } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent, useInView, useSpring } from 'framer-motion';
 import {
   Calendar, MapPin, Sparkles, ArrowRight, ExternalLink,
   Music, Users, VenetianMask, Shirt, Palette, Utensils, BookOpen,
@@ -314,7 +314,16 @@ const navLinks = ['Events', 'Photos', 'Register'];
 
 /* ─── App ─── */
 export default function Home() {
-  const [menuOpen, setMenuOpen] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
+  
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => { document.body.style.overflow = 'unset'; };
+  }, [menuOpen]);
   const [scrolled, setScrolled] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [showBottomCTA, setShowBottomCTA] = useState(false);
@@ -391,7 +400,8 @@ export default function Home() {
   }, []);
 
   /* ─── Scroll-based constellation flow ─── */
-  const { scrollY } = useScroll();
+  const { scrollY, scrollYProgress } = useScroll();
+    const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
   const [bgShift, setBgShift] = useState(0);
   useMotionValueEvent(scrollY, "change", (y) => {
     // Parallax drift upward as user scrolls
@@ -461,28 +471,57 @@ export default function Home() {
 
         <AnimatePresence>
           {menuOpen && (
-            <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.25 }}
-              className={`md:hidden overflow-hidden backdrop-blur-xl border-t ${dark ? 'bg-dark-bg/95 border-dark-border' : 'bg-white/95 border-gold/10'}`}>
-              <div className="px-4 pt-2 pb-4 space-y-1">
-                <Link to="/inter-school" onClick={() => setMenuOpen(false)} className={`mb-2 block px-4 py-3 font-bold rounded-lg transition-colors flex items-center gap-2 ${dark ? 'text-quantum-purple bg-quantum-purple/10 border border-quantum-purple/20' : 'text-quantum-purple bg-quantum-purple/10 border border-quantum-purple/20'}`}>
-                  <Sparkles className="w-4 h-4" /> Inter-School Events
-                </Link>
-                <Link to="/journey" onClick={() => setMenuOpen(false)} className={`block px-4 py-3 font-medium rounded-lg transition-colors ${dark ? 'text-gray-300 active:bg-gold/10' : 'text-gray-700 active:bg-gold/10'}`}>Festival Journey</Link>
-                <a href="#events" onClick={(e) => handleNavClick(e, 'events')} className={`block px-4 py-3 font-medium rounded-lg transition-colors ${dark ? 'text-gray-300 active:bg-gold/10' : 'text-gray-700 active:bg-gold/10'}`}>
-                  Inter-University Events
-                </a>
-                <a href="#photos" onClick={(e) => handleNavClick(e, 'photos')} className={`block px-4 py-3 font-medium rounded-lg transition-colors ${dark ? 'text-gray-300 active:bg-gold/10' : 'text-gray-700 active:bg-gold/10'}`}>
-                  Photos
-                </a>
-                <a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className={`block px-4 py-3 font-medium rounded-lg transition-colors ${dark ? 'text-gray-300 active:bg-gold/10' : 'text-gray-700 active:bg-gold/10'}`}>
-                  Contact Us
-                </a>
-                
-                <a href="#register" onClick={(e) => handleNavClick(e, 'register')} className="block mt-3 text-center bg-gradient-to-r from-yellow-400 to-[#ff5f3c] text-white px-5 py-3 rounded-lg font-black text-sm shadow-[0_0_20px_rgba(255,165,0,0.4)] hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(255,165,0,0.8)] transition-all duration-300 uppercase tracking-widest">Register Now</a>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}
+                className="fixed inset-0 z-50 md:hidden bg-[#0a0505] backdrop-blur-md flex flex-col justify-center px-8"
+              >
+                <div className="absolute top-4 right-4 flex items-center justify-between w-[calc(100%-2rem)]">
+                  <div className="flex items-center gap-3">
+                     <div className="relative">
+                       <img src="/logo.png" alt="Quantum University" className="h-10 w-auto object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]" />
+                     </div>
+                     <span className="text-[14px] font-black tracking-widest text-[#ff6b35] drop-shadow-md">ABHIVYAKTI '26</span>
+                  </div>
+                  <button onClick={() => setMenuOpen(false)} className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-md">
+                    <X className="w-6 h-6" />
+                  </button>
+                </div>
+
+                <div className="flex flex-col items-center gap-8 text-center mt-8">
+                  {[
+                    { label: "Inter-School Events", path: "/inter-school", icon: <Sparkles className="w-5 h-5 mr-2 inline text-[#ffb703]" /> },
+                    { label: "Festival Journey", path: "/journey" },
+                    { label: "Inter-University", href: "#events", action: (e) => handleNavClick(e, 'events') },
+                    { label: "Photos", href: "#photos", action: (e) => handleNavClick(e, 'photos') },
+                    { label: "Contact Us", href: "#contact", action: (e) => handleNavClick(e, 'contact') }
+                  ].map((item, i) => (
+                    <motion.div
+                      key={item.label}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.1 + (i * 0.1) }}
+                    >
+                      {item.path ? (
+                        <Link to={item.path} onClick={() => setMenuOpen(false)} className="text-xl font-black text-white hover:text-[#ff6b35] tracking-widest uppercase">
+                          {item.icon}{item.label}
+                        </Link>
+                      ) : (
+                        <a href={item.href} onClick={item.action} className="text-xl font-black text-white hover:text-[#ff6b35] tracking-widest uppercase">
+                          {item.label}
+                        </a>
+                      )}
+                    </motion.div>
+                  ))}
+                  
+                  <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.6 }} className="mt-6">
+                    <a href="#register" onClick={(e) => handleNavClick(e, 'register')} className="relative inline-flex items-center justify-center bg-gradient-to-r from-[#ffb703] to-[#ff5f3c] text-white px-8 py-4 rounded-full font-black text-sm shadow-[0_0_30px_rgba(255,107,53,0.5)] uppercase tracking-[0.2em] overflow-hidden group">
+                      <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full animate-[shimmer_2.5s_infinite]"></span>
+                      Register Now
+                    </a>
+                  </motion.div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
       </motion.nav>
 
       {/* ════════ HERO ════════ */}

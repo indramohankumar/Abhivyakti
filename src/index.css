@@ -21,6 +21,11 @@
   --font-hindi: 'Rozha One', 'Yatra One', serif;
   --animate-marquee: marquee 30s linear infinite;
   --animate-marquee-reverse: marquee-reverse 35s linear infinite;
+  --animate-shimmer: shimmer 2.5s infinite;
+  @keyframes shimmer {
+    100% { transform: translateX(100%); }
+  }
+
 
 }
 
